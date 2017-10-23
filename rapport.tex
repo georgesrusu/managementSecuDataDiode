@@ -23,7 +23,7 @@
 Our client would want to prevent his research and development labs against industrial espionage. He wants to divide the company network in order to maintain every lab in an isolated environment. Thus, the critical data could not leave the company labs using the network. One problem related is assuring that all the operating systems are up to date. This could be achieved using a manual operation where an employee would manually update every node in the isolated network using a mass-storage device\footnote{A USB-key for instance.}. However, this is not the most optimized way and for sure it is not cost less and timeless for the company without mentioning that there could be dependency problems, this is prone to human errors and this could generate security vulnerabilities.
 
 \subsection{Our solution}
-In order to address this problem we are going to implement a data diode. In electronics as shown in Figure \ref{fig:diode}, a diode is a component which conduct the current in one direction. Thus the term of data diode is something that only let the data to travel in an unidirectional way. An example of use case is illustrated in Figure \ref{fig:datadiode}, letting the data pass from a low risk VLAN\footnote{IEEE 802.1Q.} to a high risk VLAN but not the way around.
+In order to address this problem we are going to implement a data diode. In electronics as shown in Figure \ref{fig:diode}, a diode is a component which conduct the current in one direction. Thus the term of data diode is a set of components that only let the data to travel in an unidirectional way. An example of use case is illustrated in Figure \ref{fig:datadiode}, letting the data pass from a low risk VLAN\footnote{IEEE 802.1Q.} to a high risk VLAN but not the way around.
 \begin{figure}
 \centering
 \includegraphics[scale=0.25]{images/diode.png}
@@ -38,9 +38,15 @@ In order to address this problem we are going to implement a data diode. In elec
 \label{fig:datadiode}
 \end{figure}
 
-A data diode is made using a transmitter and a receiver both linked using one fiber cable. Thus when a digital data want to be send trough, every bit will be converted\footnote{using a Digital to analog converter (DAC).} into an electrical pulse that the transmitter will convert in light pulse using a LED\footnote{Light Emitting Diode.}. Then, the output light will pass trough the fiber cable and as soon as the photons are reaching the receiver, they will be reconverted firstly into a electrical pulse by a photo diode and then in bits\footnote{using an analog to digital converter (ADC).}.
+A data diode is made using a transmitter and a receiver both linked using one fiber cable. Thus, when a digital data want to be send trough, every bit will be converted\footnote{using a Digital to analog converter (DAC).} into an electrical pulse that the transmitter will convert in light pulse using a LED\footnote{Light Emitting Diode.}. Then, the output light will pass trough the fiber cable and as soon as the photons are reaching the receiver, they will be converted firstly into an electrical pulse by a photo diode and then in bits\footnote{using an analog to digital converter (ADC).}.
 
-One major problem is the network transport protocols(layer 4 in the OSI model) that applications are using. The most used transportation protocol is TCP. However, TCP is a bi-directional protocol which means that in order to start a connection there must be at leaste to fiber cable(the 3 ways handshake). Therefore, only UDP protocol can be used. TO BE CONTINUED 
+One major problem is the network transport protocols(layer 4 in the OSI model) that applications are using. The most used transportation protocol nowadays is TCP. However, TCP is a bi-directional protocol which means that in order to start a connection there must be at least two fiber cables (the 3 ways handshake). In contradiction, UDP does not require a handshake process in order to provide reliability, ordering, data integrity and does not set up a dedicated end-to-end connection automatically and thus does not require a bi-directional data transfer. Therefore, the use of such a protocol is recommended when dealing with applications that are not sensitive to data loss or that implements an error checking system. Hence, the UDP protocol is used within the data diode.
+
+Furthermore, this brings multiple problems. One of the problems is how to be able to use applications that requires TCP.  TO BE CONTINUED
+
+
+
+ 
 \begin{figure}
 \centering
 \includegraphics[scale=0.5]{images/UDPOverDD.png}
@@ -49,7 +55,7 @@ One major problem is the network transport protocols(layer 4 in the OSI model) t
 \end{figure}
 
 
-\subsection{Our System implementation description}
+\subsection{Our System description}
 The data diode concept is well orchestrated combination between hardware and software.
 \subsubsection{Hardware}
 \subsubsection{Software}
