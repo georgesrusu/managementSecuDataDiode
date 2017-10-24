@@ -56,11 +56,35 @@ Furthermore, this brings multiple problems. One of the problems is how to be abl
 
 
 \subsection{Our System description}
-The data diode concept is well orchestrated combination between hardware and software.
+The data diode concept is well orchestrated combination between hardware and software. The data diode is composed by 2 server. We can consider one as a \textit{low server}, wich is connected to the Internet, and one as a \textit{high sever} wich is connected to the secure environement of the entreprise. 
+The transmittion of the information will be from the low side to the high side, and blocked in the other direction (\textit{Bell-LaPadula security model}(pas sur)).
+
 \subsubsection{Hardware}
+
+\begin{tabular}{|p{3cm}|p{10.5cm}|}
+	\hline
+	\textbf{Component} & \textbf{Description}                 \\
+	\hline
+	2 Server "type" &    \\
+	\hline
+	Unidirectional optical fiber\footnote{http://www.conrad.fr/ce/fr/product/505019/Fibre-optique-unidirectionnelle-R4-M3-2M-Ftp40-Panasonic-FTP40} & This optical fiber allows communication between the low server the high server.                    \\
+	\hline
+	Fiber Optic Sensor & Placed on the high server
+    to receive the data through the optical fiber \\
+	\hline
+\end{tabular}
+
 \subsubsection{Software}
+
+\paragraph{Web interface} will be used for the administration of the data diode.
+
+\paragraph{BlindFTP}\footnote{https://www.decalage.info/fr/python/blindftp} is a simple and portable tool for transferring files over a unidirectional network link (without acknowledgment), wich is perfect for our data diaode.
+
 \subsubsection{Objectives}
-\subsection{User Interface}
+\subsection{Users} 
+The only authorized person to interact with the data diode must be one (or two) \textit{administrator} designated by the company. He will have to know how it works and be able to use the administration interface\ref{UI}.
+\subsection{User Interface}\label{UI}
+
 \subsection{System implementation}
 \subsection{General usage}
 
