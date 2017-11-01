@@ -57,7 +57,7 @@ Furthermore, this brings multiple problems. One of the problems is how to be abl
 
 \subsection{Our System description}
 The data diode concept is well orchestrated combination between hardware and software. The data diode is composed by 2 server. We can consider one as a \textit{low server}, wich is connected to the Internet, and one as a \textit{high sever} wich is connected to the secure environement of the entreprise. 
-The transmittion of the information will be from the low side to the high side, and blocked in the other direction (\textit{Bell-LaPadula security model}(pas sur)).
+The transmittion of the information will be from the low side to the high side, and blocked in the other direction (\textit{Bell-LaPadula security model}).
 
 \subsubsection{Hardware}
 
@@ -65,24 +65,22 @@ The transmittion of the information will be from the low side to the high side, 
 	\hline
 	\textbf{Component} & \textbf{Description}                 \\
 	\hline
-	2 Server "type" &    \\
+	2 Server  & There will be two physical machines. \\
 	\hline
 	Unidirectional optical fiber\footnote{http://www.conrad.fr/ce/fr/product/505019/Fibre-optique-unidirectionnelle-R4-M3-2M-Ftp40-Panasonic-FTP40} & This optical fiber allows communication between the low server the high server.                    \\
 	\hline
-	Fiber Optic Sensor & Placed on the high server
-    to receive the data through the optical fiber \\
+	Fiber Optic Sensor & The sensor is placed on the high server to receive the data through the optical fiber \\
 	\hline
 \end{tabular}
 
 \subsubsection{Software}
 
-\paragraph{OS Linux} will be used for the both sever.
+\paragraph{} \textbf{OS Linux} will be used for the both sever for its reputation for safety and performance and also for its stability and efficiency in maintenance.
 
-\paragraph{Web interface} will be used for the administration of the data diode.
+\paragraph{} A \textbf{web interface} will be used for the administration of the data diode. It will be described in the section \ref{UI}
 
-\paragraph{BlindFTP}\footnote{https://www.decalage.info/fr/python/blindftp} is a simple and portable tool for transferring files over a unidirectional network link (without acknowledgment), wich is perfect for our data diaode.
+\paragraph{} \textbf{BlindFTP} is a simple Python script and portable. It will be used for the communication between the two server. It's a tool for transferring files over a unidirectional network link (without acknowledgment), wich is perfect for our data diaode. The absence of acknowledgment is compensated by a redundancy of the data transmitted by UDP. In addition, it is mainly designed to build a network diode type of interconnection. BlindFTP is written in Python language, which allows to obtain a relatively simple code. It has been successfully tested on different operating system, including Linux.
 
-\subsubsection{Objectives}
 \subsection{Users} 
 We will have two types of users in our system : the \textit{administrator} and the \textit{user}.\\
 
