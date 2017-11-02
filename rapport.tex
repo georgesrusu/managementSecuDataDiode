@@ -20,7 +20,7 @@
 \newpage
 \section{Concept of operations}
 \subsection{Introduction to the problem}
-Our client would want to prevent his research and development labs against industrial espionage. He wants to divide the company network in order to maintain every lab in an isolated environment. Thus, the critical data could not leave the company labs using the network. One problem related is assuring that all the operating systems are up to date. This could be achieved using a manual operation where an employee would manually update every node in the isolated network using a mass-storage device\footnote{A USB-key for instance.}. However, this is not the most optimized way and for sure it is not cost less and timeless for the company without mentioning that there could be dependency problems, this is prone to human errors and this could generate security vulnerabilities.
+Our client would want to prevent his research and development labs against industrial espionage and confidential information leaking. He wants to divide the company network in order to maintain the labs in an isolated environment. Thus, the critical data could not leave the company using the network. One problem related is assuring that all the operating systems are up to date. This could be achieved using a manual operation where an employee would manually update every node in the isolated network using a mass-storage device\footnote{A USB-key for instance.}. However, this is not the most optimized way and for sure it is not cost less and timeless for the company, without mentioning that there could be dependency problems. This method is prone to human errors and this could generate security vulnerabilities.
 
 \subsection{Our solution}
 In order to address this problem we are going to implement a data diode. In electronics as shown in Figure \ref{fig:diode}, a diode is a component which conduct the current in one direction. Thus the term of data diode is a set of components that only let the data to travel in an unidirectional way. An example of use case is illustrated in Figure \ref{fig:datadiode}, letting the data pass from a low risk VLAN\footnote{IEEE 802.1Q.} to a high risk VLAN but not the way around.
@@ -38,44 +38,45 @@ In order to address this problem we are going to implement a data diode. In elec
 \label{fig:datadiode}
 \end{figure}
 
-A data diode is made using a transmitter and a receiver both linked using one fiber cable. Thus, when a digital data want to be send trough, every bit will be converted\footnote{using a Digital to analog converter (DAC).} into an electrical pulse that the transmitter will convert in light pulse using a LED\footnote{Light Emitting Diode.}. Then, the output light will pass trough the fiber cable and as soon as the photons are reaching the receiver, they will be converted firstly into an electrical pulse by a photo diode and then in bits\footnote{using an analog to digital converter (ADC).}.
+A data diode is made using one transmitter(Tx) and one receiver(Rx) both linked using only one fiber cable. Thus, when a digital data is send trough, every bit will be converted\footnote{Using a Digital to analog converter (DAC).} into an electrical pulse which will be convert in light pulse using a LED\footnote{Light Emitting Diode.}. Then, the output light will pass trough the fiber cable and as soon as the photons are reaching the receiver, they will be converted firstly into an electrical pulse by a photo diode and then in bits\footnote{Using an analog to digital converter (ADC).}. Since there is only one fiber, data can only travel in one way.
 
-One major problem is the network transport protocols(layer 4 in the OSI model) that applications are using. The most used transportation protocol nowadays is TCP. However, TCP is a bi-directional protocol which means that in order to start a connection there must be at least two fiber cables (the 3 ways handshake). In contradiction, UDP does not require a handshake process in order to provide reliability, ordering, data integrity and does not set up a dedicated end-to-end connection automatically and thus does not require a bi-directional data transfer. Therefore, the use of such a protocol is recommended when dealing with applications that are not sensitive to data loss or that implements an error checking system. Hence, the UDP protocol is used within the data diode.
+One major problem of this system is the network transport protocols(layer 4 in the OSI model) that applications are using. The most used transportation protocol nowadays is TCP. However, TCP is a bi-directional protocol which need the 3 way handshake in order to start a connection, thus there must be at least two fiber cables. In contradiction, UDP does not require a handshake process because it does not provide reliability, ordering, data integrity and does not set up a dedicated end-to-end connection automatically. Thus, UDP protocol does not necessary require a bi-directional data transfer. Therefore, the use of such a protocol is recommended when dealing with applications that are not sensitive to data loss or that implements an error checking system. Hence, the UDP protocol is used within the data diode.
 
-Furthermore, this brings multiple problems. One of the problems is how to be able to use applications that requires TCP.  TO BE CONTINUED
-
-
-
- 
-\begin{figure}
-\centering
-\includegraphics[scale=0.5]{images/UDPOverDD.png}
-\label{fig:UDPDD}
-\caption{UDP over a data diode.}
-\end{figure}
-
+It seems obvious now that the transport protocol used between the transmitter and the receiver of the data diode is UDP. However, this brings multiple problems. One of the problems is how to be able to use applications that requires TCP. Another problem could be the reliability of the digital data transfer in the data diode, how can we ensure that there will not be any data loss during the transfer. We will address to those questions further down in this document.
 
 \subsection{Our System description}
-The data diode concept is well orchestrated combination between hardware and software. The data diode is composed by 2 server. We can consider one as a \textit{low server}, wich is connected to the Internet, and one as a \textit{high sever} wich is connected to the secure environement of the entreprise. 
-The transmittion of the information will be from the low side to the high side, and blocked in the other direction (\textit{Bell-LaPadula security model}).
+The data diode concept is well orchestrated combination between hardware and software. The data diode is composed of two servers: a transmitter and a receiver. We could consider that the transmitter server is connected to the low security risk VLAN where a connection to the internet is made and where all the employees are connected. The receiver is connected to the high security risk VLAN where all the labs are connected and where critical informations is stored.
+
+The transmission of the information will be from the low side to the high side and blocked the way around as shown in Figure \ref{fig:UDPDD}.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{images/logical-scheme-DD.png}
+\caption{Data logical path within the data diode.}
+\label{fig:UDPDD}
+\end{figure}
 
 \subsubsection{Hardware}
-
+The following table presents the components used for the data diode implementation. We should mention that both transmitter and receiver possess two NICs\footnote{Network interface controller.}: one for the communication within the VLAN and one for the data diode.\bigskip
+\begin{table}[!h]
 \begin{tabular}{|p{3cm}|p{10.5cm}|}
 	\hline
-	\textbf{Component} & \textbf{Description}                 \\
+	\textbf{Components} & \textbf{Description}                 \\
 	\hline
-	2 Server  & There will be two physical machines. \\
+	Transmitter server  &  a physical machine or a virtual machine. The NIC for the data diode will be set in transmission mode only. \\
 	\hline
-	Unidirectional optical fiber\footnote{http://www.conrad.fr/ce/fr/product/505019/Fibre-optique-unidirectionnelle-R4-M3-2M-Ftp40-Panasonic-FTP40} & This optical fiber allows communication between the low server the high server.                    \\
+	Receiver server  &  a physical machine or a virtual machine. Similar to the transmission, the nic will only be set in a receiver mode.\\
 	\hline
-	Fiber Optic Sensor & The sensor is placed on the high server to receive the data through the optical fiber \\
+	One fiber/UTP & This optical fiber allows communication between the low server the high server. It will probably be simulated using a UTP/RJ45 cable.\\
+	\hline
+	4 Fiber NIC/UTP NIC & Two for each server (transmission and receiver).  \\
 	\hline
 \end{tabular}
-
+\caption{Components description}
+\label{tab:component}
+\end{table}
 \subsubsection{Software}
-
-\paragraph{} \textbf{OS Linux} will be used for the both sever for its reputation for safety and performance and also for its stability and efficiency in maintenance.
+We have chosen to use Linux as the operating system running on both transmission and receiver servers because of its reputation for safety and performance and also for its stability and efficiency in maintenance.
 
 \paragraph{} A \textbf{web interface} will be used for the administration of the data diode. It will be described in the section \ref{UI}
 
