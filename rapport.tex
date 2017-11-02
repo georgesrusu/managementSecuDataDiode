@@ -42,7 +42,9 @@ A data diode is made using one transmitter(Tx) and one receiver(Rx) both linked 
 
 One major problem of this system is the network transport protocols(layer 4 in the OSI model) that applications are using. The most used transportation protocol nowadays is TCP. However, TCP is a bi-directional protocol which need the 3 way handshake in order to start a connection, thus there must be at least two fiber cables. In contradiction, UDP does not require a handshake process because it does not provide reliability, ordering, data integrity and does not set up a dedicated end-to-end connection automatically. Thus, UDP protocol does not necessary require a bi-directional data transfer. Therefore, the use of such a protocol is recommended when dealing with applications that are not sensitive to data loss or that implements an error checking system. Hence, the UDP protocol is used within the data diode.
 
-It seems obvious now that the transport protocol used between the transmitter and the receiver of the data diode is UDP. However, this brings multiple problems. One of the problems is how to be able to use applications that requires TCP. Another problem could be the reliability of the digital data transfer in the data diode, how can we ensure that there will not be any data loss during the transfer. We will address to those questions further down in this document.
+It seems obvious now that the transport protocol used between the transmitter and the receiver of the data diode is UDP. However, this brings multiple problems. One of the problems is how to be able to use applications that requires TCP. Another problem could be the reliability of the digital data transfer in the data diode, how can we ensure that there will not be any data loss during the transfer. We will address to those questions further down in this document.\bigskip
+
+Furthermore, system administrators would dispose of a file transmission mechanism from the low level to the high level in order to maintain all the computers up to date. This will be done using the FTP protocol and will be explained in the next section.
 
 \subsection{Our System description}
 The data diode concept is well orchestrated combination between hardware and software. The data diode is composed of two servers: a transmitter and a receiver. We could consider that the transmitter server is connected to the low security risk VLAN where a connection to the internet is made and where all the employees are connected. The receiver is connected to the high security risk VLAN where all the labs are connected and where critical informations is stored.
@@ -76,46 +78,81 @@ The following table presents the components used for the data diode implementati
 \label{tab:component}
 \end{table}
 \subsubsection{Software}
-We have chosen to use Linux as the operating system running on both transmission and receiver servers because of its reputation for safety and performance and also for its stability and efficiency in maintenance.
+We have chosen to use Linux as the main operating system for both transmission and receiver servers because of its reputation for safety and performance and also for its stability and efficiency in maintenance. The Linux distribution used in our project will be GNU Debian. 
 
-\paragraph{} A \textbf{web interface} will be used for the administration of the data diode. It will be described in the section \ref{UI}
+The data diode will be easily administrated using a web interface running on an Apache server. The web site will be hosted on the transmission server. It will be described in more details further in this document.
 
-\paragraph{} \textbf{BlindFTP} is a simple Python script and portable. It will be used for the communication between the two server. It's a tool for transferring files over a unidirectional network link (without acknowledgment), wich is perfect for our data diaode. The absence of acknowledgment is compensated by a redundancy of the data transmitted by UDP. In addition, it is mainly designed to build a network diode type of interconnection. BlindFTP is written in Python language, which allows to obtain a relatively simple code. It has been successfully tested on different operating system, including Linux.
+Every configuration script used by the web interface will be a combination of Python language and Bash language.
+\subsubsection{First overview on the project implementation}
+
+Let's start by explaining which protocol shall be used in the data diode. Remember that our main goal is to create an isolated environment but also to facilitate the update process of the machines within the high security zone. As we mentioned earlier, we are going to use the FTP\footnote{File transfer protocol.} protocol. There are some alternatives to FTP such as BlindFTP, SFTP, etc. However FTP and SFTP are using TCP as their transportation layer protocol. Thus, we are going to use between the transmitter and the receiver the BlindFTP which is use UDP instead.
+
+BlindFTP is a simple Python script which was especially created for the communication between the two servers over an unidirectional network. It is simply a tool for transferring files from one side to the other. Despite the fact that use UDP, there is no acknowledgement of received packets but this is compensated by a redundancy of the data. An other advantage is the language used, as it is written in Python the result code is relatively simple and very portable to Windows or MacOS.
+
+It is now time to have a look to our entire system, let's have a look in Figure \ref{fig:sysschem}.\bigskip
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.35]{images/systemschema.png}
+\caption{Entire system.}
+\label{fig:sysschem}
+\end{figure}
+
+Using BlindFTP allows us to ignore if the application is using TCP or UDP, the only thing we need is to make sure that the data arrive to the transmitter. We should note that between the transmitter and the other peers a TCP connection can be used to communicate. And this is the same for the receiver, after the data goes out from the network diode the transportation protocol could be TCP with other peers. In this way, we are not dealing any more with the problem of application transportation layer. 
 
 \subsection{Users} 
-We will have two types of users in our system : the \textit{administrator} and the \textit{user}.\\
+In general every employee of a company has a unique ID, a grade, a job title, etc. The company owner or the manager in charge with the security could choose which grade or which person can have access to the administration web interface, of course this exclude the systems administrators.  Thus to make our explanation simple, let's suppose that there will be two types of users in our system : the \textit{administrators} and the all the other\textit{users}.
 
-The \textit{administrator} is the person in charge of operating and maintaining the data diode. The only authorized person to interact with the data diode must be one (or two) \textit{administrator} designated by the company. He will have to know how it works and be able to use the administration interface\ref{UI}.\\
+A \textit{user} is simply an employee of the company. Every employee have limited access into the company's files according to their job title or to the specific rule defined by their supervisor.
 
-The \textit{user} are the employee who are on the secured network and who needs the files
-transferred to maintain their computer up-to-date.\\
+An \textit{administrator} is a user in charge of operating and maintaining the data diode. It is the only authorized person to interact with the data diode and this is mandatory. Because he will have to know how the data diode is working, should know how to interact with it using the web interface but mostly he should be able to reconfigure it or restore it as quickly as possible in case of a security breach or a system failure. However, an administrator could not have access to some strict secret files of the company but only to the used IT mechanism.
 
-All users have a type, an username and a password. All these informations are
-managed and stored in a database by the company.
+Every user information is managed and stored by the company in their own databases.
 \subsection{User Interface}\label{UI}
+
+As we mentioned earlier, the administration of our data diode will happen through a web interface. This web interface will be hosted on the transmitter and will allows to transmit files or update packages from the lower network to the higher network.
+
+Here is an overview on our web interface:
+
+SCREEN PAGE PRINCIPALE
+
+DIRE PAR EXEMPLE QUE LES USER ONT UN ACCES JUSTE POUR FTP ET QUE LES ADMIN ON TUN ACCES JUSTE POUR LES MISE A JOUR, PAR EXEMPLE ON PEUT AUSSI DIRE QUE POUR UN FTP ON A UNE FORME AVEC UPLOAD FILE ET PUIS UN SEND FILE , POUR LES ADMIN ON AURAI UN BOUTTON AVEC RECHERCHE DE MISE A JOUR, PAR LA SUITE ON AURAIT TELECHARGER LES MISE A JOURE SELECTIONNéE ET LES ENVOYé DE L'AUTRE COTE. 
+
+ON POURRAI AJOUTER POUR LE COTE ADMIN, ET POUR LES MANAGER, UN ESPECE D'HISTORIQUE AVEC QUI A FAIT QUOI, QUI A UPLOADE QUOI, QUI A MIS A JOUR, -> FONCTIONNALITé DE TRACAGE , ON POURRAI AUSSI AVOIR UN HISTORIQUE DE TOUT LES MISE A JOUR DEJA FAIT, PAREIL POUR LES FICHIER DE L'AUTRE COTE DEJA ENVOYE ( ICI COMMENT SAVOIR SI LE FICHIER EST ENCORE LA OU PAS? )
+
+
+AU NIVEAU DE L'INTERFACE, J'IMAGINE CA TRES SIMPLEMENT AVEC UNE PAGE, AVEC AU DEBUT UN LOGIN AVEC MOT DE PASSE (LIE A CE QUE J'AI DIT DANS LA PARTIE USER) APRES EN FONCTION DU JOB TITLE (SOIT UN CHERCHEUR SOIT UN ADMIN) ON VA AVOIR LES PAGES RESPECTIVENT QUI S'AFFICHE, 
+
+-USER -TRANSFERT DE FICHIER
+-ADMIN - MISE A JOUR
+
+POUR USER, JE VOIS CA AVEC UNE FORME OU ON PEUT UPLOADER UN FICHIER, AJOUTER UNE DESCRIPTION ET L'ENVOYER, DE L'AUTRE COTE COMME UN COMMIT SUR GITHUB
+
+COTE ADMIN J'IMAGINE AVOIR UN PANEL (TABLEAU) DANS LEQUEL ON VA LISTER TOUT LES MISE A JOUR DISPONIBLE DEPUIS UNE CERTAINE DATE( DERNIERE MISE A JOUR) ET ENSUITE POUVOIR EN TANT QU'ADMIN FAIRE UNE SELECTION DES PACKAGE QU'ON AIMERAI TRANSMETTRE. DU COUP ON PEUT SELECTION ET TRANSFERER DE L'AUTRE COTE.
+
+EN PLUS DE CA FAUT DIRE QUE NOTRE FTP SERVEUR EST DIVISER EN PLUSIEUR BRANCHE, GENRE BRANCHE ADMIN BRANCHE CHERCHEUR, ETC... DU COUP L'UTILISATEUR AVEC SON COMPTE N'A ACCES QUE A SON PROPRE ESPACE. -> PEUT-ETRE HORS DU PROJET MAIS ON PEUT L'ENONCER ET DIRE QUE CA POURRAIT ETRE TRES FACILEMENT MIS EN OEUVRE.
+
+ENSUITE POUR CHAQUE PARTIE ESSAYER DETAILLER BETEMENT QUEL BOUTTON FAIT QUOI, COMMENT SE LOGER EN ETAPES AVEC DES NUMERO ET TOUS CA DANS LA PROCHAINE SECTION COMMENT.
 
 
 [idee : site web sur le transmitter, login+ mot de passe , avoir une certainte tracabilité, pouvoir umploader une fichier depuis le site et juste l'envoyer de l'autre cote. ]\\
 
 
-The administration of our data diode happens through a web interface.
-This web interface will be hosted on the transmitter. This will allows to get the
-files from the lower network. For the user interface we have tryed to make it
-easy to use. In ordre to use the interface, the first step is to log on with his
-user name and password.  Once we are connected, (if we are a user??)
-we are on a page that allows the file transfer from the transmitter(lower network)
-to the receiver(high network), simply by a mechanism of drag and drop(or upload?).
-(if we are admin??)
-
-\textbf{TO DO : parler de la tracabilité}
-
-
-\subsection{System implementation}
 \subsection{General usage}
 The interface will be used each time by the users from the secured network
 in order to transfer a file through the data diode. By using the interface,
 users can transfer the files they need by simply dragging and dropping them to
 the dedicated transfer folder which is forwarded to the secure network.
+
+There is the s
+\begin{enumerate}
+\item[-] 
+\end{enumerate}
+easy to use. In ordre to use the interface, the first step is to log on with his
+user name and password.  Once we are connected, (if we are a user??)
+we are on a page that allows the file transfer from the transmitter(lower network)
+to the receiver(high network), simply by a mechanism of drag and drop(or upload?).
+(if we are admin??)
 
 
 \begin{thebibliography}{9}
@@ -133,6 +170,10 @@ SANS Institute InfoSec Reading Room,
 \bibitem{data-diode-transport}
 CS Risk Management and Compliance Ltd,
 \textit{Data Diode vs Firewall Feasibility}, September 2016. [Online]. Available: \url{https://csriskmanagement.co.uk/data-diode-vs-firewall-feasibility/} [Accessed: 30- Oct- 2017]
+\bibitem{data-diode-transport}
+
+BlindFTP,
+\textit{Blind ftp protocol}[Online]. Available: \url{https://www.decalage.info/fr/python/blindftp} [Accessed: 30- Oct- 2017]
 
 \end{thebibliography}
 \end{document}
