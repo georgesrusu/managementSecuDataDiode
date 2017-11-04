@@ -108,13 +108,70 @@ A \textit{user} is simply an employee of the company. Every employee have limite
 An \textit{administrator} is a user in charge of operating and maintaining the data diode. It is the only authorized person to interact with the data diode and this is mandatory. Because he will have to know how the data diode is working, should know how to interact with it using the web interface but mostly he should be able to reconfigure it or restore it as quickly as possible in case of a security breach or a system failure. However, an administrator could not have access to some strict secret files of the company but only to the used IT mechanism.
 
 Every user information is managed and stored by the company in their own databases.
-\subsection{User Interface}\label{UI}
 
-As we mentioned earlier, the administration of our data diode will happen through a web interface. This web interface will be hosted on the transmitter and will allows to transmit files or update packages from the lower network to the higher network.
+\subsection{User Interface}
 
-Here is an overview on our web interface:
+As we mentioned earlier, the administration of our data diode will happen through a web interface. There will be one web interface hosted on the transmitter which will allows to transmit files or update packages from the lower network to the higher network. But, on the other hand there will also be a receiver web interface for each user to manipulate his transferred data more easily.
 
-SCREEN PAGE PRINCIPALE
+Each user should login from both side to use the platform. Here is an overview of our login page:
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.35]{images/login.png}
+\caption{Login page.}
+\label{fig:logpage}
+\end{figure}
+
+Once login is made, the user will be prompted to the web interface of the transmitter or the receiver. The page are shown in Figure \ref{fig:transuserpage} and Figure \ref{fig:receiveruserpage}.
+
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.35]{images/usertransmitter.png}
+\caption{Transmitter user page.}
+\label{fig:transuserpage}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.35]{images/userreceiver.png}
+\caption{Receiver user page.}
+\label{fig:receiveruserpage}
+\end{figure}
+
+On the other hand, an admin can transfer files but also can transfer updated packages from official sources or his own PC.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.35]{images/admintransmitter.png}
+\caption{Transmitter admin page.}
+\label{fig:transadminpage}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.35]{images/adminreceiver.png}
+\caption{Receiver admin page.}
+\label{fig:receiveradminpage}
+\end{figure}
+\clearpage
+\subsection{General usage}
+The interface will be used each time by the users from the secured network
+in order to transfer a file through the data diode. By using the interface,
+users can transfer the files they need by simply dragging and dropping them to
+the dedicated transfer folder which is forwarded to the secure network.
+
+There is the s
+\begin{enumerate}
+\item[-] 
+\end{enumerate}
+easy to use. In ordre to use the interface, the first step is to log on with his
+user name and password.  Once we are connected, (if we are a user??)
+we are on a page that allows the file transfer from the transmitter(lower network)
+to the receiver(high network), simply by a mechanism of drag and drop(or upload?).
+(if we are admin??)
+
+
 
 Firstly, all users have to identify themselves through the login page of the figure NUMERO.After that, this authentication will bring them respectively to their dedicated page.The user page will allow the user to transfer file that they need for his work. He can also add some comments and then send it to the high server by clicking on the button \textit{send} show on the figure NUMERO.
 
@@ -143,21 +200,6 @@ ENSUITE POUR CHAQUE PARTIE ESSAYER DETAILLER BETEMENT QUEL BOUTTON FAIT QUOI, CO
 [idee : site web sur le transmitter, login+ mot de passe , avoir une certainte tracabilité, pouvoir umploader une fichier depuis le site et juste l'envoyer de l'autre cote. ]\\
 
 
-\subsection{General usage}
-The interface will be used each time by the users from the secured network
-in order to transfer a file through the data diode. By using the interface,
-users can transfer the files they need by simply dragging and dropping them to
-the dedicated transfer folder which is forwarded to the secure network.
-
-There is the s
-\begin{enumerate}
-\item[-] 
-\end{enumerate}
-easy to use. In ordre to use the interface, the first step is to log on with his
-user name and password.  Once we are connected, (if we are a user??)
-we are on a page that allows the file transfer from the transmitter(lower network)
-to the receiver(high network), simply by a mechanism of drag and drop(or upload?).
-(if we are admin??)
 
 
 \begin{thebibliography}{9}
