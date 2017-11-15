@@ -216,9 +216,9 @@ The admin can configure the IP address of both the transmitter and the receiver.
 
 \paragraph{Employees:} All employees that don't have the necessary knowledge to interact with the data diode must be taken into account of the analysis.
 
-\paragraph{Administrators:} Since that they have all access and priviledge to the data diode, the adminstrators are possible threat source.
+\paragraph{Administrators:} Since that they have all access and privilege to the data diode, the administrators are possible threat source.
 
-\paragraph{Script Kiddies:} They can a be a potentiel source due to the fact that the system is connected to the internet.
+\paragraph{Script Kiddies:} They can a be a potential source due to the fact that the system is connected to the internet.
 
 \paragraph{Skilled Hacker:} The information protected by the system can be a target for different reasons like selling the the data or getting information for rival company. Since the system is supposed to be well protected, attacks will require some skills.
 
@@ -226,9 +226,12 @@ The admin can configure the IP address of both the transmitter and the receiver.
 
 \paragraph{Malware:} 
 
+
+
+
 \subsection{Vulnerabilities}
 
-\paragraph{} The following table will give a set of possible vulnerability that we have to take in account to secure the most possible the data diaode. This table will give the \textbf{ID} of vulnerability, his \textbf{source}, in reference to the point 1.2, which part of the inforamtion security it will \textbf{affect} (\textit{confidentiality}, \textit{avaibility}, \textit{integrety}), and a short \textbf{description} of the vulnerability.
+ The following table will give a set of possible vulnerabilities that we have to take in account to secure the most possible the data diode. This table will give the \textbf{ID} of vulnerability, his \textbf{source}, in reference to the point 1.2, which part of the information security it will \textbf{affect} (\textit{confidentiality}, \textit{availability}, \textit{integrity}), and a short \textbf{description} of the vulnerability.
 
 \begin{table}[!h]
 	\centering
@@ -236,18 +239,18 @@ The admin can configure the IP address of both the transmitter and the receiver.
 		\hline
 		\textbf{ID}&  \textbf{Vulnerability} & \textbf{Source(s)} & \textbf{Affecting} & \textbf{Description} \\
 		\hline
-		1 & Power outage & Nature & Avaibility &  \\
+		1 & Power outage & Nature & Availability & In the case of a power outage, obviously the data diode system won't work because it needs electrical power in order to run. Hence, availability is compromised.  \\
 		\hline
-		2 & Fire & Nature & Avaibility &  \\
+		2 & Fire & Nature & Availability & A fire in the building which is in direct contact with the data diode or because of the heat will cause damage to the data diode system and this will lead to his non-operation and thus non-availability. \\
 		\hline
-		3 & DDOS attack & Skilled Hacker & Avaibility &  \\
+		3 & DDOS attack & Skilled Hacker & Availability & A DDOS is a cyber-attack where the hackers seeks to make a system unavailable to its users by temporarily or indefinitely disrupting services of a host connected to the Internet. The attack is accomplished by flooding the targeted resource with superfluous requests from many different sources in an attempt to overload systems and prevent some or all legitimate requests from being fulfilled. The administration of our data diode happens through a web interface which means that it is vulnerable to DDOS attack. In case of DDOS attack the data diode will become unavailable as long as the attack lasts.   \\
 		\hline
 		4 & Data diode hardware
-		failure & Nature & Avaibility & \\
+		failure & Nature & Availability & \\
 		\hline
-		5 & Zero Day Attack & Skilled Hacker & Avaibility, Confidentiality, Integrety & \\
+		5 & Zero Day Attack & Skilled Hacker & Availability, Confidentiality, Integrity & \\
 		\hline
-		6 & Data diode hardware degradation & Unauthorized user & Avaibility, Confidentiality, Integrety & \\
+		6 & Data diode hardware degradation & Unauthorized user & Availability, Confidentiality, Integrity & \\
 		\hline
 		7 &  &  &  & \\
 		\hline
@@ -276,11 +279,11 @@ The admin can configure the IP address of both the transmitter and the receiver.
 		\hline
 		\textbf{ID}& \textbf{Vulnerability} &\textbf{Impact} & \textbf{Description}                 \\
 		\hline
-		1 & Power outage & Medium  &  The data diode will not work anymore untill the power will be reasablish. \\
+		1 & Power outage & Medium  &  The data diode will not work anymore which means it will not be available until the power will be re-establish. \\
 		\hline
-		2 & Fire & High  &  The data diode can suffer significant damage wich could lead to the replacment of the hardware.\\
+		2 & Fire & High  &  The impact depends on the damages caused by the fire. The data diode can suffer significant damages which could lead to the replacement of the hardware.\\
 		\hline
-		3 & DDOS attack & High &\\
+		3 & DDOS attack & High & If the website of the data diode suffers from a DDOS attack, the secured network productivity can grid to a total halt if the transfer of important files cannot be done. This can lead to an important cost for the business, it is why a DDOS attack can have a big impact.\\
 		\hline
 		4 & Data diode hardware failure  & Low &\\
 		\hline
@@ -298,23 +301,23 @@ The admin can configure the IP address of both the transmitter and the receiver.
 		\hline
 		\textbf{ID}& \textbf{Vulnerability} & \textbf{Likelihood} & \textbf{Description}                 \\
 		\hline
-		1 & Power outage & Low &   \\
+		1 & Power outage & Low & Weather is responsible for the majority of major power outages that occur, but there many others causes such as short circuits, blackouts and so on. Thus power outage has a medium likelihood to happen but in the case where the client's company is equipped with \textbf{an uninterruptible power supply (UPS)}, which is an electrical apparatus that provides emergency power when the mains power fails, the likelihood becomes low.    \\
 		\hline
-		2 & Fire & Low  &  \\
+		2 & Fire & Low  &  A fire can occur due to an electrical incidents, accidents or sabotages caused by human actions.\\
 		\hline
-		3 & DDOS attack & Low & \\
+		3 & DDOS attack & High & \\
 		\hline
 		4 & Data diode hardware failure  & Medium & \\
 		\hline
 		5 & Zero Day attack & Medium & \\
 		\hline
-		6 & data diode hardware degradetion & Medium & \\
+		6 & data diode hardware degradation & Medium & \\
 		\hline
 	\end{tabular}
 	\caption{Likelihood}
 \end{table}
 
-\paragraph{} After having analyzed the impact and the likelihood of each vulnerabilities, we can define for each of them a risk level using the Table \ref{table:RL} to adapt our countermesure accordingly.
+\paragraph{} After having analysed the impact and the likelihood of each vulnerabilities, we can define for each of them a risk level using the Table \ref{table:RL} to adapt our countermeasure accordingly.
 
 \begin{table}[!h]
 	\centering
