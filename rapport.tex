@@ -202,13 +202,61 @@ The admin can configure the IP address of both the transmitter and the receiver.
 \label{fig:configadminpage}
 \end{figure}
 
-
+\newpage
 \section{Risk Analysis}
-\subsection{Assets and Vulnerabilities}
+
+\subsection{Introduction to the risk analysis}
+In this section, we are going to asses any risk that could harm or lead to the destruction of our data diode. But first, lets define what is a risk. Generally the term risk is associated with a damage or a loss after an event. Thus we can illustrate the risk by the following rule:
+\begin{center}
+\centering
+$Risk(e)= impact(e) \times likelihood(e), \forall e \in Events$
+\end{center}
+
+In our risk analysis we will start by defining all the assets of our project. Those assets could be threatened by some hackers which could exploit some vulnerabilities found and harm the entire system. Hence, the need to asses all potential threat sources and all the vulnerabilities and their impact. Finally, we will conclude by presenting some countermeasures.
+
 \subsubsection{Physical Assets}
+An Assets can be physical such as computers or printers. In our client work space, we could have the following components categorized as physical assets:
+\begin{enumerate}
+\item[-] All the computers of the low security zone. Those computers could be employee's personal workstations such as laptops but also company's desktop workstations.
+\item[-] All the company's firewalls systems (routers and switch). Despite the fact that their are not part of our implementation, they could represent a potential assets for malicious persons.
+\item[-] Our data diode implementation. This comprise our transmitter server and our receiver server.
+\item[-] Data diode web servers for the web user interface.
+\item[-] The company data base server.
+\item[-] All the computers within the high security zone.
+\item[-] All the servers of the company such as Mail servers, FTP servers and other services servers. This comprise the servers in low and high risk networks.
+
+\end{enumerate}
+To all those component a stakeholder would want to have physical access in order to harm the well being of our client company. Thus, it is very important that the physical integrity of every equipment shall be preserved. In other words, a physical access to some physical assets such as routers or servers could harm or destabilize the company core system, this could easily be done for example by simply cutting the power source cable or by disconnecting the internet cable of a server (cutting the communications).
 \subsubsection{Logical Assets}
-\subsubsection{Persons}
-\subsubsection{Intangible Goods}
+A logical assets could be a sensitive information. A list of logical assets used by our client' company could be:
+\begin{enumerate}
+\item[-] The company data base containing sensitive information.
+\item[-] The data data diode web interface.
+\item[-] Data on every employee personal computer or desktop workstation used for company purpose.
+\item[-] Data within the research labs.
+\item[-] All the hard drives data of every computers company. 
+\item[-] Company's storage system.
+\item[-] Company's operating systems: this contain also every application used within the company. As an example, Microsoft Office could be used by the employee of the finance department.
+\end{enumerate}
+In other words, logical assets represent all the sensitive information which belongs to the company and all the software and applications used by the company's employees.
+
+\subsubsection{Persons involved into the company}
+At this point, we should identify every person in the company which could have access to some physical and logical assets. Generally in a company, there are several departments in which employees or contractors are working. In order to be able to distinguish every user, we should tag every user with a value according to his loyalty and his hard work for the company. Let's fix 4 valuable stage:
+\begin{enumerate}
+\item[-] Very loyal and very hardworking employee.
+\item[-] Loyal and hardworking employee.
+\item[-] Not loyal and not hardworking employee.
+\item[-] Contractors.
+\end{enumerate}
+It should seems obvious that a very loyal employee which invest a lot of time and work is unlikely to want the destruction or the malfunctioning of the company, because he knows that he will probably lose his job. On the other hand, a non-loyal employee or a contractor could easily want to destabilize the company activities for any kind of reasons\footnote{An employee could receive a job offer from a competitor or a contractor who has not been paid for his work.}.
+
+However, as we do not know every employee of our client's company, we will simplify the picture by mainly focusing on the administrators and the other users. Thus, there are two categories of person :
+\begin{enumerate}
+\item[-] The administrators which could have a disastrous impact, they have access to both logical assets and physical assets.
+\item[-] All other users which could have a moderate impact, they only could have access to physical assets.
+\end{enumerate}
+Thus, identifying employee using a value tag could be very useful when identifying potential threat sources.
+
 
 \subsection{Threat Sources}
 
@@ -363,10 +411,9 @@ The admin can configure the IP address of both the transmitter and the receiver.
 	\end{tabular}
 	\caption{Countermeasure}
 \end{table}
-\newpage
+
+\clearpage
 \begin{thebibliography}{9}
-
-
 \bibitem{data-diode-work}
 DEEP SECURE,
 \textit{How	Does a Data Diode Work?}
