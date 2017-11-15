@@ -176,7 +176,7 @@ On the reception page, the administrator has access to all updates that have bee
 The administrators have the rights to manage all the updates within FTP sharing systems, they can choose to keep or delete updates.
 
 \subsubsection{A Technical file transfer usage}
-We have said earlier that their will be a web interface running on both side of the data diode. When a user will want to send a file, he would have to first login. The login page will use the data base of the company in order to authenticate users and to verify each one permissions. However, on the high security zone, the database would not be reachable because of the unidirectional data diode. Thus, once a user would want to send a file to the other side, there will be a daemon which will create a permission and ownership system in order for the other side to recognize to whom the file belongs to. For example, when the UserX would want to send the \emph{file.txt} to the other side, the daemon will rename the file using the following rule:
+We have said earlier that their will be a web interface running on both side of the data diode. When a user will want to send a file, he would have to first login. The login page will use the data base of the company in order to authenticate users and to verify each one permissions. However, on the high security zone, the database would not be reachable because of the unidirectional data diode. Thus, once a user would want to send a file to the other side, there will be a daemon which will create a permission and ownership system in order for the other side to recognize to whom the file belongs to. For example, when the UserX would want to send the \emph{file.txt} to the other side, the transmitter daemon will rename the file using the following rule:
 \begin{center}
 \centering
 \emph{file.txt} $\triangleright$ \emph{userName\_password\_fileName\_timestamp\_size\_extension.zip}
@@ -184,7 +184,7 @@ We have said earlier that their will be a web interface running on both side of 
 
 Every file will be converted into a zip archive in order to reduce the initial size, thing that could sometimes have a major impact on the speed of the transfer (hence the time).\bigskip
 
-On the other side, there will be of course another daemon which will for each file received, decompress the file into the original extension\footnote{This is why the initial extension is putted in to the name of the sent file.}. However to ensure that only the owner (thus the userName) may see the file, the second daemon will create for every userName a folder where received files will be stored. The rule for this operations is:
+On the other side, there will be of course another receiver daemon which will for each file received, decompress the file into the original extension\footnote{This is why the initial extension is putted in to the name of the sent file.}. However to ensure that only the owner (thus the userName) may see the file, the second daemon will create for every userName a folder where received files will be stored. The rule for this operations is:
 \begin{center}
 \centering
 \emph{userName\_password\_fileName\_timestamp\_size\_extension.zip} $\triangleright$ folder: \emph{userName\_password} $\triangleright$ files in folder: \emph{file.txt}
@@ -193,13 +193,13 @@ On the other side, there will be of course another daemon which will for each fi
 Furthermore, when a user wants to login from the secure zone of the data diode, instead of queering a database, the web interface will query a daemon which will use all the folders name to authenticate the user. Every password will not be shared in clear text, a hash of SHA-256 will be used. In this way there is no need of database duplication. The main verification will take place on the transmitter side where the database can be accessed: if a user has the permission to transfer a file, he will be able to transfer the file from the transmitter side. Thus, if the file is transmitted to the receiver side, it means that the user has an access granted on the security zone and thus he has already been verified. However, if a user has not yet used the transmission system of the data diode, he will not be able to connect to the interface from the receiver side.
 
 \subsubsection{Configuration panel for the admin}
-The admin can configure the IP address of both the transmitter and the receiver. In this case, we are not talking about the communication within the data diode but about the communication to other peers of the network. Using the following panel, administrator can manually configure the static IP for the servers hosting both the web interface and the data diode.
+The admin can configure the IP address of both the transmitter and the receiver. In this case, we are not talking about the communication within the data diode but about the communication to other peers of the network. Using the following panel, administrator can manually configure the static IP for the servers hosting both the web interface and the data diode.\bigskip
 
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.35]{images/admin-config.png}
 \caption{Configuration panel for admin.}
-\label{fig:receiveradminpage}
+\label{fig:configadminpage}
 \end{figure}
 
 
@@ -322,8 +322,8 @@ The admin can configure the IP address of both the transmitter and the receiver.
 		\hline
 		\multicolumn{4}{|c|}{\textbf{Risk Level}} \\
 		\hline
-		\textbf{Likelihood} & \multicolumn{3}{|c|}{\textbf{Impact}}  \\ \hline
-		 & \textbf{Low} & \textbf{Medium} & \textbf{High} \\ \hline
+		 & \multicolumn{3}{|c|}{\textbf{Impact}}  \\ \hline
+		\textbf{Likelihood} & \textbf{Low} & \textbf{Medium} & \textbf{High} \\ \hline
 		\textbf{Low}& Low & Low & Low \\ \hline
 		\textbf{Medium} & Low & Medium & Medium \\ \hline
 		\textbf{High} & Low & Medium & High \\ \hline
