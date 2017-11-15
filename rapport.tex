@@ -40,7 +40,7 @@ In order to address this problem we are going to implement a data diode. In elec
 
 A data diode is made using one transmitter(Tx) and one receiver(Rx) both linked using only one fiber cable. Thus, when a digital data is sent through, every bit will be converted\footnote{Using a Digital-to-analog converter (DAC).} into an electrical pulse which will be convert in light pulse using a LED\footnote{Light Emitting Diode.}. Then, the output light will pass trough the fiber cable and as soon as the photons are reaching the receiver, they will be converted firstly into an electrical pulse by a photo diode and then in bits\footnote{Using an analog to digital converter (ADC).}. Since there is only one fiber, data can only travel in one way.
 
-One major problem of this system is the network transport protocols(layer 4 in the OSI model) that applications are using. The most used transportation protocol nowadays is TCP. However, TCP is a bi-directional protocol which need the 3 way handshake in order to start a connection, thus there must be at least two fiber cables. In contradiction, UDP does not require a handshake process because it does not provide reliability, ordering, data integrity and does not set up a dedicated end-to-end connection automatically. Thus, UDP protocol does not necessary require a bi-directional data transfer. Therefore, the use of such a protocol is recommended when dealing with applications that are not sensitive to data loss or that implements an error checking system. Hence, the UDP protocol is used within the data diode.
+One major problem of this system is the network transport protocols(layer 4 in the OSI model) that applications are using. The most used transportation protocol nowadays is TCP. However, TCP is a bi-directional protocol which need the 3 way handshake in order to start a connection, thus there must be at least two fiber cables. In contradiction, UDP does not require a handshake process because it does not provide reliability, ordering, data integrity and does not set up a dedicated end-to-end connection automatically. Thus, UDP protocol does not necessary require a bi-directional data transfer. Therefore, the use of such a protocol is recommended when dealing with applications that are not sensitive to data loss or that implements an error checking system. Hence, the use of the UDP protocol within the data diode.
 
 It seems obvious now that the transport protocol used between the transmitter and the receiver of the data diode is UDP. However, this brings multiple problems. One of the problems is how to be able to use applications that requires TCP. Another problem could be the reliability of the digital data transfer in the data diode, how can we ensure that there will not be any data loss during the transfer. We will address to those questions further down in this document.\bigskip
 
@@ -79,7 +79,7 @@ The following table presents the components used for the data diode implementati
 \label{tab:component}
 \end{table}
 \subsubsection{Software}
-We have chosen to use Linux as the main operating system for both transmission and receiver servers because of its reputation for safety and performance and also for its stability and efficiency in maintenance. The Linux distribution used in our project will be GNU Debian. 
+The Linux distribution which will be used in our project will be GNU Debian. We will have two linux machine, one on the transmitter side and one on the receiver side. 
 
 The data diode will be easily administrated using a web interface running on an Apache server. The web site will be hosted on the transmission server. It will be described in more details further in this document.
 
@@ -99,7 +99,7 @@ It is now time to have a look to our entire system, let's have a look in Figure 
 \label{fig:sysschem}
 \end{figure}
 
-Using BlindFTP allows us to ignore if the application is using TCP or UDP, the only thing we need is to make sure that the data arrive to the transmitter. We should note that between the transmitter and the other peers a TCP connection can be used to communicate. And this is the same for the receiver, after the data goes out from the network diode the transportation protocol could be TCP with other peers. In this way, we are not dealing any more with the problem of application transportation layer. 
+Using BlindFTP allows us to ignore if the application is using TCP or UDP, the only thing we need is to make sure that the data arrive to the transmitter. We should note that between the transmitter and the other peers a TCP connection can be used to communicate. And this is the same for the receiver, after the data goes out from the network diode the transportation protocol could be TCP with other computers. In this way, we are not dealing any more with the problem of application transportation layer. 
 
 \subsection{Users} 
 In general every employee of a company has a unique ID, a grade, a job title, etc. The company owner or the manager in charge with the security could choose which grade or which person can have access to the administration web interface, of course this exclude the systems administrators.  Thus to make our explanation simple, let's suppose that there will be two types of users in our system : the \textit{administrators} and the all the other \textit{users}.
@@ -156,8 +156,9 @@ and in Figure \ref{fig:receiveradminpage}.
 \label{fig:receiveradminpage}
 \end{figure}
 \clearpage
-\subsection{General usage}
-In this section we will explain how to use our web interfaces.
+\subsection{Usage of the WEB UI}
+In this section we will explain how to use our web interfaces from different point of views.
+\subsubsection{General usage}
 In both cases, all users have to identify themselves through the login page with their credentials. They must fill in the form with their own username and password (Figure \ref{fig:logpage}). Once the form is submitted, the authentication will bring them respectively to their dedicated page.\bigskip 
 
 In the case of a user connection, he will be redirected to the user transmission page according to his network location: if he is in the low security zone he will be prompted to use the transmission interface (Figure \ref{fig:transuserpage}) or he will get the receiver interface page (Figure \ref{fig:receiveruserpage}) if he stand on the high security zone (after the data diode). 
@@ -174,6 +175,24 @@ On the reception page, the administrator has access to all updates that have bee
 
 The administrators have the rights to manage all the updates within FTP sharing systems, they can choose to keep or delete updates.
 
+\subsubsection{A Technical file transfer usage}
+We have said earlier that their will be a web interface running on both side of the data diode. When a user will want to send a file, he would have to first login. The login page will use the data base of the company in order to authenticate users and to verify each one permissions. However, on the high security zone, the database would not be reachable because of the unidirectional data diode. Thus, once a user would want to send a file to the other side, there will be a daemon which will create a permission and ownership system in order for the other side to recognize to whom the file belongs to. For example, when the UserX would want to send the \emph{file.txt} to the other side, the daemon will rename the file using the following rule:
+\begin{center}
+\centering
+\emph{file.txt} $\triangleright$ \emph{userName\_password\_fileName\_timestamp\_size\_extension.zip}
+\end{center} 
+
+Every file will be converted into a zip archive in order to reduce the initial size, thing that could sometimes have a major impact on the speed of the transfer (hence the time).\bigskip
+
+On the other side, there will be of course another daemon which will for each file received, decompress the file into the original extension\footnote{This is why the initial extension is putted in to the name of the sent file.}. However to ensure that only the owner (thus the userName) may see the file, the second daemon will create for every userName a folder where received files will be stored. The rule for this operations is:
+\begin{center}
+\centering
+\emph{userName\_password\_fileName\_timestamp\_size\_extension.zip} $\triangleright$ folder: \emph{userName\_password} $\triangleright$ files in folder: \emph{file.txt}
+\end{center}
+
+Furthermore, when a user wants to login from the secure zone of the data diode, instead of queering a database, the web interface will query a daemon which will use all the folders name to authenticate the user. Every password will not be shared in clear text, a hash of SHA-256 will be used. In this way there is no need of database duplication. The main verification will take place on the transmitter side where the database can be accessed: if a user has the permission to transfer a file, he will be able to transfer the file from the transmitter side. Thus, if the file is transmitted to the receiver side, it means that the user has an access granted on the security zone and thus he has already been verified. However, if a user has not yet used the transmission system of the data diode, he will not be able to connect to the interface from the receiver side.
+
+\subsubsection{Configuration panel for the admin}
 
 \begin{thebibliography}{9}
 
