@@ -193,6 +193,17 @@ On the other side, there will be of course another daemon which will for each fi
 Furthermore, when a user wants to login from the secure zone of the data diode, instead of queering a database, the web interface will query a daemon which will use all the folders name to authenticate the user. Every password will not be shared in clear text, a hash of SHA-256 will be used. In this way there is no need of database duplication. The main verification will take place on the transmitter side where the database can be accessed: if a user has the permission to transfer a file, he will be able to transfer the file from the transmitter side. Thus, if the file is transmitted to the receiver side, it means that the user has an access granted on the security zone and thus he has already been verified. However, if a user has not yet used the transmission system of the data diode, he will not be able to connect to the interface from the receiver side.
 
 \subsubsection{Configuration panel for the admin}
+The admin can configure the IP address of both the transmitter and the receiver. In this case, we are not talking about the communication within the data diode but about the communication to other peers of the network. Using the following panel, administrator can manually configure the static IP for the servers hosting both the web interface and the data diode.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.35]{images/admin-config.png}
+\caption{Configuration panel for admin.}
+\label{fig:receiveradminpage}
+\end{figure}
+
+
+\section{Risk Analysis}
 
 \begin{thebibliography}{9}
 
