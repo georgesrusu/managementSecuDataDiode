@@ -24,7 +24,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="brand" href="#">Administration data diode</a>
+        <a class="brand" href="adminTransmitter.html">Administration data diode</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
             <li><a href="admin.php">Configuration</a></li>
@@ -49,11 +49,22 @@
 
     <form class="form-horizontal" action="/action_page.php">
     <div class="form-group">
-      <label class="control-label col-sm-2" for="email">Enter IP adress:</label>
       <div class="col-sm-10">
-        <input type="text"  id="ip1"  name="ip1" maxlength="4" size ="3">
-        <input type="text" id="ip2" name="ip2" maxlength="4" size="3">
+      <label class="control-label col-sm-2" for="email">Enter IP adress:</label>
+    </div>
+    <div class="col-xs-2">
+        <input class="form-control " type="number"  id="ip1"  name="ip1" min="0" max="255" size ="3">.
       </div>
+      <div class="col-xs-2">
+        <input type="number"  id="ip1"  name="ip2" min="0" max="255" size ="3">.
+      </div>
+      <div class="col-xs-2">
+        <input type="number"  id="ip1"  name="ip3" min="0" max="255" size ="3">.
+      </div>
+      <div class="col-xs-2">
+        <input type="number"  id="ip1"  name="ip4" min="0" max="255" size ="3">
+      </div>
+    
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="pwd">Subnet mask:</label>
@@ -68,17 +79,18 @@
         <input type="text" class="form-control" id="gateway" placeholder="Enter gateway adress" name="gateway">
       </div>
     </div>
-
+    <br/>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default">Apply changes</button>
+        <button type="submit" class="btn btn-default">Restart the server</button>
       </div>
     </div>
   </form>
 
     <div class="form-group row">
     <div class="alert alert-info">
-        <p>ADD INFO MESSAGE </p>
+        <p>ATTENTION! In order to apply changes a restart of the system is required.</p>
     </div>
   </div>
 
