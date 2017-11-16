@@ -283,7 +283,7 @@ Thus, identifying employee using a value tag could be very useful when identifyi
 
 \begin{table}[!h]
 	\centering
-	\begin{tabular}{|c|p{2.5cm}|c|p{2.5cm}|p{6.5cm}|}
+	\begin{tabular}{|c|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{6.5cm}|}
 		\hline
 		\textbf{ID}&  \textbf{Vulnerability} & \textbf{Source(s)} & \textbf{Affecting} & \textbf{Description} \\
 		\hline
@@ -298,17 +298,25 @@ Thus, identifying employee using a value tag could be very useful when identifyi
 		\hline
 		5 & Zero Day Attack & Skilled Hacker & Availability, Confidentiality, Integrity & Since there is possibility that a new attack is created, this attack coul be a vulnerability due to the fact that we still don't know how to protect ourselves. Since then, it could affect one or more part of the information security. \\
 		\hline
-		6 & Data diode hardware degradation & Unauthorized user & Availability, Confidentiality, Integrity & This vulnerability is possible once an unauthorized person has access to the data diode itself. This coul lead to a simple destruction of the data diode or robbery of some element (avaibility), trying to remove data from it (confidentiality), or trying to modify/add componement to falsify the data (integrety). There is also a possibility that the degradation is done without bad intention (disconnecting a cable, splilling a drink on it).\\
+		6 & Data diode hardware degradation & Unauthorized user & Availability, Confidentiality, Integrity & This vulnerability is possible once an unauthorized person has access to the data diode itself. This could lead to a simple destruction of the data diode or robbery of some element (availability), trying to remove data from it (confidentiality), or trying to modify/add component to falsify the data (integrity). There is also a possibility that the degradation is done without bad intention (disconnecting a cable, spilling a drink on it).\\
 		\hline
-		7 &  &  &  & \\
+		7 &  SQL injection  & Skilled Hacker, script kiddies, unauthorized user &  & \\
 		\hline
-		8 &  &  &  & \\
+		8 & Brute force attack &  &  & \\
 		\hline
-		9 &  &  &  & \\
+		9 & Virus and malwares &  &  & \\
 		\hline
-		10 &  &  &  & \\
+		10 & Social engineering &  &  & \\
 		\hline
-		11 &  &  &  & \\
+		11 & Misconfiguration &  &  & \\
+		\hline
+		12 & Data credentials lost &  &  & \\
+		\hline
+		13 & Data credentials theft &  &  & \\
+		\hline
+		14 &  Failure in maintenance from the provider &  &  & \\
+		\hline
+		15 &  Remote connection &  &  & \\
 		\hline
 	\end{tabular}
 	\caption{Vulnerabilities}
@@ -321,7 +329,7 @@ Thus, identifying employee using a value tag could be very useful when identifyi
 
 \subsection{Risks and Countermeasures}
 
-\paragraph{} The followiing table will give the impact that each vulnerability could have, with a brief description of the impact and its level.
+\paragraph{} The following table will give the impact that each vulnerability could have, with a brief description of the impact and its level.
 
 \begin{table}[!h]
 	\centering
@@ -329,7 +337,7 @@ Thus, identifying employee using a value tag could be very useful when identifyi
 		\hline
 		\textbf{ID}& \textbf{Vulnerability} &\textbf{Impact} & \textbf{Description}                 \\
 		\hline
-		1 & Power outage & Medium  &  The data diode will not work anymore which means it will not be available until the power will be re-establish. A powe outage usually does not exceed one hour which mean there is not a high impact. \\
+		1 & Power outage & Medium  &  The data diode will not work anymore which means it will not be available until the power will be re-establish. A power outage usually does not exceed one hour which mean there is not a high impact. \\
 		\hline
 		2 & Fire & High  &  The impact depends on the damages caused by the fire. The data diode can suffer significant damages which could lead to the replacement of the hardware.\\
 		\hline
@@ -341,19 +349,31 @@ Thus, identifying employee using a value tag could be very useful when identifyi
 		\hline
 		6 & Data diode hardware degradation & High & This vulnerability could affect the three part of the information security and also lead to non-reversible damage. \\
 		\hline
-		7 & & & \\
+		7 &  SQL injection & & \\
 		\hline
-		8 & & & \\
+		8 & Brute force attack & & \\
 		\hline
-		9 & & & \\
+		9 & Virus and malwares & & \\
 		\hline
-		10 & & & \\
+		10 & Social engineering  & & \\
+		\hline
+		11 & Misconfiguration & & \\
+		\hline
+		12 & Data credentials lost & & \\
+		\hline
+		13 & Data credentials theft & & \\
+		\hline
+		14 & Failure in maintenance from the provider & & \\
+		\hline
+		15 & Remote connection & & \\
+		\hline
+		16 & & & \\
 		\hline
 	\end{tabular}
 	\caption{Impact}
 \end{table}
 
-\paragraph{} Now we define the likelihood of each vulnerability and describe why such a leviel is given.
+\paragraph{} Now we define the likelihood of each vulnerability and describe why such a level is given.
 
 \begin{table}[!h]
 	\centering
@@ -369,9 +389,29 @@ Thus, identifying employee using a value tag could be very useful when identifyi
 		\hline
 		4 & Data diode hardware failure  & Medium & In the case of hardware failure within the data diode, it is the whole operation of the system that can be disturbed.\\
 		\hline
-		5 & Zero Day attack & Medium & This kind of attack is constanly sought after by different people like skilled hacker, but its difficult to find one, and more of this, find one that can affect our system. \\
+		5 & Zero Day attack & Medium & This kind of attack is constantly sought after by different people like skilled hacker, but its difficult to find one, and more of this, find one that can affect our system. \\
 		\hline
 		6 & data diode hardware degradation & Medium & \\
+		\hline
+		7 &  SQL injection &  &   \\
+		\hline
+		8 & Brute force attack &  & \\
+		\hline
+		9 & Virus and malwares &  & \\
+		\hline
+		10 & Social engineering  &  & \\
+		\hline
+		11 & Misconfiguration &  & \\
+		\hline
+		12 & Data credentials lost &  & \\
+		\hline
+		13 &  Data credentials theft&  & \\
+		\hline
+		14 & Failure in maintenance from the provider &  & \\
+		\hline
+		15 & Remote connection &  & \\
+		\hline
+		16 &  &  & \\
 		\hline
 	\end{tabular}
 	\caption{Likelihood}
@@ -414,18 +454,41 @@ Thus, identifying employee using a value tag could be very useful when identifyi
 		\hline
 		5 & Zero Day attack & Skilled hacker & Due to the fact that we can't be prepare against this attack, we accept the risks of this vulnerability. & H & M & Medium \\
 		\hline
-		6 & Data diode hardware degradation & Unothorized user & The data diode must be place in a closed room lock with a key or access card possessed only by the administrator. A camera coul also be placed at the entrance to the room. Since the only person who can access to the room is the administrator, the risk is limited to a clumsiness of the administrator. & H & M & Medium  \\
+		6 & Data diode hardware degradation & Unauthorized user & The data diode must be place in a closed room lock with a key or access card possessed only by the administrator. A camera coul also be placed at the entrance to the room. Since the only person who can access to the room is the administrator, the risk is limited to a clumsiness of the administrator. & H & M & Medium  \\
 		\hline
-		7 & & & & & & \\
+		7 &  SQL injection & & & & & \\
 		\hline
-		8 & & & & & & \\
+		8 & Brute force attack & & & & & \\
 		\hline
-		9 & & & & & & \\
+		9 & Virus and malwares & & & & & \\
 		\hline
+		10 & Social engineering & & & & & \\
+		\hline
+		11 & Misconfiguration & & & & & \\
+		\hline
+		12 & Data credentials lost & & & & & \\
+		\hline
+		13 &  Data credentials theft& & & & & \\
+		\hline
+		14 & Failure in maintenance from the provider& & & & & \\
+		\hline
+		15 & Remote connection & & & & & \\
+		\hline
+		16 & & & & & & \\
+		\hline
+		
 	\end{tabular}
 	\caption{Countermeasure}
 \end{table}
 
+
+
+
+
+
+
+
+%fin
 \clearpage
 \begin{thebibliography}{9}
 \bibitem{data-diode-work}
