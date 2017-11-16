@@ -347,7 +347,8 @@ It is time to focus now on the vulnerabilities affecting the logical assets of t
 \hline
 6 & Zero Day Attack & Skilled Hacker & Availability, Confidentiality, Integrity & Since there is possibility that a new attack is created, this attack represent a vulnerability due to the fact that we still don't know how to protect ourselves. Therefor, it could affect one or more part of the information security. \\
 \hline
-7 &  SQL injection  & Skilled Hacker, script kiddies, unauthorized user &  & \\
+7 &  SQL injection  & Skilled Hacker, script kiddies, unauthorized user & Confidentiality, Integrity & An SQL Injection vulnerability could affect any website that makes use of an SQL-based database.
+In the case of SQL injection attack, it will allow the "attacker" to bypass a web application's authentication or view data contained in the database and modify its content. Hence, data confidentiality and integrity are concerned.\\
 \hline
 8 & Brute force attack &  &  & \\
 \hline
@@ -372,11 +373,11 @@ As for the previous sections, Table \ref{tab:person-assets} explain the vulnerab
 \hline
 \textbf{ID}&  \textbf{Vulnerability} & \textbf{Source(s)} & \textbf{Affecting} & \textbf{Description} \\
 \hline
-13 & Social engineering &  &  & \\
+13 & Social engineering & Skilled Hacker, unauthorized user & Confidentiality & Social engineering is a practice of manipulating people so they give up confidential information or sensitive data such as the credential. Some of the more common forms of social engineering are ransomware and phishing. \\
 \hline
 14 & Data credentials lost & Administrator & Availability  & There is a possibility that the administrator lost the data credentials wich mean that it will no longer be possible to connect to the data diode. \\
 \hline
-15 & Data credentials theft &  &  & \\
+15 & Data credentials theft &  Skilled Hacker, unauthorized user & Confidentiality & Data credentials theft can occur in several ways such as hackers attacks (brute force, social engineering,...)  or because of the negligence of the user (easy password, credential stored in a non-secured place such as the office, and so on...)  \\
 \hline
 %\end{tabular}
 \caption{Vulnerabilities affecting persons.}
@@ -398,7 +399,7 @@ The following table (Table \ will give the impact that each vulnerability could 
 \hline
 2 & Fire & High  &  The impact depends on the damages caused by the fire. The data diode can suffer significant damages which could lead to the replacement of the hardware.\\
 \hline
-3 & Data diode hardware failure  & Low & The data diode hardware are well chosen and tested in order to keep a low risk of failure.\\ 
+3 & Data diode hardware failure  & Low & In the case of hardware failure within the data diode, it is the whole operation of the system that can be disturbed.\\
 \hline
 4 & Data diode hardware degradation & High & This vulnerability could affect the three part of the information security and also lead to non-reversible damage. \\
 \hline
@@ -406,7 +407,7 @@ The following table (Table \ will give the impact that each vulnerability could 
 \hline
 6 & Zero Day attack & High & Since we don't know the attack, its impact could be as low as high.\\
 \hline
-7 &  SQL injection & & \\
+7 &  SQL injection & High & The possible consequences of the SQL injection attacks such as consultation, modification or deletion of the database, correspond to a big risk because it will affect the login page of the web interface of the data diode. \\
 \hline
 8 & Brute force attack & & \\
 \hline
@@ -418,11 +419,11 @@ The following table (Table \ will give the impact that each vulnerability could 
 \hline
 12 & Remote connection & Skilled hacker & \\
 \hline
-13 & Social engineering  & & \\
+13 & Social engineering  & High & Because this method allows to thief the credential of user and then the attacker can simply log in and snoop around for sensitive data. Hence, it results in a high risk. \\
 \hline
 14 & Data credentials lost & Medium & If the credentials is lost, a reconfiguration of the data diode will be necessary \\
 \hline
-15 & Data credentials theft & & \\
+15 & Data credentials theft & High & If it is the administrator's credential that are stolen, the attacker can change the data diode administration and it implies a big impact. On the other hand, if it is the user's credential that are stolen, they can use it and transfer what they want and access the data of the user.  \\
 \hline
 %\end{tabular}
 \caption{Impact assessment.}
@@ -441,7 +442,7 @@ Now lets define the likelihood of each vulnerability and explain the given level
 \hline
 2 & Fire & Low  &  A fire can occur due to an electrical incidents, accidents or sabotages caused by human actions.\\
 \hline
-3 & Data diode hardware failure  & Medium & In the case of hardware failure within the data diode, it is the whole operation of the system that can be disturbed.\\
+3 & Data diode hardware failure  & Medium & The data diode hardware are well chosen and tested in order to keep a low risk of failure.\\ 
 \hline
 4 & data diode hardware degradation & Medium & A clumsiness is always possible. Futhermore, if the access of the building and the room of the data diode is not controlled, this attack is really simple. \\
 \hline
@@ -449,7 +450,7 @@ Now lets define the likelihood of each vulnerability and explain the given level
 \hline
 6 & Zero Day attack & Medium & This kind of attack is constantly sought after by different people like skilled hacker, but its difficult to find one, and more of this, find one that can affect our system. \\
 \hline
-7 &  SQL injection &  &   \\
+7 &  SQL injection & High & The SQL injection is one of the oldest, most prevalent and most dangerous method to attack systems and steal information from web application. It can any website, so the likelihood is high.\\
 \hline
 8 & Brute force attack &  & \\
 \hline
@@ -461,11 +462,11 @@ Now lets define the likelihood of each vulnerability and explain the given level
 \hline
 12 & Remote connection &  & \\
 \hline
-13 & Social engineering  &  & \\
+13 & Social engineering  & Medium & The most popular, and most successful, for attacker to steal sensitive information is by way of social engineering. But administrators are aware of these techniques so only users are potential victims. \\
 \hline
 14 & Data credentials lost & Low & An administrator know the importance of his role and will take care of the data credentials. \\
 \hline
-15 &  Data credentials theft&  & \\
+15 &  Data credentials theft&  High & Because there are many ways to thief credential it results in a high risk. \\
 \hline
 %\end{tabular}
 \caption{Likelihood assessment.}
@@ -513,7 +514,7 @@ In this section we will explaining which and how countermeasures could be taken 
 \hline
 6 & Zero Day attack & Skilled hacker & Due to the fact that we can't be prepare against this attack, we accept the risks of this vulnerability. & H & M & Medium \\
 \hline
-7 &  SQL injection & & & & & \\
+7 &  SQL injection & Skilled Hacker, script kiddies, unauthorized user  &  &H & H & High \\
 \hline
 8 & Brute force attack & & & & & \\
 \hline
@@ -525,11 +526,11 @@ In this section we will explaining which and how countermeasures could be taken 
 \hline
 12 & Remote connection & & & & & \\
 \hline
-13 & Social engineering & & & & & \\
+13 & Social engineering & Skilled Hacker, unauthorized user & & H & M & High \\
 \hline
-12 & Data credentials lost & Administrator & Having more than one administrator is recommended but not an imperative countermeasure & Medium & Low & Low \\
+14 & Data credentials lost & Administrator & Having more than one administrator is recommended but not an imperative countermeasure & M & L & Low \\
 \hline
-13 &  Data credentials theft& & & & & \\
+15 &  Data credentials theft& Skilled Hacker, unauthorized user & & H & H & H \\
 \hline
 \caption{Countermeasure}
 \label{tab:contermesure}
