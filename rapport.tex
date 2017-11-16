@@ -262,12 +262,12 @@ Thus, identifying employees using a value tag could be very useful when identify
 
 As we mentioned earlier, identifying potential threat sources can be a difficult operation. However, a system failure could be caused by inevitable events or in contrary, it could be caused by a lack of interest. In order to have a clear view over these kinds of events, we will present all those events using two categories:
 \begin{enumerate}
-\item[-] uncontrollable or inevitable events.
-\item[-] controllable or avoidable events.
+\item[-] Unpredictable or inevitable events.
+\item[-] Predictable or avoidable events.
 \end{enumerate}
 
-\subsubsection{Uncontrollable events}
-Such events could be related to natural disaster which cannot be predicted in advance. Thus, there is no way in which to prevent the mass destruction. Such events could be related to natural disaster. This kind of disaster comprise:
+\subsubsection{Unpredictable events}
+Such events could be related to natural disaster which cannot be always predicted in advance. Thus, there is no way in which to prevent the mass destruction but the company could take measure in order to minimize the impact. This could be related to natural disaster like:
 \begin{enumerate}
 \item[-] Earthquakes
 \item[-] Storms
@@ -277,24 +277,28 @@ Such events could be related to natural disaster which cannot be predicted in ad
 \item[-] Tsunami
 \item[-] Wildfires
 \end{enumerate}
-However, some event could have a much higher probability of appearance depending on the territory where the company has his headquarters. So the company could try to prevent some of those by trying for instance to 
-Despite the fact there can be much more natural disaster, the 
+However, some event could have a much higher probability of appearance depending on the location where the company has her headquarters. For example, it is more likely to have floods or a tsunami if the company is located near the ecuador of the globe or in a tropical area. Hence, the importance of the location chosen. For example, the company could prevent some of those, for example choosing where to host their main servers.
 
+\subsubsection{Predictable events}
+We can define predictable events as security lack that we are or not acknowledged about concerning our system. Here is a list with some natural person which could be implicated in the hacking action of our client's company system and thus hacking our data diode implementation.
+\begin{enumerate}
+\item[-] Employees or company daily users
+\item[-] Administrators
+\item[-] Visitors
+\item[-] Script Kiddies
+\item[-] Skilled Hacker
+\end{enumerate}
 
-\paragraph{Employees:} All employees that don't have the necessary knowledge to interact with the data diode must be taken into account of the analysis.
+Each one in this list could be a potential threat source or serve as so. Let's assume the following scenarios in which the system could get infected.
 
-\paragraph{Administrators:} Since that they have all access and privilege to the data diode, the administrators are possible threat source.
+After a lot of work and time spent on projects for the company, an administrator or simply an employee could for example make a mistake which could destabilize the entire system. As an example, we could assume that an administrator forget to close a configuration port or an employee could share without his willing his login password.
+As we said earlier, tagging every user of the company using a value could be a good thing when assessing the threat source. Indeed, a valuable employee despite his tiredness would for sure look twice before finishing his work or sharing some sensitive information of the company. But this is not the same for a newbie which just started on his new job.
 
-\paragraph{Script Kiddies:} They can a be a potential source due to the fact that the system is connected to the internet.
+Furthermore, having visitor into the company can be a good thing for the image and the brand, however it could be very dangerous. Assuming that a visitor could install a \emph{Femtocell} into the company which could get him full access into the network. Despite the fact that it would be for sure the low security network, the malicious user could sniff every network packet transiting trough and thus could steal some information.
 
-\paragraph{Skilled Hacker:} The information protected by the system can be a target for different reasons like selling the the data or getting information for rival company. Since the system is supposed to be well protected, attacks will require some skills.
+For the last two categories, they represent a constant threat for every company. Hence the need for a security policy always up to date and a good strategic network and workstation deployment in order to minimize the risk. 
 
-\paragraph{Unauthorized user}
-
-\paragraph{Malware:} 
-
-
-
+We will detail more about all of this in the following sections.
 
 \subsection{Vulnerabilities}
 
@@ -425,15 +429,15 @@ Despite the fact there can be much more natural disaster, the
 		\hline
 		1 & Power outage  & Nature & For this vulnerability we accept the possible risks. & M & L & Low \\
 		\hline
-		2 & Fire & Nature & & H & L & Low \\
+		2 & Fire & Nature & The data diode must be placed in a room close by a fire door to mitigate as much as possible the risk of the data diode being affected by fire. & H & L & Low \\
 		\hline
 		3 & DDOS attack & Skilled hacker & & H & H & High \\
 		\hline
-		4 & Data diode hardware failure & Nature & & L & L & Low \\
+		4 & Data diode hardware failure & Nature & Since an administrator must be ready to intervene in case of a failure of the hardware, we can accept the risk of this vulnerability. & L & L & Low \\
 		\hline
-		5 & Zero Day attack & Skilled hacker & & H & M & Medium \\
+		5 & Zero Day attack & Skilled hacker & Due to the fact that we can't be prepare against this attack, we accept the risks of this vulnerability. & H & M & Medium \\
 		\hline
-		6 & Data diode hardware degradation & Unothorized user & & H & M & Medium  \\
+		6 & Data diode hardware degradation & Unothorized user & The data diode must be place in a closed room lock with a key or access card possessed only by the administrator. A camera coul also be placed at the entrance to the room. Since the only person who can access to the room is the administrator, the risk is limited to a clumsiness of the administrator. & H & M & Medium  \\
 		\hline
 		7 & & & & & & \\
 		\hline
