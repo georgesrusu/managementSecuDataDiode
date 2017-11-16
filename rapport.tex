@@ -329,6 +329,8 @@ In this section, the following table (Table \ref{tab:phys-assets}) will present 
 \hline
 4 & Data diode hardware degradation & Unauthorized user & Availability, Confidentiality, Integrity & This vulnerability is possible once an unauthorized person has access to the data diode itself. This could lead to a simple destruction of the data diode or robbery of some element (availability), trying to remove data from it (confidentiality), or trying to modify/add component to falsify the data (integrity). There is also a possibility that the degradation is done without bad intention (disconnecting a cable, spilling a drink on it).\\
 \hline
+5 & DDOS attack & Skilled Hacker & Availability & A DDOS is a cyber-attack where the hackers seeks to make a system unavailable to its users by temporarily or indefinitely disrupting services of a host connected to the Internet. The attack is accomplished by flooding the targeted resource with superfluous requests from many different sources in an attempt to overload systems and prevent some or all legitimate requests from being fulfilled. The administration of our data diode happens through a web interface which means that it is vulnerable to DDOS attack. In case of DDOS attack the data diode web server will become unavailable as long as the attack lasts. Hence, the transmission system will be disrupted.   \\
+\hline
 %\end{tabular}
 \caption{Vulnerabilities affecting physical assets.}
 \label{tab:phys-assets}
@@ -343,8 +345,6 @@ It is time to focus now on the vulnerabilities affecting the logical assets of t
 \hline
 \textbf{ID}&  \textbf{Vulnerability} & \textbf{Source(s)} & \textbf{Affecting} & \textbf{Description} \\
 \hline
-5 & DDOS attack & Skilled Hacker & Availability & A DDOS is a cyber-attack where the hackers seeks to make a system unavailable to its users by temporarily or indefinitely disrupting services of a host connected to the Internet. The attack is accomplished by flooding the targeted resource with superfluous requests from many different sources in an attempt to overload systems and prevent some or all legitimate requests from being fulfilled. The administration of our data diode happens through a web interface which means that it is vulnerable to DDOS attack. In case of DDOS attack the data diode web server will become unavailable as long as the attack lasts. Hence, the transmission system will be disrupted.   \\
-\hline
 6 & Zero Day Attack & Skilled Hacker & Availability, Confidentiality, Integrity & Since there is possibility that a new attack is created, this attack represent a vulnerability due to the fact that we still don't know how to protect ourselves. Therefor, it could affect one or more part of the information security. \\
 \hline
 7 &  SQL injection  & Skilled Hacker, script kiddies, unauthorized user &  & \\
@@ -354,6 +354,7 @@ It is time to focus now on the vulnerabilities affecting the logical assets of t
 9 & Virus and malwares & Skilled Hacker, script kiddies  & Avaibility, Integrety & Since the data diode is connected to internet is possible that it will be infected by a virus or a malware. \\
 \hline
 10 & Misconfiguration &  &  & \\
+\hline
 11 &  Failure in maintenance from the provider &  &  & \\
 \hline
 12 &  Remote connection &  &  & \\
@@ -364,114 +365,114 @@ It is time to focus now on the vulnerabilities affecting the logical assets of t
 \end{longtable}
 
 \subsubsection{Vulnerabilities affecting persons}
+As for the previous sections, Table \ref{tab:person-assets} explain the vulnerabilities affecting persons
 %\begin{table}[!h]
 %\centering
 \begin{longtable}{|c|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{6.5cm}|}
 \hline
 \textbf{ID}&  \textbf{Vulnerability} & \textbf{Source(s)} & \textbf{Affecting} & \textbf{Description} \\
 \hline
-10 & Social engineering &  &  & \\
+13 & Social engineering &  &  & \\
 \hline
-12 & Data credentials lost & Administrator & Avaibility  & There is a possibility that the administrator lost the data credentials wich mean that it will no longer be possible to connect to the data diode. \\
+14 & Data credentials lost & Administrator & Availability  & There is a possibility that the administrator lost the data credentials wich mean that it will no longer be possible to connect to the data diode. \\
 \hline
-13 & Data credentials theft &  &  & \\
+15 & Data credentials theft &  &  & \\
 \hline
 %\end{tabular}
-\caption{Vulnerabilities Affecting Persons}
+\caption{Vulnerabilities affecting persons.}
 \label{tab:person-assets}
 \end{longtable}
 
-\subsection{Risks and Countermeasures}
+\subsection{Risks assessment}
+In this section we are going to assess the risk by firstly assessing the impact and secondly by assessing the likelihood of every vulnerability. 
 
-\paragraph{} The following table will give the impact that each vulnerability could have, with a brief description of the impact and its level.
+The following table (Table \ will give the impact that each vulnerability could have, with a brief description of the impact and its level.
 
-\begin{table}[!h]
-	\centering
-	\begin{tabular}{|c|p{2.5cm}|c|p{10cm}|}
-		\hline
-		\textbf{ID}& \textbf{Vulnerability} &\textbf{Impact} & \textbf{Description}                 \\
-		\hline
-		1 & Power outage & Medium  &  The data diode will not work anymore which means it will not be available until the power will be re-establish. A power outage usually does not exceed one hour which mean there is not a high impact. \\
-		\hline
-		2 & Fire & High  &  The impact depends on the damages caused by the fire. The data diode can suffer significant damages which could lead to the replacement of the hardware.\\
-		\hline
-		3 & DDOS attack & High & If the website of the data diode suffers from a DDOS attack, the secured network productivity can grid to a total halt if the transfer of important files cannot be done. This can lead to an important cost for the business, it is why a DDOS attack can have a big impact.\\
-		\hline
-		4 & Data diode hardware failure  & Low & The data diode hardware are well chosen and tested in order to keep a low risk of failure.\\ 
-		\hline
-		5 & Zero Day attack & High & Since we don't know the attack, its impact could be as low as high.\\
-		\hline
-		6 & Data diode hardware degradation & High & This vulnerability could affect the three part of the information security and also lead to non-reversible damage. \\
-		\hline
-		7 &  SQL injection & & \\
-		\hline
-		8 & Brute force attack & & \\
-		\hline
-		9 & Virus and malwares & High & Due to the goal of a virus or a malware, its impact could be really negative for the data diode, like to make its use impossible or to modify the transmitted data. \\
-		\hline
-		10 & Social engineering  & & \\
-		\hline
-		11 & Misconfiguration & & \\
-		\hline
-		12 & Data credentials lost & Medium & If the credentials is lost, a reconfiguration of the data diode will be necessary \\
-		\hline
-		13 & Data credentials theft & & \\
-		\hline
-		14 & Failure in maintenance from the provider & & \\
-		\hline
-		15 & Remote connection & & \\
-		\hline
-		16 & & & \\
-		\hline
-	\end{tabular}
-	\caption{Impact}
-\end{table}
+%\begin{table}[!h]
+%	\centering
+\begin{longtable}{|c|p{2.5cm}|c|p{10cm}|}
+\hline
+\textbf{ID}& \textbf{Vulnerability} &\textbf{Impact} & \textbf{Description}                 \\
+\hline
+1 & Power outage & Medium  &  The data diode will not work anymore which means it will not be available until the power will be re-establish. A power outage usually does not exceed one hour which mean there is not a high impact. \\
+\hline
+2 & Fire & High  &  The impact depends on the damages caused by the fire. The data diode can suffer significant damages which could lead to the replacement of the hardware.\\
+\hline
+3 & Data diode hardware failure  & Low & The data diode hardware are well chosen and tested in order to keep a low risk of failure.\\ 
+\hline
+4 & Data diode hardware degradation & High & This vulnerability could affect the three part of the information security and also lead to non-reversible damage. \\
+\hline
+5 & DDOS attack & High & If the website of the data diode suffers from a DDOS attack, the secured network productivity can grid to a total halt if the transfer of important files cannot be done. This can lead to an important cost for the business, it is why a DDOS attack can have a big impact.\\
+\hline
+6 & Zero Day attack & High & Since we don't know the attack, its impact could be as low as high.\\
+\hline
+7 &  SQL injection & & \\
+\hline
+8 & Brute force attack & & \\
+\hline
+9 & Virus and malwares & High & Due to the goal of a virus or a malware, its impact could be really negative for the data diode, like to make its use impossible or to modify the transmitted data. \\
+\hline
+10 & Misconfiguration & & \\
+\hline
+11 & Failure in maintenance from the provider & & \\
+\hline
+12 & Remote connection & & \\
+\hline
+13 & Social engineering  & & \\
+\hline
+14 & Data credentials lost & Medium & If the credentials is lost, a reconfiguration of the data diode will be necessary \\
+\hline
+15 & Data credentials theft & & \\
+\hline
+%\end{tabular}
+\caption{Impact assessment.}
+\label{tab:impact}
+\end{longtable}
 
-\paragraph{} Now we define the likelihood of each vulnerability and describe why such a level is given.
+Now lets define the likelihood of each vulnerability and explain the given level of each.
 
-\begin{table}[!h]
-	\centering
-	\begin{tabular}{|c|p{2,5cm}|c|p{10cm}|}
-		\hline
-		\textbf{ID}& \textbf{Vulnerability} & \textbf{Likelihood} & \textbf{Description}                 \\
-		\hline
-		1 & Power outage & Low & Weather is responsible for the majority of major power outages that occur, but there many others causes such as short circuits, blackouts and so on. Thus power outage has a medium likelihood to happen but in the case where the client's company is equipped with \textbf{an uninterruptible power supply (UPS)}, which is an electrical apparatus that provides emergency power when the mains power fails, the likelihood becomes low.    \\
-		\hline
-		2 & Fire & Low  &  A fire can occur due to an electrical incidents, accidents or sabotages caused by human actions.\\
-		\hline
-		3 & DDOS attack & High & If the company is a popular, the secured network will be a prime target for the hackers. therefore, attempts may be numerous. Furthermore, DDOS attacks have grown in scale. DDoS attacks are popular because in some ways, they're easy to do. So even a beginner hacker may be able to make an attack.\\
-		\hline
-		4 & Data diode hardware failure  & Medium & In the case of hardware failure within the data diode, it is the whole operation of the system that can be disturbed.\\
-		\hline
-		5 & Zero Day attack & Medium & This kind of attack is constantly sought after by different people like skilled hacker, but its difficult to find one, and more of this, find one that can affect our system. \\
-		\hline
-		6 & data diode hardware degradation & Medium & \\
-		\hline
-		7 &  SQL injection &  &   \\
-		\hline
-		8 & Brute force attack &  & \\
-		\hline
-		9 & Virus and malwares & High & This kind of attack is really diversified and used wich mean there is an high likelihood. \\
-		\hline
-		10 & Social engineering  &  & \\
-		\hline
-		11 & Misconfiguration &  & \\
-		\hline
-		12 & Data credentials lost & Low & An administrator know the importance of his role and will take care of the data credentials. \\
-		\hline
-		13 &  Data credentials theft&  & \\
-		\hline
-		14 & Failure in maintenance from the provider &  & \\
-		\hline
-		15 & Remote connection &  & \\
-		\hline
-		16 &  &  & \\
-		\hline
-	\end{tabular}
-	\caption{Likelihood}
-\end{table}
+%\begin{table}[!h]
+%	\centering
+\begin{longtable}{|c|p{2,5cm}|c|p{10cm}|}
+\hline
+\textbf{ID}& \textbf{Vulnerability} & \textbf{Likelihood} & \textbf{Description}                 \\
+\hline
+1 & Power outage & Low & Weather is responsible for the majority of major power outages that occur, but there many others causes such as short circuits, blackouts and so on. Thus power outage has a medium likelihood to happen but in the case where the client's company is equipped with \textbf{an uninterruptible power supply (UPS)}, which is an electrical apparatus that provides emergency power when the mains power fails, the likelihood becomes low.    \\
+\hline
+2 & Fire & Low  &  A fire can occur due to an electrical incidents, accidents or sabotages caused by human actions.\\
+\hline
+3 & Data diode hardware failure  & Medium & In the case of hardware failure within the data diode, it is the whole operation of the system that can be disturbed.\\
+\hline
+4 & data diode hardware degradation & Medium & \\
+\hline
+5 & DDOS attack & High & If the company is a popular, the secured network will be a prime target for the hackers. therefore, attempts may be numerous. Furthermore, DDOS attacks have grown in scale. DDoS attacks are popular because in some ways, they're easy to do. So even a beginner hacker may be able to make an attack.\\
+\hline
+6 & Zero Day attack & Medium & This kind of attack is constantly sought after by different people like skilled hacker, but its difficult to find one, and more of this, find one that can affect our system. \\
+\hline
+7 &  SQL injection &  &   \\
+\hline
+8 & Brute force attack &  & \\
+\hline
+9 & Virus and malwares & High & This kind of attack is really diversified and used wich mean there is an high likelihood. \\
+\hline
+10 & Misconfiguration &  & \\
+\hline
+11 & Failure in maintenance from the provider &  & \\
+\hline
+12 & Remote connection &  & \\
+\hline
+13 & Social engineering  &  & \\
+\hline
+14 & Data credentials lost & Low & An administrator know the importance of his role and will take care of the data credentials. \\
+\hline
+15 &  Data credentials theft&  & \\
+\hline
+%\end{tabular}
+\caption{Likelihood assessment.}
+\label{tab:likelihood}
+\end{longtable}
 
-\paragraph{} After having analysed the impact and the likelihood of each vulnerabilities, we can define for each of them a risk level using the Table \ref{table:RL} to adapt our countermeasure accordingly.
+After having analyzed the impact and the likelihood of each vulnerabilities, we can define for each of them a risk level table (Table \ref{tab:risk}).
 
 \begin{table}[!h]
 	\centering
@@ -485,62 +486,54 @@ It is time to focus now on the vulnerabilities affecting the logical assets of t
 		\textbf{Medium} & Low & Medium & Medium \\ \hline
 		\textbf{High} & Low & Medium & High \\ \hline
 	\end{tabular}
-	\caption{Risk Level}
-	\label{table:RL}
-\end{table}
-
-\subsubsection{Countermeasure}
-
-
-\begin{table}[!h]
-	\centering
-	\begin{tabular}{|c|p{2,5cm}|p{2.5cm}|p{6.5cm}|c|c|c|}
-		\hline
-		\textbf{ID}& \textbf{Vulnerability} & \textbf{Source(s)} & \textbf{Countermeasure(s)} & \textbf{I} & \textbf{L} & \textbf{Risk Level}          \\
-		\hline
-		1 & Power outage  & Nature & For this vulnerability we accept the possible risks. & M & L & Low \\
-		\hline
-		2 & Fire & Nature & The data diode must be placed in a room close by a fire door to mitigate as much as possible the risk of the data diode being affected by fire. & H & L & Low \\
-		\hline
-		3 & DDOS attack & Skilled hacker & & H & H & High \\
-		\hline
-		4 & Data diode hardware failure & Nature & Since an administrator must be ready to intervene in case of a failure of the hardware, we can accept the risk of this vulnerability. & L & L & Low \\
-		\hline
-		5 & Zero Day attack & Skilled hacker & Due to the fact that we can't be prepare against this attack, we accept the risks of this vulnerability. & H & M & Medium \\
-		\hline
-		6 & Data diode hardware degradation & Unauthorized user & The data diode must be place in a closed room lock with a key or access card possessed only by the administrator. A camera coul also be placed at the entrance to the room. Since the only person who can access to the room is the administrator, the risk is limited to a clumsiness of the administrator. & H & M & Medium  \\
-		\hline
-		7 &  SQL injection & & & & & \\
-		\hline
-		8 & Brute force attack & & & & & \\
-		\hline
-		9 & Virus and malwares & Skilled hacker, script kiddies & & H & H & High \\
-		\hline
-		10 & Social engineering & & & & & \\
-		\hline
-		11 & Misconfiguration & & & & & \\
-		\hline
-		12 & Data credentials lost & Administrator & Having more than one administrator is recommended but not an imperative countermeasure & Medium & Low & Low \\
-		\hline
-		13 &  Data credentials theft& & & & & \\
-		\hline
-		14 & Failure in maintenance from the provider& & & & & \\
-		\hline
-		15 & Remote connection & & & & & \\
-		\hline
-		16 & & & & & & \\
-		\hline
-		
-	\end{tabular}
-	\caption{Countermeasure}
-\end{table}
+	\caption{Risk level assessment.}
+	\label{tab:risk}
+\end{table} 
 
 
 
+\subsection{Countermeasures}
+In this section we will explaining which and how countermeasures could be taken in order to address every vulnerability of the system. This will be done using the Table \ref{tab:risk} in order to adapt our countermeasure accordingly to the risk of each vulnerability.
 
-
-
-
+%\begin{table}[!h]
+%	\centering
+\begin{longtable}{|c|p{2,5cm}|p{2.5cm}|p{6.5cm}|c|c|c|}
+\hline
+\textbf{ID}& \textbf{Vulnerability} & \textbf{Source(s)} & \textbf{Countermeasure(s)} & \textbf{I} & \textbf{L} & \textbf{Risk Level}          \\
+\hline
+1 & Power outage  & Nature & For this vulnerability we accept the possible risks. & M & L & Low \\
+\hline
+2 & Fire & Nature & The data diode must be placed in a room close by a fire door to mitigate as much as possible the risk of the data diode being affected by fire. & H & L & Low \\
+\hline
+3 & Data diode hardware failure & Nature & Since an administrator must be ready to intervene in case of a failure of the hardware, we can accept the risk of this vulnerability. & L & L & Low \\
+\hline
+4 & Data diode hardware degradation & Unauthorized user & The data diode must be place in a closed room lock with a key or access card possessed only by the administrator. A camera coul also be placed at the entrance to the room. Since the only person who can access to the room is the administrator, the risk is limited to a clumsiness of the administrator. & H & M & Medium  \\
+\hline
+5 & DDOS attack & Skilled hacker & & H & H & High \\
+\hline
+6 & Zero Day attack & Skilled hacker & Due to the fact that we can't be prepare against this attack, we accept the risks of this vulnerability. & H & M & Medium \\
+\hline
+7 &  SQL injection & & & & & \\
+\hline
+8 & Brute force attack & & & & & \\
+\hline
+9 & Virus and malwares & Skilled hacker, script kiddies & & H & H & High \\
+\hline
+10 & Misconfiguration & & & & & \\
+\hline
+11 & Failure in maintenance from the provider& & & & & \\
+\hline
+12 & Remote connection & & & & & \\
+\hline
+13 & Social engineering & & & & & \\
+\hline
+12 & Data credentials lost & Administrator & Having more than one administrator is recommended but not an imperative countermeasure & Medium & Low & Low \\
+\hline
+13 &  Data credentials theft& & & & & \\
+\hline
+\caption{Countermeasure}
+\label{tab:contermesure}
+\end{longtable}
 
 %fin
 \clearpage
