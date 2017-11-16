@@ -5,6 +5,7 @@
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{blindtext}
+\usepackage{longtable}
 \usepackage{enumitem}
 \usepackage{hyperref}
 \usepackage[top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
@@ -284,7 +285,7 @@ We can define predictable events as security lack that we are or not acknowledge
 \begin{enumerate}
 \item[-] Employees or company daily users
 \item[-] Administrators
-\item[-] Visitors
+\item[-] Visitors or unauthorized users
 \item[-] Script Kiddies
 \item[-] Skilled Hacker
 \end{enumerate}
@@ -303,53 +304,82 @@ We will detail more about all of this by explaining more vulnerable scenario in 
 \subsection{Vulnerabilities}
 In this section, we will give a set of possible vulnerabilities that we should take into account in order to secure the most possible our data diode. In order to have a clear view, we will explain every vulnerability by ordering them according the assets type affected.
 
-\subsubsection{Affectation je suis ici :) }
+\subsubsection{Levels of affection}
+We define three different level of affection of our client's company:
+\begin{enumerate}
+\item[-] Availability: affecting the physical functioning of the system. For instance, if a server is shut-down, his availability is compromised.
+\item[-] Confidentiality: affecting the sensitive information of the company by sharing them. For example, a server could be infected and could automatically sends some file to a hacker. It should be obvious that only the server located in the low security risk zone, thus with a connection to the internet could present such a risk.
+\item[-] Integrity: affecting some sensitive information of the company by alteration. Similarly to the confidentiality level, a hacker could modify some information in order to hide it or to prevent the company in succeeding their project. This could be the case when a competitor would want to curb the company in order to be the first one on the market selling a product which both were working on.
+\end{enumerate}
 
-\begin{table}[!h]
-	\centering
-	\begin{tabular}{|c|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{6.5cm}|}
-		\hline
-		\textbf{ID}&  \textbf{Vulnerability} & \textbf{Source(s)} & \textbf{Affecting} & \textbf{Description} \\
-		\hline
-		1 & Power outage & Nature & Availability & In the case of a power outage, obviously the data diode system won't work because it needs electrical power in order to run. Hence, availability is compromised.  \\
-		\hline
-		2 & Fire & Nature & Availability & A fire in the building which is in direct contact with the data diode or because of the heat will cause damage to the data diode system and this will lead to his non-operation and thus non-availability. \\
-		\hline
-		3 & DDOS attack & Skilled Hacker & Availability & A DDOS is a cyber-attack where the hackers seeks to make a system unavailable to its users by temporarily or indefinitely disrupting services of a host connected to the Internet. The attack is accomplished by flooding the targeted resource with superfluous requests from many different sources in an attempt to overload systems and prevent some or all legitimate requests from being fulfilled. The administration of our data diode happens through a web interface which means that it is vulnerable to DDOS attack. In case of DDOS attack the data diode will become unavailable as long as the attack lasts.   \\
-		\hline
-		4 & Data diode hardware
-		failure & Nature & Availability & If a failure in the data diode's hardware occurs, such as the fiber cable, it can lead to the non-operation of the data diode. \\
-		\hline
-		5 & Zero Day Attack & Skilled Hacker & Availability, Confidentiality, Integrity & Since there is possibility that a new attack is created, this attack coul be a vulnerability due to the fact that we still don't know how to protect ourselves. Since then, it could affect one or more part of the information security. \\
-		\hline
-		6 & Data diode hardware degradation & Unauthorized user & Availability, Confidentiality, Integrity & This vulnerability is possible once an unauthorized person has access to the data diode itself. This could lead to a simple destruction of the data diode or robbery of some element (availability), trying to remove data from it (confidentiality), or trying to modify/add component to falsify the data (integrity). There is also a possibility that the degradation is done without bad intention (disconnecting a cable, spilling a drink on it).\\
-		\hline
-		7 &  SQL injection  & Skilled Hacker, script kiddies, unauthorized user &  & \\
-		\hline
-		8 & Brute force attack &  &  & \\
-		\hline
-		9 & Virus and malwares &  &  & \\
-		\hline
-		10 & Social engineering &  &  & \\
-		\hline
-		11 & Misconfiguration &  &  & \\
-		\hline
-		12 & Data credentials lost &  &  & \\
-		\hline
-		13 & Data credentials theft &  &  & \\
-		\hline
-		14 &  Failure in maintenance from the provider &  &  & \\
-		\hline
-		15 &  Remote connection &  &  & \\
-		\hline
-	\end{tabular}
-	\caption{Vulnerabilities}
-\end{table}
+\subsubsection{Vulnerabilities affecting physical assets}
+In this section, the following table (Table \ref{tab:phys-assets}) will present only the vulnerabilities affecting only the physical assets of the company
 
-\subsubsection{Vulnerabilities Affecting Physical Assets}
-\subsubsection{Vulnerabilities Affecting Logical Assets}
-\subsubsection{Vulnerabilities Affecting Persons}
-\subsubsection{Vulnerabilities Affecting Intangible Goods}
+%\begin{table}[!h]
+%\centering
+\begin{longtable}{|c|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{6.5cm}|}
+\hline
+\textbf{ID}&  \textbf{Vulnerability} & \textbf{Source(s)} & \textbf{Affecting} & \textbf{Description} \\
+\hline
+1 & Power outage & Nature & Availability & In the case of a power outage, obviously the data diode system won't work because it needs electrical power in order to run.  \\
+\hline
+2 & Fire & Nature & Availability & A fire in the building which is in direct contact with the data diode or because of the heat, it will for sure cause damage to the data diode system which will lead to his non-operation.\\
+\hline
+3 & Data diode hardware failure & Nature & Availability & If a failure in the data diode's hardware occurs, such as the fiber cable, it can lead to the non-operation of the data diode. \\
+\hline
+4 & Data diode hardware degradation & Unauthorized user & Availability, Confidentiality, Integrity & This vulnerability is possible once an unauthorized person has access to the data diode itself. This could lead to a simple destruction of the data diode or robbery of some element (availability), trying to remove data from it (confidentiality), or trying to modify/add component to falsify the data (integrity). There is also a possibility that the degradation is done without bad intention (disconnecting a cable, spilling a drink on it).\\
+\hline
+%\end{tabular}
+\caption{Vulnerabilities affecting physical assets.}
+\label{tab:phys-assets}
+\end{longtable}
+
+\subsubsection{Vulnerabilities affecting logical assets}
+It is time to focus now on the vulnerabilities affecting the logical assets of the company. The Table \ref{tab:logic-assets} illustrate this very well.
+
+%\begin{table}[!h]
+%\centering
+\begin{longtable}{|c|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{6.5cm}|}
+\hline
+\textbf{ID}&  \textbf{Vulnerability} & \textbf{Source(s)} & \textbf{Affecting} & \textbf{Description} \\
+\hline
+5 & DDOS attack & Skilled Hacker & Availability & A DDOS is a cyber-attack where the hackers seeks to make a system unavailable to its users by temporarily or indefinitely disrupting services of a host connected to the Internet. The attack is accomplished by flooding the targeted resource with superfluous requests from many different sources in an attempt to overload systems and prevent some or all legitimate requests from being fulfilled. The administration of our data diode happens through a web interface which means that it is vulnerable to DDOS attack. In case of DDOS attack the data diode web server will become unavailable as long as the attack lasts. Hence, the transmission system will be disrupted.   \\
+\hline
+6 & Zero Day Attack & Skilled Hacker & Availability, Confidentiality, Integrity & Since there is possibility that a new attack is created, this attack represent a vulnerability due to the fact that we still don't know how to protect ourselves. Therefor, it could affect one or more part of the information security. \\
+\hline
+7 &  SQL injection  & Skilled Hacker, script kiddies, unauthorized user &  & \\
+\hline
+8 & Brute force attack &  &  & \\
+\hline
+9 & Virus and malwares &  &  & \\
+\hline
+10 & Misconfiguration &  &  & \\
+11 &  Failure in maintenance from the provider &  &  & \\
+\hline
+12 &  Remote connection &  &  & \\
+\hline
+%\end{tabular}
+\caption{Vulnerabilities affecting logical assets.}
+\label{tab:logic-assets}
+\end{longtable}
+
+\subsubsection{Vulnerabilities affecting persons}
+%\begin{table}[!h]
+%\centering
+\begin{longtable}{|c|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{6.5cm}|}
+\hline
+\textbf{ID}&  \textbf{Vulnerability} & \textbf{Source(s)} & \textbf{Affecting} & \textbf{Description} \\
+\hline
+10 & Social engineering &  &  & \\
+\hline
+12 & Data credentials lost &  &  & \\
+\hline
+13 & Data credentials theft &  &  & \\
+\hline
+%\end{tabular}
+\caption{Vulnerabilities Affecting Persons}
+\label{tab:person-assets}
+\end{longtable}
 
 \subsection{Risks and Countermeasures}
 
