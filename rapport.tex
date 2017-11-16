@@ -294,11 +294,11 @@ Thus, identifying employee using a value tag could be very useful when identifyi
 		3 & DDOS attack & Skilled Hacker & Availability & A DDOS is a cyber-attack where the hackers seeks to make a system unavailable to its users by temporarily or indefinitely disrupting services of a host connected to the Internet. The attack is accomplished by flooding the targeted resource with superfluous requests from many different sources in an attempt to overload systems and prevent some or all legitimate requests from being fulfilled. The administration of our data diode happens through a web interface which means that it is vulnerable to DDOS attack. In case of DDOS attack the data diode will become unavailable as long as the attack lasts.   \\
 		\hline
 		4 & Data diode hardware
-		failure & Nature & Availability & \\
+		failure & Nature & Availability & If a failure in the data diode's hardware occurs, such as the fiber cable, it can lead to the non-operation of the data diode. \\
 		\hline
-		5 & Zero Day Attack & Skilled Hacker & Availability, Confidentiality, Integrity & \\
+		5 & Zero Day Attack & Skilled Hacker & Availability, Confidentiality, Integrity & Since there is possibility that a new attack is created, this attack coul be a vulnerability due to the fact that we still don't know how to protect ourselves. Since then, it could affect one or more part of the information security. \\
 		\hline
-		6 & Data diode hardware degradation & Unauthorized user & Availability, Confidentiality, Integrity & \\
+		6 & Data diode hardware degradation & Unauthorized user & Availability, Confidentiality, Integrity & This vulnerability is possible once an unauthorized person has access to the data diode itself. This coul lead to a simple destruction of the data diode or robbery of some element (avaibility), trying to remove data from it (confidentiality), or trying to modify/add componement to falsify the data (integrety). There is also a possibility that the degradation is done without bad intention (disconnecting a cable, splilling a drink on it).\\
 		\hline
 		7 &  &  &  & \\
 		\hline
@@ -321,27 +321,39 @@ Thus, identifying employee using a value tag could be very useful when identifyi
 
 \subsection{Risks and Countermeasures}
 
+\paragraph{} The followiing table will give the impact that each vulnerability could have, with a brief description of the impact and its level.
+
 \begin{table}[!h]
 	\centering
 	\begin{tabular}{|c|p{2.5cm}|c|p{10cm}|}
 		\hline
 		\textbf{ID}& \textbf{Vulnerability} &\textbf{Impact} & \textbf{Description}                 \\
 		\hline
-		1 & Power outage & Medium  &  The data diode will not work anymore which means it will not be available until the power will be re-establish. \\
+		1 & Power outage & Medium  &  The data diode will not work anymore which means it will not be available until the power will be re-establish. A powe outage usually does not exceed one hour which mean there is not a high impact. \\
 		\hline
 		2 & Fire & High  &  The impact depends on the damages caused by the fire. The data diode can suffer significant damages which could lead to the replacement of the hardware.\\
 		\hline
 		3 & DDOS attack & High & If the website of the data diode suffers from a DDOS attack, the secured network productivity can grid to a total halt if the transfer of important files cannot be done. This can lead to an important cost for the business, it is why a DDOS attack can have a big impact.\\
 		\hline
-		4 & Data diode hardware failure  & Low &\\
+		4 & Data diode hardware failure  & Low & The data diode hardware are well chosen and tested in order to keep a low risk of failure.\\ 
 		\hline
-		5 & Zero Day attack & High &\\
+		5 & Zero Day attack & High & Since we don't know the attack, its impact could be as low as high.\\
 		\hline
-		6 & Data diode harware degradation & High &\\
+		6 & Data diode hardware degradation & High & This vulnerability could affect the three part of the information security and also lead to non-reversible damage. \\
+		\hline
+		7 & & & \\
+		\hline
+		8 & & & \\
+		\hline
+		9 & & & \\
+		\hline
+		10 & & & \\
 		\hline
 	\end{tabular}
 	\caption{Impact}
 \end{table}
+
+\paragraph{} Now we define the likelihood of each vulnerability and describe why such a leviel is given.
 
 \begin{table}[!h]
 	\centering
@@ -353,11 +365,11 @@ Thus, identifying employee using a value tag could be very useful when identifyi
 		\hline
 		2 & Fire & Low  &  A fire can occur due to an electrical incidents, accidents or sabotages caused by human actions.\\
 		\hline
-		3 & DDOS attack & High & \\
+		3 & DDOS attack & High & If the company is a popular, the secured network will be a prime target for the hackers. therefore, attempts may be numerous. Furthermore, DDOS attacks have grown in scale. DDoS attacks are popular because in some ways, they're easy to do. So even a beginner hacker may be able to make an attack.\\
 		\hline
-		4 & Data diode hardware failure  & Medium & \\
+		4 & Data diode hardware failure  & Medium & In the case of hardware failure within the data diode, it is the whole operation of the system that can be disturbed.\\
 		\hline
-		5 & Zero Day attack & Medium & \\
+		5 & Zero Day attack & Medium & This kind of attack is constanly sought after by different people like skilled hacker, but its difficult to find one, and more of this, find one that can affect our system. \\
 		\hline
 		6 & data diode hardware degradation & Medium & \\
 		\hline
@@ -383,6 +395,10 @@ Thus, identifying employee using a value tag could be very useful when identifyi
 	\label{table:RL}
 \end{table}
 
+\subsubsection{Countermeasure}
+
+\subsubsection{Summary}
+
 
 \begin{table}[!h]
 	\centering
@@ -394,7 +410,7 @@ Thus, identifying employee using a value tag could be very useful when identifyi
 		\hline
 		2 & Fire & Nature & & H & L & Low \\
 		\hline
-		3 & DDOS attack & Skilled hacker & & H & L & Low \\
+		3 & DDOS attack & Skilled hacker & & H & H & High \\
 		\hline
 		4 & Data diode hardware failure & Nature & & L & L & Low \\
 		\hline
