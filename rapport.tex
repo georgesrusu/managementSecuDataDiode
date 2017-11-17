@@ -216,10 +216,10 @@ $Risk(e)= impact(e) \times likelihood(e), \forall e \in Events$
 In our risk analysis we will start by defining all the assets of our project. Those assets could be threatened by some hackers which could exploit some vulnerabilities found and harm the entire system. Hence, the need to asses all potential threat sources and all the vulnerabilities and their impact. Finally, we will conclude by presenting some countermeasures.
 
 \subsubsection{Physical Assets}
-An Assets can be physical such as computers or printers. In our client work space, we could have the following components categorized as physical assets:
+An Asset can be physical such as computers or printers. In our client work space, we could have the following components categorized as physical assets:
 \begin{enumerate}
 \item[-] All the computers of the low security zone. Those computers could be employee's personal workstations such as laptops but also company's desktop workstations.
-\item[-] All the company's firewalls systems (routers and switch). Despite the fact that their are not part of our implementation, they could represent a potential assets for malicious persons.
+\item[-] All the company's firewalls systems (routers and switch). Despite the fact that their are not part of our implementation, they could represent a potential asset for malicious persons.
 \item[-] Our data diode implementation. This comprise our transmitter server and our receiver server.
 \item[-] Data diode web servers for the web user interface.
 \item[-] The company data base server.
@@ -227,9 +227,9 @@ An Assets can be physical such as computers or printers. In our client work spac
 \item[-] All the servers of the company such as Mail servers, FTP servers and other services servers. This comprise the servers in low and high risk networks.
 
 \end{enumerate}
-To all those component a stakeholder would want to have physical access in order to harm the well being of our client company. Thus, it is very important that the physical integrity of every equipment shall be preserved. In other words, a physical access to some physical assets such as routers or servers could harm or destabilize the company core system, this could easily be done for example by simply cutting the power source cable or by disconnecting the internet cable of a server (cutting the communications).
+To all those components a stakeholder would want to have physical access in order to harm the well being of our client company. Thus, it is very important that the physical integrity of every equipment shall be preserved. In other words, a physical access to some physical assets such as routers or servers could harm or destabilize the company core system, this could easily be done for example by simply cutting the power source cable or by disconnecting the internet cable of a server (cutting the communications).
 \subsubsection{Logical Assets}
-A logical assets could be a sensitive information. A list of logical assets used by our client' company could be:
+A logical asset could be a sensitive information. A list of logical assets used by our client' company could be:
 \begin{enumerate}
 \item[-] The company data base containing sensitive information.
 \item[-] The data data diode web interface.
@@ -350,13 +350,13 @@ It is time to focus now on the vulnerabilities affecting the logical assets of t
 7 &  SQL injection  & Skilled Hacker, script kiddies, unauthorized user & Confidentiality, Integrity & An SQL Injection vulnerability could affect any website that makes use of an SQL-based database.
 In the case of SQL injection attack, it will allow the "attacker" to bypass a web application's authentication or view data contained in the database and modify its content. Hence, data confidentiality and integrity are concerned.\\
 \hline
-8 & Brute force attack & Skilled Hacker & Avaibility, Confidentiality  & \\
+8 & Brute force attack & Skilled Hacker & Availability, Confidentiality  & \\
 \hline
-9 & Virus and malwares & Skilled Hacker, script kiddies  & Avaibility, Integrety & Since the data diode is connected to internet is possible that it will be infected by a virus or a malware. \\
+9 & Virus and malwares & Skilled Hacker, script kiddies  & Availability, Integrity & Since the data diode is connected to internet is possible that it will be infected by a virus or a malware. \\
 \hline
-10 & Misconfiguration & Administrator & Avaibility, Integrety & \\
+10 & Misconfiguration & Administrator & Availability, Integrity & A misconfiguration of the data diode, which is only possible from the administrator interface, could cause his non-function or malfunction. This vulnerability has a direct impact on the availability and the integrity. \\
 \hline
-11 &  Failure in maintenance from the provider & Administrator  & Avaibility, Integrity  & \\
+11 &  Failure in maintenance from the provider & Provider  & Availability, Integrity  & A vulnerability can also be introduced by the provider during the conception of the data diode or when releasing a new update. \\
 \hline
 12 &  Remote connection & Skilled hacker &  & \\
 \hline
@@ -413,9 +413,9 @@ The following table (Table \ will give the impact that each vulnerability could 
 \hline
 9 & Virus and malwares & High & Due to the goal of a virus or a malware, its impact could be really negative for the data diode, like to make its use impossible or to modify the transmitted data. \\
 \hline
-10 & Misconfiguration & Medium & In this case, a reconfiguration of the data diode will be required. This will no take too much time and will not have a high impact. \\
+10 & Misconfiguration & Medium & In this case, a reconfiguration of the data diode will be required. This will no take too much time and will not have a high impact thanks to the administration interface, which allows to reconfigure easily the data diode. \\
 \hline
-11 & Failure in maintenance from the provider & High & \\
+11 & Failure in maintenance from the provider & High & In case of failure in maintenance or design the data diode can be non-functional\\
 \hline
 12 & Remote connection & High & \\
 \hline
@@ -456,9 +456,9 @@ Now lets define the likelihood of each vulnerability and explain the given level
 \hline
 9 & Virus and malwares & High & This kind of attack is really diversified and used wich mean there is an high likelihood. \\
 \hline
-10 & Misconfiguration & Low & \\
+10 & Misconfiguration & Low & A misconfiguration by the administrator occurs rarely but it also occurs because the administrator interface is hacked.\\
 \hline
-11 & Failure in maintenance from the provider & Low  & \\
+11 & Failure in maintenance from the provider & Low  & The likelihood of that to happens is extremely low, because the product is tested before being sent to the client.  \\
 \hline
 12 & Remote connection & Low & \\
 \hline
@@ -473,7 +473,7 @@ Now lets define the likelihood of each vulnerability and explain the given level
 \label{tab:likelihood}
 \end{longtable}
 
-After having analyzed the impact and the likelihood of each vulnerabilities, we can define for each of them a risk level table (Table \ref{tab:risk}).
+After having analysed the impact and the likelihood of each vulnerabilities, we can define for each of them a risk level table (Table \ref{tab:risk}).
 
 \begin{table}[!h]
 	\centering
@@ -520,9 +520,9 @@ In this section we will explaining which and how countermeasures could be taken 
 \hline
 9 & Virus and malwares & Skilled hacker, script kiddies & & H & H & High \\
 \hline
-10 & Misconfiguration & Administrator & & & & \\
+10 & Misconfiguration & Administrator & & M & L & Low \\
 \hline
-11 & Failure in maintenance from the provider & Administrator & & & & \\
+11 & Failure in maintenance from the provider & Administrator & & H& L& Low\\
 \hline
 	12 & Remote connection & Skilled Hacker & & & & \\
 \hline
