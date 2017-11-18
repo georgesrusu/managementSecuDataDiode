@@ -220,7 +220,7 @@ In our risk analysis we will start by defining all the assets of our project. Th
 An Asset can be physical such as computers or printers. In our client work space, we could have the following components categorized as physical assets:
 \begin{enumerate}
 \item[-] All the computers of the low security zone. Those computers could be employee's personal workstations such as laptops but also company's desktop workstations.
-\item[-] All the company's firewalls systems (routers and switch). Despite the fact that their are not part of our implementation, they could represent a potential asset for malicious persons. This could led afterwards to the attack of our data diode.
+\item[-] All the company's firewalls systems (routers and switch). Despite the fact that they are not part of our implementation, they could represent a potential asset for malicious persons. This could led afterwards to the attack of our data diode.
 \item[-] Our data diode implementation. This comprise our transmitter server and our receiver server.
 \item[-] Data diode web servers for the web user interface.
 \item[-] The company data base server.
@@ -277,7 +277,7 @@ Such events could be related to natural disaster which cannot be always predicte
 \item[-] Tsunami.
 \item[-] Wildfires.
 \end{enumerate}
-However, some event could have a much higher probability of appearance depending on the location where the company has her headquarters. For example, it is more likely to have floods or a tsunami if the company is located near the ecuador of the globe or in a tropical area, similarly wildfires could occur much often in warm regions. Hence, the importance of the company location chosen. For example, the company could prevent some of those events by choosing where to host their main servers or by implementing measures such as water or fire sealing doors for the labs.
+However, some event could have a much higher probability of appearance depending on the location where the company has her headquarters. For example, it is more likely to have floods or a tsunami if the company is located near the Ecuador of the globe or in a tropical area, similarly wildfires could occur much often in warm regions. Hence, the importance of the company location chosen. For example, the company could prevent some of those events by choosing where to host their main servers or by implementing measures such as water or fire sealing doors for the labs.
 
 \subsubsection{Predictable events}
 We can define predictable events as security lack that we are or not acknowledged about our system. The administrators could secure the systems by not divulging the vulnerabilities or the backdoor left. This is what \emph{security by obscurity} means, however this is a very bad idea and should be avoided! We defined a list of persons which could be implicated in the hacking action of our client's company system, those persons could be aware of the vulnerabilities of the system or not. Such persons could be:
@@ -351,7 +351,7 @@ In the case of SQL injection attack, it will allow the "attacker" to bypass a we
 \hline
 8 & Brute force attack & Skilled Hacker & Availability, Confidentiality  & A hacker could try as many passwords as he wants in order to find the correct password. This could be done using dictionaries attacks on a web login page or another type of identity check-in systems of the company.\\
 \hline
-9 & Virus and malwares & Skilled Hacker, Script kiddies, Administrators, Employees  & Availability, Integrity & An infected computer's user could without acknowledgment send a virus trough the data diode. Despite the fact that the communication from the isolated network is not possible, a ransom ware\footnote{This kind of virus could encrypt all the data on a drive and request some money in order to decrypt it.} virus could led to the destruction or the non availability of data from the labs. \\
+9 & Virus and malwares & Skilled Hacker, Script kiddies, Administrators, Employees  & Availability, Integrity & An infected computer's user could without acknowledgement send a virus trough the data diode. Despite the fact that the communication from the isolated network is not possible, a ransom ware\footnote{This kind of virus could encrypt all the data on a drive and request some money in order to decrypt it.} virus could led to the destruction or the non availability of data from the labs. \\
 \hline
 10 & Misconfiguration & Administrator & Availability, Integrity & A misconfiguration of the data diode, which is only possible from the administrator interface, could cause his non-function or malfunction. This vulnerability has a direct impact on the availability and the integrity but could also represent a potential confidential threat. \\
 \hline
@@ -359,7 +359,7 @@ In the case of SQL injection attack, it will allow the "attacker" to bypass a we
 \hline
 12 &  Remote connection & Skilled hacker, Administrators, Employees & Availability, integrity, confidentiality & If the company posses a remote connection system in order for the employee to work from home, if such a system is not well encrypted nor implemented, a hacker could pretend to be an employee and gain access to the company's LAN. He will then be able to steal, destruct or stop any data, process or server he wants to.\\
 \hline
-13 & Sniffing the network & Skilled hacker & Availability, integrity, confidentiality & If a hacker managed somehow to gain access in the company LAN, he could \emph{snif} every passing through traffic. This could represent a real threat if the communications/transfers within the LAN are not encrypted.\\
+13 & Sniffing the network & Skilled hacker & Availability, integrity, confidentiality & If a hacker managed somehow to gain access in the company LAN, he could \emph{sniff} every passing through traffic. This could represent a real threat if the communications/transfers within the LAN are not encrypted.\\
 \hline
 %\end{tabular}
 \caption{Vulnerabilities affecting logical assets.}
@@ -378,7 +378,7 @@ Similarly as for the previous sections, Table \ref{tab:person-assets} explain th
 \hline
 15 & Data credentials lost & Administrator, Employees & Availability  & There is a possibility of a user to lose his credentials which mean that he will no longer be able to connect to the data diode. \\
 \hline
-16 & Data credentials theft &  Skilled Hacker, unauthorized user, Employee, Administrator & Confidentiality & Data credentials theft can occur in several ways such as hackers attacks (brute force, social engineering,...)  or because of the negligence of a user (easy password, credential stored in a non-secured place such as the office, and so on...) or because of a malicious administrator which has the right to modify  read the company database (password table)\footnote{This is generally in case of any employee lose his credential, the admin can reset it or change it manually.}  \\
+16 & Data credentials theft &  Skilled Hacker, unauthorized user, Employee, Administrator & Confidentiality & Data credentials theft can occur in several ways such as hackers attacks (brute force, social engineering,...)  or because of the negligence of a user (easy password, credential stored in a non-secured place such as the office, and so on...) or because of a malicious administrator which has the right to modify  read the company database (password table)\footnote{This is generally in case of any employee lose his credential, the administrator can reset it or change it manually.}  \\
 \hline
 %\end{tabular}
 \caption{Vulnerabilities affecting persons.}
@@ -427,20 +427,20 @@ The following table (Table \ref{tab:impact}) will give the impact level and a br
 \hline
 12 & Remote connection & High & If depends of the purpose of the hacker. He could halt the system or simply violate the integrity and confidentiality of the data. \\
 \hline
-13 & Sniffing & High & The hacker could snif the entire passing traffic of the network for months if no one detect him.\\
+13 & Sniffing & High & The hacker could sniff the entire passing traffic of the network for months if no one detect him.\\
 \hline
 14 & Social engineering  & High & Because this method allows to steal the credential of a user and then the attacker can simply log in and snoop around for sensitive data. Hence, it results in a high risk. \\
 \hline
 15 & Data credentials lost & Medium & If a user loses his credentials, he should immediately contact the administrator in order to reset his credential.\\
 \hline
-16 & Data credentials theft & High & If it is the administrator's credential that are stolen, the attacker can change the data diode administration and it implies a big impact. On the other hand, if it is the user's credential that are stolen, they can use it and transfer what they want and access the data of the user. In both case, the attacker can do what he like and could prevent the access for legitimate persons such as the admin. \\
+16 & Data credentials theft & High & If it is the administrator's credential that are stolen, the attacker can change the data diode administration and it implies a big impact. On the other hand, if it is the user's credential that are stolen, they can use it and transfer what they want and access the data of the user. In both case, the attacker can do what he likes and could prevent the access for legitimate persons such as the administrator. \\
 \hline
 %\end{tabular}
 \caption{Impact assessment.}
 \label{tab:impact}
 \end{longtable}
 
-Now lets define the likelihood of each vulnerability and explain the given level of each. But before lets define the three level of likelihood:
+Now lets define the likelihood of each vulnerability and explain the given level of each. But before lets define the three levels of likelihood:
 \begin{enumerate}
 \item[-] Low: maximum 1 time per year.
 \item[-] Medium: between 1 and 10 times per year.
@@ -481,7 +481,7 @@ Now lets define the likelihood of each vulnerability and explain the given level
 \hline
 14 & Social engineering  & Medium & The most popular, and most successful, for attacker to steal sensitive information is by way of social engineering. But administrators are aware of these techniques so only users are potential victims. \\
 \hline
-15 & Data credentials lost & Low & An administrator know the importance of his role and will take care of the data credentials. In addition, every user of the employee are using his credential every day so it very rare and unlikely that an employee could forget his in 24 hours. \\
+15 & Data credentials lost & Low & An administrator know the importance of his role and will take care of the data credentials. In addition, every user of the company are using his credential every day so it very rare and unlikely that an employee could forget his in 24 hours. \\
 \hline
 16 &  Data credentials theft &  High & Because there are many attempts from hackers trying to steal credentials.\\
 \hline
@@ -490,7 +490,7 @@ Now lets define the likelihood of each vulnerability and explain the given level
 \label{tab:likelihood}
 \end{longtable}
 
-After we have analyzed the impact and the likelihood of each vulnerabilities, we can now define for each one of them a risk level, this is shown in Table \ref{tab:risk}.
+After we have analysed the impact and the likelihood of each vulnerabilities, we can now define for each one of them a risk level, this is shown in Table \ref{tab:risk}.
 
 \begin{table}[!h]
 	\centering
@@ -548,7 +548,7 @@ However, before starting, we should mention that most of the vulnerabilities now
 \hline
 15 & Data credentials lost & Having more than one administrator is recommended but it is not an imperative countermeasure & Medium & Low & Low \\
 \hline
-16 & Data credentials theft & In order to mitigate the risk of credential theft, employee should not save them into theri browser or write them into a secure file. & High & High & High \\
+16 & Data credentials theft & In order to mitigate the risk of credential theft, employee should not save them into their browser or write them into a secure file and should change it several times. & High & High & High \\
 \hline
 \caption{Countermeasure}
 \label{tab:contermesure}
