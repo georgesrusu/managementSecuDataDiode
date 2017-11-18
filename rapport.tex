@@ -388,7 +388,14 @@ Similarly as for the previous sections, Table \ref{tab:person-assets} explain th
 \subsection{Risks assessment}
 In this section we are going to assess the risk by firstly assessing the impact and secondly by assessing the likelihood of every vulnerability. 
 
-The following table (Table \ will give the impact that each vulnerability could have, with a brief description of the impact and its level.
+We define as follow three level of impact in terms of failure time:
+\begin{enumerate}
+\item[-] Low: less than 10 minutes.
+\item[-] Medium: between 10 minutes and 50 minutes.
+\item[-] High: more than 50 minutes.
+\end{enumerate}
+
+The following table (Table \ref{tab:impact}) will give the impact level and a brief description for each vulnerability.
 
 %\begin{table}[!h]
 %	\centering
@@ -398,11 +405,11 @@ The following table (Table \ will give the impact that each vulnerability could 
 \hline
 1 & Power outage & Medium  &  The data diode will not work anymore which means it will not be available until the power will be re-establish. A power outage usually does not exceed one hour which mean there is not a high impact. \\
 \hline
-2 & Fire & High  &  The impact depends on the damages caused by the fire. The data diode can suffer significant damages which could lead to the replacement of the hardware.\\
+2 & Fire & High  &  The impact depends on the damages caused by the fire. The data diode can suffer significant or irreparable damages which could lead to the replacement of the hardware.\\
 \hline
-3 & Data diode hardware failure  & Low & In the case of hardware failure within the data diode, it is the whole operation of the system that can be disturbed.\\
+3 & Data diode hardware failure  & Low & In the case of hardware failure within the data diode, it is the whole operation of the system which can be disturbed. However, the system administrator could easily replace the broken component.\\
 \hline
-4 & Data diode hardware degradation & High & This vulnerability could affect the three part of the information security and also lead to non-reversible damage. \\
+4 & Data diode hardware degradation & Low,Medium,High & This vulnerability could affect the three part of the information security(availability, integrity, confidentiality) and also lead to non-reversible damage. However, the impact time is according to the broken hardware component. \\
 \hline
 5 & DDOS attack & High & If the website of the data diode suffers from a DDOS attack, the secured network productivity can grid to a total halt if the transfer of important files cannot be done. This can lead to an important cost for the business, it is why a DDOS attack can have a big impact.\\
 \hline
@@ -410,28 +417,35 @@ The following table (Table \ will give the impact that each vulnerability could 
 \hline
 7 &  SQL injection & High & The possible consequences of the SQL injection attacks such as consultation, modification or deletion of the database, correspond to a big risk because it will affect the login page of the web interface of the data diode. \\
 \hline
-8 & Brute force attack & & \\
+8 & Brute force attack & High & If the hacker find or guess a correct password, he would use it as long as he can and it works.\\
 \hline
-9 & Virus and malwares & High & Due to the goal of a virus or a malware, its impact could be really negative for the data diode, like to make its use impossible or to modify the transmitted data. \\
+9 & Virus and malwares & Low, Medium, High & Depending of the type of the virus, the impact is as well depending on the type of the virus: a Trojan virus would not halt the system however confidentiality will be broken. \\
 \hline
-10 & Misconfiguration & Medium & In this case, a reconfiguration of the data diode will be required. This will no take too much time and will not have a high impact thanks to the administration interface, which allows to reconfigure easily the data diode. \\
+10 & Misconfiguration & Medium & In this case, a reconfiguration of the data diode will be required. This will not take much in terms of time and will not have a major impact thanks to the administration interface, which allows to reconfigure easily the data diode. \\
 \hline
-11 & Failure in maintenance from the provider & High & In case of failure in maintenance or design the data diode can be non-functional\\
+11 & Failure in maintenance from the provider & High & In case of failure in maintenance or design the data diode can be non-functional until the problem or bug is fixed. This could lead to a halt of the system for a undetermined period of time.\\
 \hline
-12 & Remote connection & High & \\
+12 & Remote connection & High & If depends of the purpose of the hacker. He could halt the system or simply violate the integrity and confidentiality of the data. \\
 \hline
-13 & Social engineering  & High & Because this method allows to thief the credential of user and then the attacker can simply log in and snoop around for sensitive data. Hence, it results in a high risk. \\
+13 & Sniffing & High & The hacker could snif the entire passing traffic of the network for months if no one detect him.\\
 \hline
-14 & Data credentials lost & Medium & If the credentials is lost, a reconfiguration of the data diode will be necessary \\
+14 & Social engineering  & High & Because this method allows to steal the credential of a user and then the attacker can simply log in and snoop around for sensitive data. Hence, it results in a high risk. \\
 \hline
-15 & Data credentials theft & High & If it is the administrator's credential that are stolen, the attacker can change the data diode administration and it implies a big impact. On the other hand, if it is the user's credential that are stolen, they can use it and transfer what they want and access the data of the user.  \\
+15 & Data credentials lost & Medium & If a user lose his credentials, he should immediately contact the administrator in order to reset his credential.\\
+\hline
+16 & Data credentials theft & High & If it is the administrator's credential that are stolen, the attacker can change the data diode administration and it implies a big impact. On the other hand, if it is the user's credential that are stolen, they can use it and transfer what they want and access the data of the user. In both case, the attacker can do what he like and could prevent the access for legitimate persons such as the admin. \\
 \hline
 %\end{tabular}
 \caption{Impact assessment.}
 \label{tab:impact}
 \end{longtable}
 
-Now lets define the likelihood of each vulnerability and explain the given level of each.
+Now lets define the likelihood of each vulnerability and explain the given level of each. But before lets define the three level of likelihood:
+\begin{enumerate}
+\item[-] Low: 1 time in 10 years.
+\item[-] Medium: maximum 10 times per year.
+\item[-] High: several time per month.
+\end{enumerate}
 
 %\begin{table}[!h]
 %	\centering
@@ -439,48 +453,48 @@ Now lets define the likelihood of each vulnerability and explain the given level
 \hline
 \textbf{ID}& \textbf{Vulnerability} & \textbf{Likelihood} & \textbf{Description}                 \\
 \hline
-1 & Power outage & Low & Weather is responsible for the majority of major power outages that occur, but there many others causes such as short circuits, blackouts and so on. Thus power outage has a medium likelihood to happen but in the case where the client's company is equipped with \textbf{an uninterruptible power supply (UPS)}, which is an electrical apparatus that provides emergency power when the mains power fails, the likelihood becomes low.    \\
+1 & Power outage & Medium & Weather is responsible for the majority of major power outages that occur, but there are many others causes such as short circuits, blackouts and so on. Thus power outage has a medium likelihood to happen.    \\
 \hline
-2 & Fire & Low  &  A fire can occur due to an electrical incidents, accidents or sabotages caused by human actions.\\
+2 & Fire & Low  &  A fire can occur due to several causes. The probability of fire is in generally low.\\
 \hline
-3 & Data diode hardware failure  & Medium & The data diode hardware are well chosen and tested in order to keep a low risk of failure.\\ 
+3 & Data diode hardware failure & Medium,High & The data diode hardware are well chosen and tested in order to keep a low risk of failure, however hardware failure can happen. There is no perfect product to last forever in this world.\\ 
 \hline
-4 & data diode hardware degradation & Medium & A clumsiness is always possible. Futhermore, if the access of the building and the room of the data diode is not controlled, this attack is really simple. \\
+4 & data diode hardware degradation & Medium,High & A clumsiness is always possible (medium). Furthermore, if the access in the room of the data diode is not controlled, this attack is really simple and is likely to happen very often(high). \\
 \hline
-5 & DDOS attack & High & If the company is a popular, the secured network will be a prime target for the hackers. therefore, attempts may be numerous. Furthermore, DDOS attacks have grown in scale. DDoS attacks are popular because in some ways, they're easy to do. So even a beginner hacker may be able to make an attack.\\
+5 & DDOS attack & High & If the company is popular, the secured network will be a prime target for the hackers. Therefore, attempts may be numerous. Furthermore, DDOS attacks have grown in scale and have become very popular since their are easy to implement.\\
 \hline
 6 & Zero Day attack & Medium & This kind of attack is constantly sought after by different people like skilled hacker, but its difficult to find one, and more of this, find one that can affect our system. \\
 \hline
-7 &  SQL injection & High & The SQL injection is one of the oldest, most prevalent and most dangerous method to attack systems and steal information from web application. It can any website, so the likelihood is high.\\
+7 &  SQL injection & High & The SQL injection is one of the oldest, most prevalent and most dangerous method to attack systems and steal information from web application. It can be done on any website, so the likelihood is high.\\
 \hline
-8 & Brute force attack &  & \\
+8 & Brute force attack & High & Similarly to the SQL injection, there are tools in order to crack passwords. Since it is very easy to do, this kind of attack has a high probability to occur. \\
 \hline
-9 & Virus and malwares & High & This kind of attack is really diversified and used wich mean there is an high likelihood. \\
+9 & Virus and malwares & Medium & This kind of attack is really diversified and used. However, this attack could only success if a user file is infected which means there are several attack to do before. Thus, the likelihood remains medium. \\
 \hline
-10 & Misconfiguration & Low & A misconfiguration by the administrator occurs rarely but it also occurs because the administrator interface is hacked.\\
+10 & Misconfiguration & Medium & A misconfiguration by the administrator occurs rarely on a year.\\
 \hline
-11 & Failure in maintenance from the provider & Low  & The likelihood of that to happens is extremely low, because the product is tested before being sent to the client.  \\
+11 & Failure in maintenance from the provider & Medium  & The likelihood of that to happens is extremely low on a year, because generally the product is well tested before being released to the client. Thus, in our case the likelihood is medium.  \\
 \hline
-12 & Remote connection & Low & \\
+12 & Remote connection & Medium & Similarly to the virus attack, in order to succeed there must be several other attacks done before. However, it can happen a few time on a year.  \\
 \hline
-13 & Social engineering  & Medium & The most popular, and most successful, for attacker to steal sensitive information is by way of social engineering. But administrators are aware of these techniques so only users are potential victims. \\
+13 & Sniffing & Low & It is very rare that somehow a hacker could get into the network without being discovered.\\
 \hline
-14 & Data credentials lost & Low & An administrator know the importance of his role and will take care of the data credentials. \\
+14 & Social engineering  & Medium & The most popular, and most successful, for attacker to steal sensitive information is by way of social engineering. But administrators are aware of these techniques so only users are potential victims. \\
 \hline
-15 &  Data credentials theft&  High & Because there are many ways to thief credential it results in a high risk. \\
+15 & Data credentials lost & Low & An administrator know the importance of his role and will take care of the data credentials. In addition, every user of the employee are using his credential every day so it very rare and unlikely that an employee could forget his in 24 hours. \\
+\hline
+16 &  Data credentials theft &  High & Because there are many attempts from hackers trying to steal credentials.\\
 \hline
 %\end{tabular}
 \caption{Likelihood assessment.}
 \label{tab:likelihood}
 \end{longtable}
 
-After having analysed the impact and the likelihood of each vulnerabilities, we can define for each of them a risk level table (Table \ref{tab:risk}).
+After we have analyzed the impact and the likelihood of each vulnerabilities, we can now define for each one of them a risk level, this is shown in Table \ref{tab:risk}.
 
 \begin{table}[!h]
 	\centering
 	\begin{tabular}{|l|l|l|l|}
-		\hline
-		\multicolumn{4}{|c|}{\textbf{Risk Level}} \\
 		\hline
 		 & \multicolumn{3}{|c|}{\textbf{Impact}}  \\ \hline
 		\textbf{Likelihood} & \textbf{Low} & \textbf{Medium} & \textbf{High} \\ \hline
