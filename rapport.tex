@@ -520,33 +520,35 @@ However, before starting, we should mention that most of the vulnerabilities now
 \hline
 1 & Power outage  & For this vulnerability we accept the possible risks. & Medium & Medium & Medium \\
 \hline
-2 & Fire & The data diode must be placed in a room protected against fire, closed with fire doors to mitigate as much as possible the risk of the data diode being affected by fire. & H & L & Low \\
+2 & Fire & The data diode must be placed in a room protected against fire, closed with fire doors to mitigate as much as possible the risk of the data diode being affected by fire. & High & Low & Low \\
 \hline
-3 & Data diode hardware failure & Since an administrator must be ready to intervene in case of a failure of the hardware, we can accept the risk of this vulnerability. & L & L & Low \\
+3 & Data diode hardware failure & Since an administrator must be ready to intervene in case of any hardware failure, we can accept the risk of this vulnerability. In addition, administrators should use administration tools such as \emph{SNMP protocol} in order to face the issue as quickly as possible. & Low & Medium & Low \\
 \hline
-4 & Data diode hardware degradation & The data diode must be place in a closed room lock with a key or access card possessed only by the administrator. A camera coul also be placed at the entrance to the room. Since the only person who can access to the room is the administrator, the risk is limited to a clumsiness of the administrator. & H & M & Medium  \\
+4 & Data diode hardware degradation & The data diode must be placed in a closed room locked with a key or locked using access card possessed only by the administrators or authorized employees. A camera could also be installed in order to monitor activity into the room. Since there are only few persons who have access in the room, the risk is limited to a clumsiness of the administrator. & Medium & Medium & Medium  \\
 \hline
-5 & DDOS attack & & H & H & High \\
+5 & DDOS attack & This could be faced by limiting the number of connection to the data diode. It will then be impossible to overload the system and thus to halt it. However, the data diode servers can only be accessed from the LAN. Thus, in order to create a DDOS on the data diode server, all the company's computers should be infected. & High & High & High \\
 \hline
-6 & Zero Day attack & Due to the fact that we can't be prepare against this attack, we accept the risks of this vulnerability. & H & M & Medium \\
+6 & Zero Day attack & Due to the fact that we can not be prepared against this kind of attack, we accept the risks of this vulnerability. & High & Medium & Medium \\
 \hline
-7 &  SQL injection & In order to avoid the SQL injection, we must use in the code source of the web interface a function that prevents the interpretation of the SQL language. &H & H & High \\
+7 &  SQL injection & In order to avoid the SQL injection, we must use in the code source of the web interface the especially developed function which prevents the execution of the SQL language. & High & High & High \\
 \hline
-8 & Brute force attack & & & & \\
+8 & Brute force attack & In order to stop dictionary password attack, we could implement a number of password trial times before blocking the account. In this way, after 3 wrong password, the account have to be manually reset by an administrator. & High & High & High\\
 \hline
-9 & Virus and malwares & This vulnerability is out of our scope. The client is responsible for securing access to internal network and so he have to use appropritate anti-virus and other. & H & H & High \\
+9 & Virus and malwares & This vulnerability is out of our scope. The client is responsible for securing access to internal network and so he should use appropriate anti-virus and other anti-malware system. & Medium & Medium & Medium \\
 \hline
-10 & Misconfiguration & The configuration is only possible through the administrator interface and by an adminsatrator hence, a administrator must be well chosen. & M & L & Low \\
+10 & Misconfiguration & The configuration is only possible through the administrator interface and by an administrator. Hence, an administrator must be well chosen. However, the company should create a modification policy in which a system alteration should be approved by at least two administrator in order to take place. & Medium & Medium & Medium \\
 \hline
-11 & Failure in maintenance from the provider & We test all the features of the data diode (such as the transfer) before providing it to the client. We make sure we always have an operation version. & H& L& Low\\
+11 & Failure in maintenance from the provider & We test all the features of the data diode (such as the transfer) before providing it to the client. We make sure we always have a well operating version. & High & Medium & Medium\\
 \hline
-12 & Remote connection & Skilled Hacker & & & \\
+12 & Remote connection & The company should have a two step verification system. If a hacker manage to gain access, the second step verification will block him. This second step verification could be for example a 6 characters code sent to the user's phone. & High & Medium & Medium\\
 \hline
-13 & Social engineering & Since it concerns the employees, the company should provide security awareness training in order to avoid social enginering. & H & M & High \\
+13 & Sniffing & There should be log of every path of the data trough the network. Thus if a person is sniffing the traffic, an administrator can rapidly identify the redirection of the whole traffic. But also the traffic and the communication should be encrypted and thus the sniffer would not be able to read especially confidential information. & High & Low & Low \\
 \hline
-14 & Data credentials lost & Having more than one administrator is recommended but not an imperative countermeasure & M & L & Low \\
+14 & Social engineering & Since it concerns the employees, the company should provide security awareness training in order to avoid social engineering. & High & Medium & Medium \\
 \hline
-15 & Data credentials theft & In ordre to mitigate the risk of credential theft, the web interface must be available only thriugh https. & H & H & H \\
+15 & Data credentials lost & Having more than one administrator is recommended but it is not an imperative countermeasure & Medium & Low & Low \\
+\hline
+16 & Data credentials theft & In order to mitigate the risk of credential theft, employee should not save them into theri browser or write them into a secure file. & High & High & High \\
 \hline
 \caption{Countermeasure}
 \label{tab:contermesure}
