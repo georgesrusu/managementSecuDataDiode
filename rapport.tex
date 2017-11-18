@@ -409,7 +409,7 @@ The following table (Table \ref{tab:impact}) will give the impact level and a br
 \hline
 3 & Data diode hardware failure  & Low & In the case of hardware failure within the data diode, it is the whole operation of the system which can be disturbed. However, the system administrator could easily replace the broken component.\\
 \hline
-4 & Data diode hardware degradation & Low,Medium,High & This vulnerability could affect the three part of the information security(availability, integrity, confidentiality) and also lead to non-reversible damage. However, the impact time is according to the broken hardware component. \\
+4 & Data diode hardware degradation & Medium & This vulnerability could affect the three part of the information security(availability, integrity, confidentiality) and also lead to non-reversible damage. However, the impact time is according to the broken hardware component. \\
 \hline
 5 & DDOS attack & High & If the website of the data diode suffers from a DDOS attack, the secured network productivity can grid to a total halt if the transfer of important files cannot be done. This can lead to an important cost for the business, it is why a DDOS attack can have a big impact.\\
 \hline
@@ -419,7 +419,7 @@ The following table (Table \ref{tab:impact}) will give the impact level and a br
 \hline
 8 & Brute force attack & High & If the hacker find or guess a correct password, he would use it as long as he can and it works.\\
 \hline
-9 & Virus and malwares & Low, Medium, High & Depending of the type of the virus, the impact is as well depending on the type of the virus: a Trojan virus would not halt the system however confidentiality will be broken. \\
+9 & Virus and malwares & Medium & Depending of the type of the virus, the impact is as well depending on the type of the virus: a Trojan virus would not halt the system however confidentiality will be broken. \\
 \hline
 10 & Misconfiguration & Medium & In this case, a reconfiguration of the data diode will be required. This will not take much in terms of time and will not have a major impact thanks to the administration interface, which allows to reconfigure easily the data diode. \\
 \hline
@@ -442,9 +442,9 @@ The following table (Table \ref{tab:impact}) will give the impact level and a br
 
 Now lets define the likelihood of each vulnerability and explain the given level of each. But before lets define the three level of likelihood:
 \begin{enumerate}
-\item[-] Low: 1 time in 10 years.
-\item[-] Medium: maximum 10 times per year.
-\item[-] High: several time per month.
+\item[-] Low: maximum 1 time per year.
+\item[-] Medium: between 1 and 10 times per year.
+\item[-] High: more than 10 times per month.
 \end{enumerate}
 
 %\begin{table}[!h]
@@ -457,9 +457,9 @@ Now lets define the likelihood of each vulnerability and explain the given level
 \hline
 2 & Fire & Low  &  A fire can occur due to several causes. The probability of fire is in generally low.\\
 \hline
-3 & Data diode hardware failure & Medium,High & The data diode hardware are well chosen and tested in order to keep a low risk of failure, however hardware failure can happen. There is no perfect product to last forever in this world.\\ 
+3 & Data diode hardware failure & Medium & The data diode hardware are well chosen and tested in order to keep a low risk of failure, however hardware failure can happen. There is no perfect product to last forever in this world.\\ 
 \hline
-4 & data diode hardware degradation & Medium,High & A clumsiness is always possible (medium). Furthermore, if the access in the room of the data diode is not controlled, this attack is really simple and is likely to happen very often(high). \\
+4 & data diode hardware degradation & Medium & A clumsiness is always possible (medium). Furthermore, if the access in the room of the data diode is not controlled, this attack is really simple and is likely to happen very often(high). \\
 \hline
 5 & DDOS attack & High & If the company is popular, the secured network will be a prime target for the hackers. Therefore, attempts may be numerous. Furthermore, DDOS attacks have grown in scale and have become very popular since their are easy to implement.\\
 \hline
@@ -509,50 +509,48 @@ After we have analyzed the impact and the likelihood of each vulnerabilities, we
 
 
 \subsection{Countermeasures}
-In this section we will explaining which and how countermeasures could be taken in order to address every vulnerability of the system. This will be done using the Table \ref{tab:risk} in order to adapt our countermeasure accordingly to the risk of each vulnerability.
+In this section we will explain which and how countermeasures could be taken in order to address every vulnerability of the system. We will use the Table \ref{tab:risk} in order to adapt our countermeasures accordingly to the risk level of each vulnerability.
 
+However, before starting, we should mention that most of the vulnerabilities nowadays are coming from the internet. Thus, our data diode should not be exposed to such a danger. Despite the fact that the data diode could be installed within a LAN which has an internet connection, it should not be possible to access it form the outside but only from the LAN. In this way, it will be much difficult to a hacker to directly threat our data diode. In order to succeed his attempts he should therefor, try infecting a computer within the LAN and only then, by redirecting all his traffic trough his new bot, try to hack our data diode.
 %\begin{table}[!h]
 %	\centering
-\begin{longtable}{|c|p{2,5cm}|p{2.5cm}|p{6.5cm}|c|c|c|}
+\begin{longtable}{|c|p{2.5cm}|p{6.5cm}|c|c|c|}
 \hline
-\textbf{ID}& \textbf{Vulnerability} & \textbf{Source(s)} & \textbf{Countermeasure(s)} & \textbf{I} & \textbf{L} & \textbf{Risk Level}          \\
+\textbf{ID}& \textbf{Vulnerability}  & \textbf{Countermeasure(s)} & \textbf{Impact} & \textbf{Likelihood} & \textbf{Risk Level}          \\
 \hline
-1 & Power outage  & Nature & For this vulnerability we accept the possible risks. & M & L & Low \\
+1 & Power outage  & For this vulnerability we accept the possible risks. & Medium & Medium & Medium \\
 \hline
-2 & Fire & Nature & The data diode must be placed in a room close by a fire door to mitigate as much as possible the risk of the data diode being affected by fire. & H & L & Low \\
+2 & Fire & The data diode must be placed in a room protected against fire, closed with fire doors to mitigate as much as possible the risk of the data diode being affected by fire. & H & L & Low \\
 \hline
-3 & Data diode hardware failure & Nature & Since an administrator must be ready to intervene in case of a failure of the hardware, we can accept the risk of this vulnerability. & L & L & Low \\
+3 & Data diode hardware failure & Since an administrator must be ready to intervene in case of a failure of the hardware, we can accept the risk of this vulnerability. & L & L & Low \\
 \hline
-4 & Data diode hardware degradation & Unauthorized user & The data diode must be place in a closed room lock with a key or access card possessed only by the administrator. A camera coul also be placed at the entrance to the room. Since the only person who can access to the room is the administrator, the risk is limited to a clumsiness of the administrator. & H & M & Medium  \\
+4 & Data diode hardware degradation & The data diode must be place in a closed room lock with a key or access card possessed only by the administrator. A camera coul also be placed at the entrance to the room. Since the only person who can access to the room is the administrator, the risk is limited to a clumsiness of the administrator. & H & M & Medium  \\
 \hline
-5 & DDOS attack & Skilled hacker & & H & H & High \\
+5 & DDOS attack & & H & H & High \\
 \hline
-6 & Zero Day attack & Skilled hacker & Due to the fact that we can't be prepare against this attack, we accept the risks of this vulnerability. & H & M & Medium \\
+6 & Zero Day attack & Due to the fact that we can't be prepare against this attack, we accept the risks of this vulnerability. & H & M & Medium \\
 \hline
-7 &  SQL injection & Skilled Hacker, script kiddies, unauthorized user  & In order to avoid the SQL injection, we must use in the code source of the web interface a function that prevents the interpretation of the SQL language. &H & H & High \\
+7 &  SQL injection & In order to avoid the SQL injection, we must use in the code source of the web interface a function that prevents the interpretation of the SQL language. &H & H & High \\
 \hline
-8 & Brute force attack & & & & & \\
+8 & Brute force attack & & & & \\
 \hline
-9 & Virus and malwares & Skilled hacker, script kiddies & This vulnerability is out of our scope. The client is responsible for securing access to internal network and so he have to use appropritate anti-virus and other. & H & H & High \\
+9 & Virus and malwares & This vulnerability is out of our scope. The client is responsible for securing access to internal network and so he have to use appropritate anti-virus and other. & H & H & High \\
 \hline
-10 & Misconfiguration & Administrator & The configuration is only possible through the administrator interface and by an adminsatrator hence, a administrator must be well chosen. & M & L & Low \\
+10 & Misconfiguration & The configuration is only possible through the administrator interface and by an adminsatrator hence, a administrator must be well chosen. & M & L & Low \\
 \hline
-11 & Failure in maintenance from the provider & Administrator & We test all the features of the data diode (such as the transfer) before providing it to the client. We make sure we always have an operation version. & H& L& Low\\
+11 & Failure in maintenance from the provider & We test all the features of the data diode (such as the transfer) before providing it to the client. We make sure we always have an operation version. & H& L& Low\\
 \hline
-12 & Remote connection & Skilled Hacker & & & & \\
+12 & Remote connection & Skilled Hacker & & & \\
 \hline
-13 & Social engineering & Skilled Hacker, unauthorized user & Since it concerns the employees, the company should provide security awareness training in order to avoid social enginering. & H & M & High \\
+13 & Social engineering & Since it concerns the employees, the company should provide security awareness training in order to avoid social enginering. & H & M & High \\
 \hline
-14 & Data credentials lost & Administrator & Having more than one administrator is recommended but not an imperative countermeasure & M & L & Low \\
+14 & Data credentials lost & Having more than one administrator is recommended but not an imperative countermeasure & M & L & Low \\
 \hline
-15 &  Data credentials theft& Skilled Hacker, unauthorized user & In ordre to mitigate the risk of credential theft, the web interface must be available only thriugh https. & H & H & H \\
+15 & Data credentials theft & In ordre to mitigate the risk of credential theft, the web interface must be available only thriugh https. & H & H & H \\
 \hline
 \caption{Countermeasure}
 \label{tab:contermesure}
 \end{longtable}
-
-
-However, before starting, we should mention that most of the vulnerabilities nowadays are coming from the internet. Thus, our data diode should be exposed to such a danger. Despite the fact that the data diode could be installed within a LAN whit an internet connection, it should not be accesible form the internet, only from the LAN. can be located in a LAN which has a connection to the wolrd internet but 
 %fin
 \clearpage
 \begin{thebibliography}{9}
