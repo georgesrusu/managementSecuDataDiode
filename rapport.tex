@@ -21,7 +21,7 @@
 \newpage
 \section{Concept of operations}
 \subsection{Introduction to the problem}
-Our client would want to prevent his research and development labs against industrial espionage and confidential information leaking. He wants to divide the company network in order to maintain the labs in an isolated environment. Thus, the critical data could not leave the company using the network. One problem related is assuring that all the operating systems are up-to-date. This could be achieved using a manual operation where an employee would manually update every node in the isolated network using a mass-storage device\footnote{A USB-key for instance.}. However, this is not the most optimized way and for sure it is not cost less and timeless for the company, without mentioning that there could be dependency problems. This method is also prone to human errors and this could generate security vulnerabilities.
+Our client would want to prevent his research and development labs against industrial espionage and confidential information leaking. He wants to divide the company network in order to maintain the labs in an isolated environment. Thus, the critical data could not leave the company using the network. But how to be able to transfer files or to assure that all the operating systems are up-to-date? This could be achieved using manual operations where an employee would manually copy the files or the updates on a mass-storage device\footnote{A USB-key for instance.} and then used them or install them on every node from the isolated network. However, this is not the most optimized way and for sure it is not cost less and timeless for the company, without mentioning that there could be dependency problems for applications or updates. This method is also prone to human errors and this could generate security vulnerabilities.
 
 \subsection{Our solution}
 In order to address this problem we are going to implement a data diode. In electronics as shown in Figure \ref{fig:diode}, a diode is a component which conduct the current in one direction. Thus the term of data diode is a set of components that only let the data to travel in an unidirectional way. An example of use case is illustrated in Figure \ref{fig:datadiode}, letting the data pass from a low risk LAN to a high risk LAN but not the way around.
@@ -71,9 +71,9 @@ The following table presents the components used for the data diode implementati
 	\hline
 	Receiver server  &  a physical machine or a virtual machine. Similar to the transmission, the nic will only be set in a receiver mode.\\
 	\hline
-	One fiber/UTP & This optical fiber allows communication between the low server the high server. It will probably be simulated using a UTP/RJ45 cable.\\
+	One fiber/UTP & This optical fiber allows communication between the low server and the high server. It will probably be simulated using a UTP/RJ45 cable.\\
 	\hline
-	4 Fiber NIC/UTP NIC & Two for each server (transmission and receiver).  \\
+	4 Fiber NIC/UTP NIC & Two for each server (transmission and receiver). On each side, there will be one NIC for the data diode and one NIC for the communication in the LAN.  \\
 	\hline
 \end{tabular}
 \caption{Components description}
@@ -107,7 +107,7 @@ In general every employee of a company has a unique ID, a grade, a job title, et
 
 A \textit{user} is simply an employee of the company. Every employee have limited access into the company's files according to their job title or to the specific rule defined by their supervisor.
 
-An \textit{administrator} is a user in charge of operating and maintaining the data diode. It is the only authorized person to interact with the data diode and this is mandatory. Because he will have to know how the data diode is working, should know how to interact with it using the web interface but mostly he should be able to reconfigure it or restore it as quickly as possible in case of a security breach or a system failure. However, an administrator could not have access to some strict secret files of the company but only to the used IT mechanism.
+An \textit{administrator} is a user in charge of operating and maintaining the data diode. It is the only authorized person to configure or maintain the well operating of the data diode and this is mandatory. He will have to know how the data diode is working, should know how to interact with it using the web interface but mostly he should be able to reconfigure it or restore it as quickly as possible in case of a security breach or a system failure. However, an administrator could not have access to some strict secret files of the company but only to the used IT mechanism.
 
 Every user information is managed and stored by the company in their own databases.
 
@@ -177,7 +177,7 @@ On the reception page, the administrator has access to all updates that have bee
 The administrators have the rights to manage all the updates within FTP sharing systems, they can choose to keep or delete updates.
 
 \subsubsection{A Technical file transfer usage}
-We have said earlier that their will be a web interface running on both side of the data diode. When a user will want to send a file, he would have to first login. The login page will use the data base of the company in order to authenticate users and to verify each one permissions. However, on the high security zone, the database would not be reachable because of the unidirectional data diode. Thus, once a user would want to send a file to the other side, there will be a daemon which will create a permission and ownership system in order for the other side to recognize to whom the file belongs to. For example, when the UserX would want to send the \emph{file.txt} to the other side, the transmitter daemon will rename the file using the following rule:
+We have said earlier that their will be a web interface running on both side of the data diode. When a user will want to send a file, he would have to first login. The login page will use the data base of the company in order to authenticate users and to verify each user permissions. However, on the high security zone, the database would not be reachable because of the unidirectional data diode. Thus, once a user would want to send a file to the other side, there will be a daemon which will create a permission and ownership system in order for the other side to recognize to whom the file belongs to. For example, when the UserX would want to send the \emph{file.txt} to the other side, the transmitter daemon will rename the file using the following rule:
 \begin{center}
 \centering
 \emph{file.txt} $\triangleright$ \emph{userName\_password\_fileName\_timestamp\_size\_extension.zip}
@@ -185,7 +185,7 @@ We have said earlier that their will be a web interface running on both side of 
 
 Every file will be converted into a zip archive in order to reduce the initial size, thing that could sometimes have a major impact on the speed of the transfer (hence the time).\bigskip
 
-On the other side, there will be of course another receiver daemon which will for each file received, decompress the file into the original extension\footnote{This is why the initial extension is putted in to the name of the sent file.}. However to ensure that only the owner (thus the userName) may see the file, the second daemon will create for every userName a folder where received files will be stored. The rule for this operations is:
+On the other side, there will be of course another receiver daemon which will for each file received, decompress the file into the original extension\footnote{This is why the initial extension is putted in to the name of the sent file.}. However to ensure that only the owner (thus the userName) may see the file, the second daemon will create for every userName a folder where received files will be stored. The rule for this operation is:
 \begin{center}
 \centering
 \emph{userName\_password\_fileName\_timestamp\_size\_extension.zip} $\triangleright$ folder: \emph{userName\_password} $\triangleright$ files in folder: \emph{file.txt}
@@ -203,11 +203,12 @@ The admin can configure the IP address of both the transmitter and the receiver.
 \label{fig:configadminpage}
 \end{figure}
 
+About the data diode installation, our product is plug\&play. It means that the administrator should only power on the data diode and access for the first time the transmitter and the receiver from \emph{localhost}. In this way, he can configure using the panel shown in Figure \ref{fig:configadminpage} the IP-address for the web servers according to the company network. Once this is done, the data diode is completely set up. However in case of anything, there is a hard-reset function which restore the data diode in its factory setting state. 
 \newpage
 \section{Risk Analysis}
 
 \subsection{Introduction to the risk analysis}
-In this section, we are going to asses any risk that could harm or lead to the destruction of our data diode. But first, lets define what is a risk. Generally the term risk is associated with a damage or a loss after an event. Thus we can illustrate the risk by the following rule:
+In this section, we are going to asses any risk that could harm or lead to the destruction of our data diode. But first, lets define what is a risk: \emph{A probability or threat of damage, liability, loss, or any other negative occurrence that is caused by external or internal vulnerabilities, and that may be avoided through preemptive action}\footnote{Definition from the \href{http://www.businessdictionary.com/definition/risk.html}{businessdictionary website.}}. Generally, the term risk is associated with the probability of occurrence of a damage or a loss during an event. Thus, we can illustrate the risk by the following rule:
 \begin{center}
 \centering
 $Risk(e)= impact(e) \times likelihood(e), \forall e \in Events$
@@ -216,10 +217,10 @@ $Risk(e)= impact(e) \times likelihood(e), \forall e \in Events$
 In our risk analysis we will start by defining all the assets of our project. Those assets could be threatened by some hackers which could exploit some vulnerabilities found and harm the entire system. Hence, the need to asses all potential threat sources and all the vulnerabilities and their impact. Finally, we will conclude by presenting some countermeasures.
 
 \subsubsection{Physical Assets}
-An Assets can be physical such as computers or printers. In our client work space, we could have the following components categorized as physical assets:
+An Asset can be physical such as computers or printers. In our client work space, we could have the following components categorized as physical assets:
 \begin{enumerate}
 \item[-] All the computers of the low security zone. Those computers could be employee's personal workstations such as laptops but also company's desktop workstations.
-\item[-] All the company's firewalls systems (routers and switch). Despite the fact that their are not part of our implementation, they could represent a potential assets for malicious persons.
+\item[-] All the company's firewalls systems (routers and switch). Despite the fact that their are not part of our implementation, they could represent a potential asset for malicious persons. This could led afterwards to the attack of our data diode.
 \item[-] Our data diode implementation. This comprise our transmitter server and our receiver server.
 \item[-] Data diode web servers for the web user interface.
 \item[-] The company data base server.
@@ -227,61 +228,59 @@ An Assets can be physical such as computers or printers. In our client work spac
 \item[-] All the servers of the company such as Mail servers, FTP servers and other services servers. This comprise the servers in low and high risk networks.
 
 \end{enumerate}
-To all those component a stakeholder would want to have physical access in order to harm the well being of our client company. Thus, it is very important that the physical integrity of every equipment shall be preserved. In other words, a physical access to some physical assets such as routers or servers could harm or destabilize the company core system, this could easily be done for example by simply cutting the power source cable or by disconnecting the internet cable of a server (cutting the communications).
+To all those components a stakeholder would want to have physical access in order to harm the well being of our client company. Thus, it is very important that the physical integrity of every equipment shall be preserved. In other words, a physical access to some physical assets such as routers or servers could harm or destabilize the company core system which could easily be done for example by simply cutting the power source cable or by disconnecting the internet cable of the main server, compromising his availability).
 \subsubsection{Logical Assets}
-A logical assets could be a sensitive information. A list of logical assets used by our client' company could be:
+A logical asset could be a sensitive information. A list of logical assets used by our client's company could be:
 \begin{enumerate}
 \item[-] The company data base containing sensitive information.
 \item[-] The data data diode web interface.
-\item[-] Data on every employee personal computer or desktop workstation used for company purpose.
+\item[-] Data on the hard drives of every employee personal computer or desktop workstation used for company purpose.
 \item[-] Data within the research labs.
-\item[-] All the hard drives data of every computers company. 
 \item[-] Company's storage system.
-\item[-] Company's operating systems: this contain also every application used within the company. As an example, Microsoft Office could be used by the employee of the finance department.
+\item[-] Company's operating systems: this contain also every application used within the company. For example the Microsoft Office Suite.
 \end{enumerate}
 In other words, logical assets represent all the sensitive information which belongs to the company and all the software and applications used by the company's employees.
 
 \subsubsection{Persons involved into the company}
-At this point, we should identify every person in the company which could have access to some physical and logical assets. Generally in a company, there are several departments in which employees or contractors are working. In order to be able to distinguish every user, we should tag every user with a value according to his loyalty and his hard work for the company. Let's fix 4 valuable stage:
+At this point, we should identify every person in the company which could have access to some physical and logical assets. Generally in a company, there are several departments where employees or contractors are working. In order to be able to distinguish every user, we should tag every user with a value according to his loyalty and his hard work for the company. Let's fix 4 valuable stage:
 \begin{enumerate}
 \item[-] Very loyal and very hardworking employee.
 \item[-] Loyal and hardworking employee.
 \item[-] Not loyal and not hardworking employee.
 \item[-] Contractors.
 \end{enumerate}
-It should seems obvious that a very loyal employee which invest a lot of time and work is unlikely to want the destruction or the malfunctioning of the company, because he knows that he will probably lose his job. On the other hand, a non-loyal employee or a contractor could easily want to destabilize the company activities for any kind of reasons\footnote{An employee could receive a job offer from a competitor or a contractor who has not been paid for his work.}.
+It should seems obvious that a very loyal employee which invest a lot of time and work is unlikely to want the destruction or the malfunctioning of the company, because he knows that he will probably lose his job. On the other hand, a non-loyal employee or a contractor could easily want to destabilize the company activities for any kind of reasons such as, an employee could receive a job offer from a competitor, or a contractor who has not been paid yet for his work. Another reasons could be industrial espionage, an employee could be a spy.
 
-However, as we do not know every employee of our client's company, we will simplify the picture by mainly focusing on the administrators and the other users. Thus, there are two categories of person :
+However, as we do not know every employee of our client's company and because it is out of our scope, we will simplify the picture by mainly focusing on the administrators and in general the other users. Thus, there are two categories of person :
 \begin{enumerate}
 \item[-] The administrators which could have a disastrous impact, they have access to both logical assets and physical assets.
 \item[-] All other users which could have a moderate impact, they only could have access to physical assets.
 \end{enumerate}
-Thus, identifying employees using a value tag could be very useful when identifying potential threat sources.
-
+Thus, identifying users using a value tag could be very useful when identifying potential threat sources. However, verifying employee loyalty and implication has to be done and pursued only by the company itself.
 
 \subsection{Threat Sources}
 
-As we mentioned earlier, identifying potential threat sources can be a difficult operation. However, a system failure could be caused by inevitable events or in contrary, it could be caused by a lack of interest. In order to have a clear view over these kinds of events, we will present all those events using two categories:
+As we mentioned earlier, identifying potential threat sources can be a difficult operation. However, a system failure could be caused by inevitable events or in contrary, it could be caused by a lack of interest (security by obscurity). In order to have a clear view over these kinds of events, we will present all those events using two categories:
 \begin{enumerate}
 \item[-] Unpredictable or inevitable events.
 \item[-] Predictable or avoidable events.
 \end{enumerate}
 
 \subsubsection{Unpredictable events}
-Such events could be related to natural disaster which cannot be always predicted in advance. Thus, there is no way in which to prevent the mass destruction but the company could take measure in order to minimize the impact. This could be related to natural disaster like:
+Such events could be related to natural disaster which cannot be always predicted in advance. Thus, there is no way in which to prevent the mass destruction, however the company could take some measures in order to minimize the impact. Such events could be:
 \begin{enumerate}
-\item[-] Earthquakes
-\item[-] Storms
-\item[-] Floods
+\item[-] Earthquakes.
+\item[-] Storms.
+\item[-] Floods.
 \item[-] Sinkholes.
-\item[-] Volcanic eruptions
-\item[-] Tsunami
-\item[-] Wildfires
+\item[-] Volcanic eruptions.
+\item[-] Tsunami.
+\item[-] Wildfires.
 \end{enumerate}
-However, some event could have a much higher probability of appearance depending on the location where the company has her headquarters. For example, it is more likely to have floods or a tsunami if the company is located near the ecuador of the globe or in a tropical area. Hence, the importance of the location chosen. For example, the company could prevent some of those, for example choosing where to host their main servers.
+However, some event could have a much higher probability of appearance depending on the location where the company has her headquarters. For example, it is more likely to have floods or a tsunami if the company is located near the ecuador of the globe or in a tropical area, similarly wildfires could occur much often in warm regions. Hence, the importance of the company location chosen. For example, the company could prevent some of those events by choosing where to host their main servers or by implementing measures such as water or fire sealing doors for the labs.
 
 \subsubsection{Predictable events}
-We can define predictable events as security lack that we are or not acknowledged about our system. Here is a list with some natural person which could be implicated in the hacking action of our client's company system and thus hacking our data diode implementation. 
+We can define predictable events as security lack that we are or not acknowledged about our system. The administrators could secure the systems by not divulging the vulnerabilities or the backdoor left. This is what \emph{security by obscurity} means, however this is a very bad idea and should be avoided! We defined a list of persons which could be implicated in the hacking action of our client's company system, those persons could be aware of the vulnerabilities of the system or not. Such persons could be:
 \begin{enumerate}
 \item[-] Employees or company daily users
 \item[-] Administrators
@@ -290,46 +289,46 @@ We can define predictable events as security lack that we are or not acknowledge
 \item[-] Skilled Hacker
 \end{enumerate}
 
-Each one in this list could be a potential threat source or serve as so. Let's assume the following scenarios in which the system could get infected.
+Each one in this list could be a potential threat source or serve as so. If the company network for example is vulnerable, our data diode could potential be threatened.
+
+Let's assume the following scenarios in which the system could get infected.
 
 After a lot of work and time spent on projects for the company, an administrator or simply an employee could for example make a mistake which could destabilize the entire system. As an example, we could assume that an administrator forget to close a configuration port or an employee could share without his willing his login password.
 As we said earlier, tagging every user of the company using a value could be a good thing when assessing the threat source. Indeed, a valuable employee despite his tiredness would for sure look twice before finishing his work or sharing some sensitive information of the company. But this is not the same for a newbie which just started on his new job.
 
 Furthermore, having visitor into the company can be a good thing for the image and the brand, however it could be very dangerous. Assuming that a visitor could install a \emph{Femtocell} into the company which could get him full access into the network. Despite the fact that it would be for sure the low security network, the malicious user could sniff every network packet transiting trough and thus could steal some information.
 
-For the last two categories, they represent a constant threat for every company. Hence the need for a security policy always up to date and a good strategic network and workstation deployment in order to minimize the risk. 
-
-We will detail more about all of this by explaining more vulnerable scenario in the following sections.
+For the last two categories, they represent a constant threat for every company. Hence the need for a security policy always up to date and a good strategic network and workstation deployment in order to minimize the risk. Those categories could exploit the vulnerabilities left in the system by administrators using the \emph{security by obscurity} concept.
 
 \subsection{Vulnerabilities}
-In this section, we will give a set of possible vulnerabilities that we should take into account in order to secure the most possible our data diode. In order to have a clear view, we will explain every vulnerability by ordering them according the assets type affected.
+In this section, we will give a set of possible vulnerabilities that we should take into account in order to secure the most possible our data diode. In order to have a clear view, we will explain every vulnerabilities by ordering them according the type of assets it affects.
 
 \subsubsection{Levels of affection}
 We define three different level of affection of our client's company:
 \begin{enumerate}
 \item[-] Availability: affecting the physical functioning of the system. For instance, if a server is shut-down, his availability is compromised.
-\item[-] Confidentiality: affecting the sensitive information of the company by sharing them. For example, a server could be infected and could automatically sends some file to a hacker. It should be obvious that only the server located in the low security risk zone, thus with a connection to the internet could present such a risk.
-\item[-] Integrity: affecting some sensitive information of the company by alteration. Similarly to the confidentiality level, a hacker could modify some information in order to hide it or to prevent the company in succeeding their project. This could be the case when a competitor would want to curb the company in order to be the first one on the market selling a product which both were working on.
+\item[-] Confidentiality: affecting the sensitive information of the company by sharing them. For example, a server could be infected and could automatically sends some files to a hacker. It should be obvious that only servers located in the low security zone, in which there is an internet connection, could present such a risk.
+\item[-] Integrity: affecting some sensitive information of the company by alteration. Similarly to the confidentiality level, a hacker could modify or delete some information in order to hide it or to prevent the company in succeeding their projects. This could be the case when a competitor would want to curb the company in order to be the first one on the market selling a same product on which both were working on.
 \end{enumerate}
 
 \subsubsection{Vulnerabilities affecting physical assets}
-In this section, the following table (Table \ref{tab:phys-assets}) will present only the vulnerabilities affecting only the physical assets of the company
+In this section, the following table (Table \ref{tab:phys-assets}) will present the vulnerabilities affecting only the physical assets of the company:
 
 %\begin{table}[!h]
 %\centering
 \begin{longtable}{|c|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{6.5cm}|}
 \hline
-\textbf{ID}&  \textbf{Vulnerability} & \textbf{Source(s)} & \textbf{Affecting} & \textbf{Description} \\
+\textbf{ID}&  \textbf{Vulnerability} & \textbf{Source(s)} & \textbf{Affecting level} & \textbf{Description} \\
 \hline
-1 & Power outage & Nature & Availability & In the case of a power outage, obviously the data diode system won't work because it needs electrical power in order to run.  \\
+1 & Power outage & Nature & Availability & In the case of a power outage, obviously the data diode system will not work because of the need for an electrical power source.\\
 \hline
-2 & Fire & Nature & Availability & A fire in the building which is in direct contact with the data diode or because of the heat, it will for sure cause damage to the data diode system which will lead to his non-operation.\\
+2 & Fire & Nature & Availability & Because of a fire in a building in which the data diode is installed or because of to much heat gathered, damage to the data diode system could be done, which leading to his non-operation.\\
 \hline
-3 & Data diode hardware failure & Nature & Availability & If a failure in the data diode's hardware occurs, such as the fiber cable, it can lead to the non-operation of the data diode. \\
+3 & Data diode hardware failure & Nature, Administrators, Employees, Unauthorized user & Availability & If a failure in the data diode's hardware occurs, such as in the NIC, it can lead to the non-operation of the data diode. \\
 \hline
-4 & Data diode hardware degradation & Unauthorized user & Availability, Confidentiality, Integrity & This vulnerability is possible once an unauthorized person has access to the data diode itself. This could lead to a simple destruction of the data diode or robbery of some element (availability), trying to remove data from it (confidentiality), or trying to modify/add component to falsify the data (integrity). There is also a possibility that the degradation is done without bad intention (disconnecting a cable, spilling a drink on it).\\
+4 & Data diode hardware degradation & Administrators, Employees, Unauthorized user & Availability, Confidentiality, Integrity & This vulnerability is possible once an unauthorized person has a physical access to the data diode itself. This could lead to a simple destruction of the data diode or robbery of some element (availability), trying to copy the data from it (confidentiality), or trying to add/modify/delete an element to falsify the data (integrity). There is also a possibility that the hardware degradation is done unintentional (disconnecting a cable, spilling a drink on it).\\
 \hline
-5 & DDOS attack & Skilled Hacker & Availability & A DDOS is a cyber-attack where the hackers seeks to make a system unavailable to its users by temporarily or indefinitely disrupting services of a host connected to the Internet. The attack is accomplished by flooding the targeted resource with superfluous requests from many different sources in an attempt to overload systems and prevent some or all legitimate requests from being fulfilled. The administration of our data diode happens through a web interface which means that it is vulnerable to DDOS attack. In case of DDOS attack the data diode web server will become unavailable as long as the attack lasts. Hence, the transmission system will be disrupted.   \\
+5 & DDOS attack & Skilled Hacker & Availability & A DDOS is a cyberattack in which the hackers wants to make a system unavailable to its users by temporarily or indefinitely disrupting the services of the host. The attack is accomplished by flooding the targeted resources with superfluous requests from many different sources from the internet, in an attempt to overload the systems and thus prevent the legitimate requests from being fulfilled. The administration of our data diode happens through a web interface which means that it is vulnerable to DDOS attack. In case of such attack the data diode web server will become unavailable as long as the attack lasts. Hence, the transmission system will be disrupted.   \\
 \hline
 %\end{tabular}
 \caption{Vulnerabilities affecting physical assets.}
@@ -337,7 +336,7 @@ In this section, the following table (Table \ref{tab:phys-assets}) will present 
 \end{longtable}
 
 \subsubsection{Vulnerabilities affecting logical assets}
-It is time to focus now on the vulnerabilities affecting the logical assets of the company. The Table \ref{tab:logic-assets} illustrate this very well.
+In the same order of idea, lets focus now on the vulnerabilities affecting the logical assets of the company. The Table \ref{tab:logic-assets} illustrate this very well.
 
 %\begin{table}[!h]
 %\centering
@@ -345,20 +344,22 @@ It is time to focus now on the vulnerabilities affecting the logical assets of t
 \hline
 \textbf{ID}&  \textbf{Vulnerability} & \textbf{Source(s)} & \textbf{Affecting} & \textbf{Description} \\
 \hline
-6 & Zero Day Attack & Skilled Hacker & Availability, Confidentiality, Integrity & Since there is possibility that a new attack is created, this attack represent a vulnerability due to the fact that we still don't know how to protect ourselves. Therefor, it could affect one or more part of the information security. \\
+6 & Zero Day Attack & Skilled Hacker & Availability, Confidentiality, Integrity & Since there is always the probability to be attacked by a new and unknown form of cyberattack, this represents a vulnerability due to the fact that the future can not be predicted. Therefor, such attack could affect one or more parts of the company, but it still remains theoretically and unknown until the beginning of such type of attack. \\
 \hline
-7 &  SQL injection  & Skilled Hacker, script kiddies, unauthorized user & Confidentiality, Integrity & An SQL Injection vulnerability could affect any website that makes use of an SQL-based database.
-In the case of SQL injection attack, it will allow the "attacker" to bypass a web application's authentication or view data contained in the database and modify its content. Hence, data confidentiality and integrity are concerned.\\
+7 &  SQL injection  & Skilled Hacker, script kiddies, unauthorized user & Confidentiality, Integrity & An SQL injection vulnerability could affect any website that makes use of an SQL-based database.
+In the case of SQL injection attack, it will allow the "attacker" to bypass a web application's authentication or view data contained in the database and alter it. Hence, data confidentiality and integrity are concerned. This represents a vulnerability because our company detain such a database containing sensitive information.\\
 \hline
-8 & Brute force attack &  &  & \\
+8 & Brute force attack & Skilled Hacker & Availability, Confidentiality  & A hacker could try as many passwords as he wants in order to find the correct password. This could be done using dictionaries attacks on a web login page or another type of identity check-in systems of the company.\\
 \hline
-9 & Virus and malwares & Skilled Hacker, script kiddies  & Avaibility, Integrety & Since the data diode is connected to internet is possible that it will be infected by a virus or a malware. \\
+9 & Virus and malwares & Skilled Hacker, Script kiddies, Administrators, Employees  & Availability, Integrity & An infected computer's user could without acknowledgment send a virus trough the data diode. Despite the fact that the communication from the isolated network is not possible, a ransom ware\footnote{This kind of virus could encrypt all the data on a drive and request some money in order to decrypt it.} virus could led to the destruction or the non availability of data from the labs. \\
 \hline
-10 & Misconfiguration & Administrator & Avaibility, Integrety & \\
+10 & Misconfiguration & Administrator & Availability, Integrity & A misconfiguration of the data diode, which is only possible from the administrator interface, could cause his non-function or malfunction. This vulnerability has a direct impact on the availability and the integrity but could also represent a potential confidential threat. \\
 \hline
-11 &  Failure in maintenance from the provider & Administrator  & Avaibility, Integrity  & \\
+11 &  Failure in maintenance from the provider & Provider  & Availability, Integrity  & A vulnerability can also be introduced by the provider during the installation of the data diode or by an application update or new release. This is generally caused by a lack of communication or documentation between the company. \\
 \hline
-12 &  Remote connection & Skilled hacker &  & \\
+12 &  Remote connection & Skilled hacker, Administrators, Employees & Availability, integrity, confidentiality & If the company posses a remote connection system in order for the employee to work from home, if such a system is not well encrypted nor implemented, a hacker could pretend to be an employee and gain access to the company's LAN. He will then be able to steal, destruct or stop any data, process or server he wants to.\\
+\hline
+13 & Sniffing the network & Skilled hacker & Availability, integrity, confidentiality & If a hacker managed somehow to gain access in the company LAN, he could \emph{snif} every passing through traffic. This could represent a real threat if the communications/transfers within the LAN are not encrypted.\\
 \hline
 %\end{tabular}
 \caption{Vulnerabilities affecting logical assets.}
@@ -366,18 +367,18 @@ In the case of SQL injection attack, it will allow the "attacker" to bypass a we
 \end{longtable}
 
 \subsubsection{Vulnerabilities affecting persons}
-As for the previous sections, Table \ref{tab:person-assets} explain the vulnerabilities affecting persons
+Similarly as for the previous sections, Table \ref{tab:person-assets} explain the vulnerabilities affecting persons
 %\begin{table}[!h]
 %\centering
 \begin{longtable}{|c|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{6.5cm}|}
 \hline
 \textbf{ID}&  \textbf{Vulnerability} & \textbf{Source(s)} & \textbf{Affecting} & \textbf{Description} \\
 \hline
-13 & Social engineering & Skilled Hacker, unauthorized user & Confidentiality & Social engineering is a practice of manipulating people so they give up confidential information or sensitive data such as the credential. Some of the more common forms of social engineering are ransomware and phishing. \\
+14 & Social engineering & Skilled Hacker, unauthorized user & Confidentiality & Social engineering is a practice of manipulating people so they give up confidential information or sensitive data such as their credentials. The most common forms this kind are the ransomware viruses and phishing techniques. \\
 \hline
-14 & Data credentials lost & Administrator & Availability  & There is a possibility that the administrator lost the data credentials wich mean that it will no longer be possible to connect to the data diode. \\
+15 & Data credentials lost & Administrator, Employees & Availability  & There is a possibility of a user to lose his credentials which mean that he will no longer be able to connect to the data diode. \\
 \hline
-15 & Data credentials theft &  Skilled Hacker, unauthorized user & Confidentiality & Data credentials theft can occur in several ways such as hackers attacks (brute force, social engineering,...)  or because of the negligence of the user (easy password, credential stored in a non-secured place such as the office, and so on...)  \\
+16 & Data credentials theft &  Skilled Hacker, unauthorized user, Employee, Administrator & Confidentiality & Data credentials theft can occur in several ways such as hackers attacks (brute force, social engineering,...)  or because of the negligence of a user (easy password, credential stored in a non-secured place such as the office, and so on...) or because of a malicious administrator which has the right to modify  read the company database (password table)\footnote{This is generally in case of any employee lose his credential, the admin can reset it or change it manually.}  \\
 \hline
 %\end{tabular}
 \caption{Vulnerabilities affecting persons.}
@@ -413,9 +414,9 @@ The following table (Table \ will give the impact that each vulnerability could 
 \hline
 9 & Virus and malwares & High & Due to the goal of a virus or a malware, its impact could be really negative for the data diode, like to make its use impossible or to modify the transmitted data. \\
 \hline
-10 & Misconfiguration & Medium &  \\
+10 & Misconfiguration & Medium & In this case, a reconfiguration of the data diode will be required. This will no take too much time and will not have a high impact thanks to the administration interface, which allows to reconfigure easily the data diode. \\
 \hline
-11 & Failure in maintenance from the provider & High & \\
+11 & Failure in maintenance from the provider & High & In case of failure in maintenance or design the data diode can be non-functional\\
 \hline
 12 & Remote connection & High & \\
 \hline
@@ -456,9 +457,9 @@ Now lets define the likelihood of each vulnerability and explain the given level
 \hline
 9 & Virus and malwares & High & This kind of attack is really diversified and used wich mean there is an high likelihood. \\
 \hline
-10 & Misconfiguration & Low & \\
+10 & Misconfiguration & Low & A misconfiguration by the administrator occurs rarely but it also occurs because the administrator interface is hacked.\\
 \hline
-11 & Failure in maintenance from the provider & Low  & \\
+11 & Failure in maintenance from the provider & Low  & The likelihood of that to happens is extremely low, because the product is tested before being sent to the client.  \\
 \hline
 12 & Remote connection & Low & \\
 \hline
@@ -473,7 +474,7 @@ Now lets define the likelihood of each vulnerability and explain the given level
 \label{tab:likelihood}
 \end{longtable}
 
-After having analyzed the impact and the likelihood of each vulnerabilities, we can define for each of them a risk level table (Table \ref{tab:risk}).
+After having analysed the impact and the likelihood of each vulnerabilities, we can define for each of them a risk level table (Table \ref{tab:risk}).
 
 \begin{table}[!h]
 	\centering
@@ -514,28 +515,30 @@ In this section we will explaining which and how countermeasures could be taken 
 \hline
 6 & Zero Day attack & Skilled hacker & Due to the fact that we can't be prepare against this attack, we accept the risks of this vulnerability. & H & M & Medium \\
 \hline
-7 &  SQL injection & Skilled Hacker, script kiddies, unauthorized user  &  &H & H & High \\
+7 &  SQL injection & Skilled Hacker, script kiddies, unauthorized user  & In order to avoid the SQL injection, we must use in the code source of the web interface a function that prevents the interpretation of the SQL language. &H & H & High \\
 \hline
 8 & Brute force attack & & & & & \\
 \hline
-9 & Virus and malwares & Skilled hacker, script kiddies & & H & H & High \\
+9 & Virus and malwares & Skilled hacker, script kiddies & This vulnerability is out of our scope. The client is responsible for securing access to internal network and so he have to use appropritate anti-virus and other. & H & H & High \\
 \hline
-10 & Misconfiguration & & & & & \\
+10 & Misconfiguration & Administrator & The configuration is only possible through the administrator interface and by an adminsatrator hence, a administrator must be well chosen. & M & L & Low \\
 \hline
-11 & Failure in maintenance from the provider& & & & & \\
+11 & Failure in maintenance from the provider & Administrator & We test all the features of the data diode (such as the transfer) before providing it to the client. We make sure we always have an operation version. & H& L& Low\\
 \hline
-12 & Remote connection & & & & & \\
+12 & Remote connection & Skilled Hacker & & & & \\
 \hline
-13 & Social engineering & Skilled Hacker, unauthorized user & & H & M & High \\
+13 & Social engineering & Skilled Hacker, unauthorized user & Since it concerns the employees, the company should provide security awareness training in order to avoid social enginering. & H & M & High \\
 \hline
 14 & Data credentials lost & Administrator & Having more than one administrator is recommended but not an imperative countermeasure & M & L & Low \\
 \hline
-15 &  Data credentials theft& Skilled Hacker, unauthorized user & & H & H & H \\
+15 &  Data credentials theft& Skilled Hacker, unauthorized user & In ordre to mitigate the risk of credential theft, the web interface must be available only thriugh https. & H & H & H \\
 \hline
 \caption{Countermeasure}
 \label{tab:contermesure}
 \end{longtable}
 
+
+However, before starting, we should mention that most of the vulnerabilities nowadays are coming from the internet. Thus, our data diode should be exposed to such a danger. Despite the fact that the data diode could be installed within a LAN whit an internet connection, it should not be accesible form the internet, only from the LAN. can be located in a LAN which has a connection to the wolrd internet but 
 %fin
 \clearpage
 \begin{thebibliography}{9}
