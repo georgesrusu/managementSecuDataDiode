@@ -1,0 +1,2 @@
+transmitter: python bftp.py -b -S dossierSyncro -a receverAdress -P 5seconde entre check
+receiver: python bftp.py -r dossierReception -a receverAdress
