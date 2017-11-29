@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>My administration</title>
+  <!-- Le styles -->
+  <link href="./css/bootstrap.css" rel="stylesheet">
+
+  <style>
+    body {
+      padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+    }
+  </style>
+  <link href="./css/bootstrap-responsive.css" rel="stylesheet">
+</head>
+
+
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="#">Administration data diode</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li><a href="adminConfig.html">Configuration</a></li>
+            <li><a href="historic.php">Historic</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+        <div class="pull-right">
+    <a class="btn" href="deconnect.php">Log out</a>
+      </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <div class="container">
+
+    <h1>Search updates </h1> <!== 60px to make the container go all the way to the bottom of the topbar --!>
+
+  <form class="form-search" action="search.php" method="post">
+      <input type="text" name="personName" class="input-block-level" placeholder="Search..">
+      <br><br>
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+    <form>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Selection</th>
+              <th> File </th>
+              <th> Upload date </th>
+              <th> Size </th>
+              <th> Action </th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td><input type="checkbox" name="" value=""></td>
+                <td>test.txt</td>
+                <td>1/12/2010</td>
+                <td>12 MB</td>
+                <td>
+                  <a href="#">
+                    <span class="icon-download-alt"></span>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="" value=""></td>
+                <td>photo.png</td>
+                <td>30/11/2011</td>
+                <td>5 MB</td>
+                <td>
+                  <a href="#">
+                    <span class="icon-download-alt"></span>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="" value=""></td>
+                <td>conops.tex</td>
+                <td>30/10/2017</td>
+                <td>500 KB</td>
+                <td>
+                  <a href="#">
+                    <span class="icon-download-alt"></span>
+                  </a>
+                  <a href="#">
+                    <span class="icon-delete"></span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-primary" type="submit">Refresh</button>
+        <button class="btn btn-primary" type="submit">Download</button>
+        <button class="btn btn-primary" type="submit">Delete</button>
+      </form>
+  </div> <!-- /container -->
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="./js/jquery.js"></script>
+  <script src="./js/bootstrap.js"></script>
+</body>
+</html>

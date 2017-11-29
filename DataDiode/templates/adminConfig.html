@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>My administration</title>
+  <!-- Le styles -->
+  <link href="./css/bootstrap.css" rel="stylesheet">
+
+  <style>
+    body {
+      padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+    }
+  </style>
+  <link href="./css/bootstrap-responsive.css" rel="stylesheet">
+</head>
+
+
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="adminTransmitter.html">Administration data diode</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li><a href="admin.php">Configuration</a></li>
+            <li><a href="historic.php">Historic</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+        <div class="pull-right">
+    <a class="btn" href="deconnect.php">Log out</a>
+      </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <div class="container">
+    <div class="page-header">
+      <h1>Set server IP</h1>
+      <h4>Websocket client</h4>
+    </div>
+
+
+    <form class="form-horizontal" action="/action_page.php">
+    <div class="form-group">
+      <div class="col-sm-10">
+      <label class="control-label col-sm-2" for="email">IP adress : </label>
+    </div>
+    <div class="col-xs-2">
+        <input class="form-control " type="number"  id="ip1"  name="ip1" min="0" max="255" style="width: 45px;"> .
+        <input class="form-control " type="number"  id="ip2"  name="ip2" min="0" max="255" style="width: 45px;"> .
+        <input class="form-control " type="number"  id="ip3"  name="ip3" min="0" max="255" style="width: 45px;"> .
+        <input class="form-control " type="number"  id="ip4"  name="ip4" min="0" max="255" style="width: 45px;">
+      </div>
+    <br/>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Subnet mask : </label>
+      <div class="col-sm-10">
+        <input class="form-control " type="number"  id="subnet1"  name="subnet1" min="0" max="255" style="width: 45px;"> .
+        <input class="form-control " type="number"  id="subnet2"  name="subnet2" min="0" max="255" style="width: 45px;"> .
+        <input class="form-control " type="number"  id="subnet3"  name="subnet3" min="0" max="255" style="width: 45px;"> .
+        <input class="form-control " type="number"  id="subnet4"  name="subnet4" min="0" max="255" style="width: 45px;">
+      </div>
+    </div>
+    <br/>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Gateway adress : </label>
+      <div class="col-sm-10">
+        <input class="form-control " type="number"  id="gateway1"  name="gateway1" min="0" max="255" style="width: 45px;"> .
+        <input class="form-control " type="number"  id="gateway2"  name="gateway2" min="0" max="255" style="width: 45px;"> .
+        <input class="form-control " type="number"  id="gateway3"  name="gateway3" min="0" max="255" style="width: 45px;"> .
+        <input class="form-control " type="number"  id="gateway4"  name="gateway4" min="0" max="255" style="width: 45px;">
+
+      </div>
+    </div>
+    <br/>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default">Apply changes</button>
+        <button type="submit" class="btn btn-default">Restart the server</button>
+      </div>
+    </div>
+  </form>
+
+    <div class="form-group row">
+    <div class="alert alert-info">
+        <p>ATTENTION! In order to apply changes a restart of the system is required.</p>
+    </div>
+  </div>
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="./js/jquery.js"></script>
+  <script src="./js/bootstrap.js"></script>
+</body>
+</html>
