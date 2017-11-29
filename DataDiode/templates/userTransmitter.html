@@ -59,15 +59,13 @@
               <td>{{ file.2 }}</td>
               <td>{{ file.1 }} B</td> <!--- .0 path-->
               <td>
-	              <form action="{% url 'downloadFile' %}" method="post">
+	              <form action="{% url 'downloadFile' %}" method="post" style="display: inline-block">
 		              {% csrf_token %}
-		              <input type="hidden" name="fileToDownload" value="{{ file.0 }}">
-		              <button type="submit" style="border: none;"><span class="icon-download-alt"></span></button>
+		              <button type="submit" name="fileToDownload" value="{{ file.0 }}" style="border: none;"><span class="icon-download-alt"></span></button>
 	              </form>
-	              <form action="{% url 'downloadFile' %}" method="post">
+	              <form action="{% url 'deleteFile' %}" method="post" style="display: inline-block">
 		              {% csrf_token %}
-		              <input type="hidden" name="fileToDownload" value="{{ file.0 }}">
-		              <button type="submit" style="border: none;"><span class="icon-delete-alt"></span></button>
+		               <button type="submit" name="fileToDelete" value="{{ file.0 }}" style="border: none;"><span class="icon-trash"></span></button>
 	              </form>
               </td>
             </tr>

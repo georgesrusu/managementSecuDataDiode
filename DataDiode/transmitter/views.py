@@ -30,7 +30,7 @@ def userInterface(request):
             form = UploadFileForm()
             context = {"allFiles": allFiles, "form": form}
             return render(request, 'userTransmitter.html',context)
-        return Http404
+        raise Http404
     else:
         createUserFolder(request)
         allFiles=getAllFilesFromFolder(request)
@@ -97,5 +97,20 @@ def downloadFile(request):
                 response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
                 response['Content-Disposition'] = 'inline; filename='+filename[1]
                 return response
-        raise Http404
-    print("WTF")
+    raise Http404
+
+
+def deleteFile(request):
+    if request.method=="POST":
+        fileToDelete=request.POST['fileToDelete']
+        cwd = os.getcwd()
+        cwd += "/bftpTransmit/"
+        directory = request.user.username + ";" + request.user.password + "/"
+        cwd+=directory
+        file_path = os.path.join(cwd, fileToDelete)
+        os.remove(file_path)
+        if request.user.is_staff:
+            return redirect('adminTransmitterInterface')
+        else:
+            return redirect('userTransmitterInterface')
+    raise Http404
