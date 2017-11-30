@@ -1,21 +1,35 @@
 from django.http import Http404,HttpResponse
 from django.shortcuts import render,redirect
-from django.utils.encoding import smart_str
-
+from django.contrib import messages
+from django.conf import settings
 from .forms import UploadFileForm
 import datetime
 import os
 
+
 def adminInterface(request):
     if request.method == 'POST':
+        print("uploading form")
         createUserFolder(request)
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
 
-        return render(request, 'adminTransmitter.html')
+            if settings.DATADIODESTATUS=="halted":
+                messages.info(request, "The data diode transmitter is halted. You can continue to add files, they will be sent when the transmitter will be started.")
+            handle_uploaded_file(request, request.FILES['file'])
+            allFiles = getAllFilesFromFolder(request)
+            form = UploadFileForm()
+            dataDiodeStatus=getDataDiodeStatus()[0]
+            context = {"allFiles": allFiles, "form": form,"type":"running" ,"dataDiodeStatus": str(dataDiodeStatus)}
+            return render(request, 'adminTransmitter.html', context)
+        raise Http404
     else:
-
         createUserFolder(request)
+        allFiles = getAllFilesFromFolder(request)
         form = UploadFileForm()
-        return render(request, 'adminTransmitter.html')
+        dataDiodeStatus = getDataDiodeStatus()[0]
+        context = {"allFiles": allFiles, "form": form, "type":"running","dataDiodeStatus": str(dataDiodeStatus)}
+        return render(request, 'adminTransmitter.html', context)
 
 def userInterface(request):
     if request.method == 'POST':
@@ -24,8 +38,9 @@ def userInterface(request):
         form = UploadFileForm(request.POST, request.FILES)
         print(form)
         if form.is_valid():
+            if settings.DATADIODESTATUS=="halted":
+                messages.info(request, "The data diode transmitter is halted. You can continue to add files, they will be sent when the transmitter will be started. For more information please address to your systems administrator!")
             handle_uploaded_file(request,request.FILES['file'])
-            print('file')
             allFiles = getAllFilesFromFolder(request)
             form = UploadFileForm()
             context = {"allFiles": allFiles, "form": form}
@@ -114,3 +129,30 @@ def deleteFile(request):
         else:
             return redirect('userTransmitterInterface')
     raise Http404
+
+def changeDiodeStatus(request):
+    if request.method=="POST":
+        changeTo=request.POST['diodeStatus']
+        folder = request.POST['folder']
+        settings.FOLDERTRANSMITTER=folder
+        #get statusProcess
+        setDataDiodeStatus(changeTo)
+        return redirect('config')
+    raise Http404
+
+def getDataDiodeStatus():
+    print(settings.DATADIODESTATUS)
+    return settings.DATADIODESTATUS, settings.DATADIODEPID
+
+def setDataDiodeStatus(mode):
+    status,pid=getDataDiodeStatus()
+    if mode=="running" and status=="halted":
+        print('lancer data diode')
+        settings.DATADIODEPID=10
+    elif mode=="halted" and status=="running":
+        print('eteint la data diode')
+        settings.DATADIODEPID="stoppped"
+    settings.DATADIODESTATUS=mode
+
+def configure(request):
+    return render(request,'adminTransmitterConfig.html')

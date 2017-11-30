@@ -3,7 +3,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Data diode user download page</title>
+  <title>User download page</title>
   <!-- Le styles -->
   <link href="{% static "/css/bootstrap.css" %}" rel="stylesheet">
 
@@ -37,11 +37,8 @@
     </div>
   </nav>
 
-
-
-
   <div class="container">
-
+	<hr>
     <h2>Received files :</h2> <!== 60px to make the container go all the way to the bottom of the topbar --!>
       <table class="table table-striped">
         <thead>
@@ -73,7 +70,7 @@
           </tbody>
       </table>
       <button onclick='window.location.href="{% url 'userReceiverInterface' %}"' class="btn btn-primary" type="submit">Refresh</button>
-    </form>
+  <hr>
   </div> <!-- /container -->
 
   <!-- Optional JavaScript -->

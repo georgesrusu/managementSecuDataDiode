@@ -3,7 +3,9 @@ from django.shortcuts import render,redirect
 import os
 
 def adminInterface(request):
-    return render(request, 'adminReceiver.html')
+    allFiles = getAllFilesFromFolder(request)
+    context = {"allFiles": allFiles}
+    return render(request, 'adminReceiver.html',context)
 
 def userInterface(request):
     allFiles = getAllFilesFromFolder(request)

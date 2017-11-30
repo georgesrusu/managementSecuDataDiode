@@ -1,17 +1,18 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
   <meta charset="utf-8">
-  <title>My administration</title>
+  <title>Admin upload page</title>
   <!-- Le styles -->
-  <link href="./css/bootstrap.css" rel="stylesheet">
+  <link href="{% static "/css/bootstrap.css"%}" rel="stylesheet">
 
   <style>
     body {
       padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
     }
   </style>
-  <link href="./css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="{% static "/css/bootstrap-responsive.css"%}" rel="stylesheet">
 </head>
 
 
@@ -24,15 +25,15 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="brand" href="adminTransmitter.html">Administration data diode</a>
+        <a class="brand" href="{% url 'adminTransmitterInterface' %}">Admin upload page</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li><a href="admin.php">Configuration</a></li>
-            <li><a href="historic.php">Historic</a></li>
+	          <li><a href="{% url 'config' %}">Configuration</a></li>
+            <li><a href="#">Historic</a></li>
           </ul>
         </div><!--/.nav-collapse -->
         <div class="pull-right">
-    <a class="btn" href="deconnect.php">Log out</a>
+    <a class="btn" href="{% url 'logout' %}">Log out</a>
       </div>
       </div>
     </div>
@@ -42,10 +43,8 @@
 
   <div class="container">
     <div class="page-header">
-      <h1>Set server IP</h1>
-      <h4>Websocket client</h4>
+      <h2>Set server IP</h2>
     </div>
-
 
     <form class="form-horizontal" action="/action_page.php">
     <div class="form-group">
@@ -94,11 +93,11 @@
         <p>ATTENTION! In order to apply changes a restart of the system is required.</p>
     </div>
   </div>
-
+</div>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="./js/jquery.js"></script>
-  <script src="./js/bootstrap.js"></script>
+  <script src="{% static "/js/jquery.js"%}"></script>
+  <script src="{% static "/js/bootstrap.js"%}"></script>
 </body>
 </html>

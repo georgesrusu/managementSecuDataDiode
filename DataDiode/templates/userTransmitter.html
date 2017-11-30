@@ -3,7 +3,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Data dioade user transfer page</title>
+  <title>User upload page</title>
   <!-- Le styles -->
   <link href="{% static "/css/bootstrap.css" %}" rel="stylesheet">
 
@@ -25,7 +25,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="brand" href="{% url 'userTransmitterInterface' %}">User transmit page</a>
+        <a class="brand" href="{% url 'userTransmitterInterface' %}">User upload page</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
           </ul>
@@ -41,7 +41,7 @@
 
 
   <div class="container">
-
+	<hr>
     <h2>Already sent files :</h2> <!== 60px to make the container go all the way to the bottom of the topbar --!>
       <table class="table table-striped">
         <thead>
@@ -79,9 +79,10 @@
 	    {% csrf_token %}
         {{ form }}
         <br><br>
-        <button class="btn btn-primary" type="submit">Add</button>
+        <button class="btn btn-primary" type="submit">Send</button>
 
     </form>
+  <hr>
   </div> <!-- /container -->
 
   <!-- Optional JavaScript -->

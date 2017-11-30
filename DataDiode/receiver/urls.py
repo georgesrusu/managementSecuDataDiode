@@ -3,8 +3,8 @@ from receiver import views
 
 urlpatterns = [
 
-    url(r'^adminConfig/$', views.adminInterface, name='adminReceiverInterface'),
-    url(r'^userConfig/$', views.userInterface, name='userReceiverInterface'),
-    url(r'^downloadFiles/$', views.downloadFile, name='downloadReceiverFile'),
-    url(r'^deleteFile/$', views.deleteFile, name='deleteReceiverFile'),
+    url(r'^AdminConfig/$', views.adminInterface, name='adminReceiverInterface'),
+    url(r'^UserConfig/$', views.userInterface, name='userReceiverInterface'),
+    url(r'^DownloadFiles/$', views.downloadFile, name='downloadReceiverFile'),
+    url(r'^DeleteFile/$', views.deleteFile, name='deleteReceiverFile'),
 ]

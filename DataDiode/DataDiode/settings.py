@@ -124,3 +124,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+DATADIODESTATUS="halted"
+DATADIODEPID="stopped"
+cwd = os.getcwd()
+cwd += "/bftpTransmit/"
+FOLDERTRANSMITTER=cwd

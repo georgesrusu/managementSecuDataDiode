@@ -3,9 +3,12 @@ from transmitter import views
 
 urlpatterns = [
 
-    url(r'^adminConfig/$', views.adminInterface, name='adminTransmitterInterface'),
-    url(r'^userConfig/$', views.userInterface, name='userTransmitterInterface'),
-    url(r'^downloadFiles/$', views.downloadFile, name='downloadFile'),
-    url(r'^deleteFile/$', views.deleteFile, name='deleteFile'),
+    url(r'^AdminConfig/$', views.adminInterface, name='adminTransmitterInterface'),
+    url(r'^UserConfig/$', views.userInterface, name='userTransmitterInterface'),
+    url(r'^DownloadFiles/$', views.downloadFile, name='downloadFile'),
+    url(r'^DeleteFile/$', views.deleteFile, name='deleteFile'),
+    url(r'^DataDiodeStatus/$', views.changeDiodeStatus, name='dataDiodeStatus'),
+    url(r'^Configuration/$', views.configure, name='config'),
+
 
 ]
