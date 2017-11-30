@@ -1,17 +1,18 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
   <meta charset="utf-8">
-  <title>My administration</title>
+  <title>Data diode user download page</title>
   <!-- Le styles -->
-  <link href="./css/bootstrap.css" rel="stylesheet">
+  <link href="{% static "/css/bootstrap.css" %}" rel="stylesheet">
 
   <style>
     body {
       padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
     }
   </style>
-  <link href="./css/bootstrap-responsive.css" rel="stylesheet">
+ <link href="{% static "/css/bootstrap-responsive.css" %}" rel="stylesheet">
 </head>
 
 
@@ -24,14 +25,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="brand" href="#">User page</a>
+        <a class="brand" href="{% url 'userReceiverInterface' %}">User download page</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li><a href="admin.php">Transfer</a></li>
           </ul>
         </div><!--/.nav-collapse -->
         <div class="pull-right">
-    <a class="btn" href="deconnect.php">Log out</a>
+    <a class="btn" href="{% url 'logout' %}">Log out</a>
       </div>
       </div>
     </div>
@@ -42,12 +42,10 @@
 
   <div class="container">
 
-    <h1>Choose file :</h1> <!== 60px to make the container go all the way to the bottom of the topbar --!>
-  <form>
+    <h2>Received files :</h2> <!== 60px to make the container go all the way to the bottom of the topbar --!>
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Selection</th>
             <th> File </th>
             <th> Upload date </th>
             <th> Size </th>
@@ -55,53 +53,32 @@
           </tr>
         </thead>
         <tbody>
+        {% for file in allFiles %}
             <tr>
-              <td><input type="checkbox" name="" value=""></td>
-              <td>test.txt</td>
-              <td>1/12/2010</td>
-              <td>12 MB</td>
+              <td>{{ file.3 }}</td>
+              <td>{{ file.2 }}</td>
+              <td>{{ file.1 }} B</td> <!--- .0 path-->
               <td>
-                <a href="#">
-                  <span class="icon-download-alt"></span>
-                </a>
+	              <form action="{% url 'downloadReceiverFile' %}" method="post" style="display: inline-block">
+		              {% csrf_token %}
+		              <button type="submit" name="fileToDownload" value="{{ file.0 }}" style="border: none;"><span class="icon-download-alt"></span></button>
+	              </form>
+	              <form action="{% url 'deleteReceiverFile' %}" method="post" style="display: inline-block">
+		              {% csrf_token %}
+		               <button type="submit" name="fileToDelete" value="{{ file.0 }}" style="border: none;"><span class="icon-trash"></span></button>
+	              </form>
               </td>
             </tr>
-            <tr>
-              <td><input type="checkbox" name="" value=""></td>
-              <td>photo.png</td>
-              <td>30/11/2011</td>
-              <td>5 MB</td>
-              <td>
-                <a href="#">
-                  <span class="icon-download-alt"></span>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td><input type="checkbox" name="" value=""></td>
-              <td>conops.tex</td>
-              <td>30/10/2017</td>
-              <td>500 KB</td>
-              <td>
-                <a href="#">
-                  <span class="icon-download-alt"></span>
-                </a>
-                <a href="#">
-                  <span class="icon-delete"></span>
-                </a>
-              </td>
-            </tr>
+        {% endfor %}
           </tbody>
       </table>
-      <button class="btn btn-primary" type="submit">Refresh</button>
-      <button class="btn btn-primary" type="submit">Download</button>
-      <button class="btn btn-primary" type="submit">Delete</button>
+      <button onclick='window.location.href="{% url 'userReceiverInterface' %}"' class="btn btn-primary" type="submit">Refresh</button>
     </form>
   </div> <!-- /container -->
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="./js/jquery.js"></script>
-  <script src="./js/bootstrap.js"></script>
+  <script src="{% static "/js/jquery.js"%}"></script>
+  <script src="{% static "/js/bootstrap.js"%}"></script>
 </body>
 </html>
