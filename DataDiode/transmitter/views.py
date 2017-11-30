@@ -8,38 +8,36 @@ import os
 
 
 def adminInterface(request):
+    if settings.DATADIODESTATUSTRANSMITTER == "halted":
+        messages.info(request,
+                      "The data diode transmitter is halted. You can continue to add files, they will be sent when the transmitter will be started.")
     if request.method == 'POST':
-        print("uploading form")
         createUserFolder(request)
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-
-            if settings.DATADIODESTATUS=="halted":
-                messages.info(request, "The data diode transmitter is halted. You can continue to add files, they will be sent when the transmitter will be started.")
             handle_uploaded_file(request, request.FILES['file'])
             allFiles = getAllFilesFromFolder(request)
             form = UploadFileForm()
-            dataDiodeStatus=getDataDiodeStatus()[0]
-            context = {"allFiles": allFiles, "form": form,"type":"running" ,"dataDiodeStatus": str(dataDiodeStatus)}
+            context = {"allFiles": allFiles, "form": form,"type":"running"}
             return render(request, 'adminTransmitter.html', context)
         raise Http404
     else:
         createUserFolder(request)
         allFiles = getAllFilesFromFolder(request)
         form = UploadFileForm()
-        dataDiodeStatus = getDataDiodeStatus()[0]
-        context = {"allFiles": allFiles, "form": form, "type":"running","dataDiodeStatus": str(dataDiodeStatus)}
+        context = {"allFiles": allFiles, "form": form, "type":"running"}
         return render(request, 'adminTransmitter.html', context)
 
 def userInterface(request):
+    if settings.DATADIODESTATUSTRANSMITTER == "halted":
+        messages.info(request,
+                      "The data diode transmitter is halted. You can continue to add files, they will be sent when the transmitter will be started. For more information please address to your systems administrator!")
     if request.method == 'POST':
         print("uploading form")
         createUserFolder(request)
         form = UploadFileForm(request.POST, request.FILES)
         print(form)
         if form.is_valid():
-            if settings.DATADIODESTATUS=="halted":
-                messages.info(request, "The data diode transmitter is halted. You can continue to add files, they will be sent when the transmitter will be started. For more information please address to your systems administrator!")
             handle_uploaded_file(request,request.FILES['file'])
             allFiles = getAllFilesFromFolder(request)
             form = UploadFileForm()
@@ -55,8 +53,7 @@ def userInterface(request):
 
 def createUserFolder(request):
     #wdInit=os.getcwd()
-    cwd = os.getcwd()
-    cwd += "/bftpTransmit/"
+    cwd = settings.FOLDERTRANSMITTER
     #os.chdir(cwd)
     directory=request.user.username+";"+request.user.password+";"+str(request.user.is_staff)
     filename = os.path.join(cwd, directory)
@@ -66,8 +63,7 @@ def createUserFolder(request):
     #print(os.getcwd())
 
 def getAllFilesFromFolder(request):
-    cwd = os.getcwd()
-    cwd += "/bftpTransmit/"
+    cwd = settings.FOLDERTRANSMITTER
     directory = request.user.username + ";" + request.user.password+";"+str(request.user.is_staff)+"/"
     cwd+=directory
     allFiles=os.listdir(cwd)
@@ -86,8 +82,7 @@ def getAllFilesFromFolder(request):
     #print(os.getcwd())
 
 def handle_uploaded_file(request,f):
-    cwd = os.getcwd()
-    cwd += "/bftpTransmit/"
+    cwd = settings.FOLDERTRANSMITTER
     directory = request.user.username + ";" + request.user.password +";"+str(request.user.is_staff)+"/"
     currentDate=datetime.datetime.now()
     cwd += directory+str(currentDate.day)+":"+str(currentDate.month)+":"+str(currentDate.year)+";"+f.name
@@ -101,8 +96,7 @@ def downloadFile(request):
     if request.method=="POST":
         fileToDownload=request.POST['fileToDownload']
         filename=fileToDownload.split(';')
-        cwd = os.getcwd()
-        cwd += "/bftpTransmit/"
+        cwd = settings.FOLDERTRANSMITTER
         directory = request.user.username + ";" + request.user.password +";"+str(request.user.is_staff)+ "/"
         cwd+=directory
         file_path = os.path.join(cwd, fileToDownload)
@@ -118,8 +112,7 @@ def downloadFile(request):
 def deleteFile(request):
     if request.method=="POST":
         fileToDelete=request.POST['fileToDelete']
-        cwd = os.getcwd()
-        cwd += "/bftpTransmit/"
+        cwd = settings.FOLDERTRANSMITTER
         directory = request.user.username + ";" + request.user.password +";"+str(request.user.is_staff)+"/"
         cwd+=directory
         file_path = os.path.join(cwd, fileToDelete)
@@ -130,29 +123,43 @@ def deleteFile(request):
             return redirect('userTransmitterInterface')
     raise Http404
 
-def changeDiodeStatus(request):
-    if request.method=="POST":
-        changeTo=request.POST['diodeStatus']
-        folder = request.POST['folder']
-        settings.FOLDERTRANSMITTER=folder
-        #get statusProcess
-        setDataDiodeStatus(changeTo)
-        return redirect('config')
-    raise Http404
-
-def getDataDiodeStatus():
-    print(settings.DATADIODESTATUS)
-    return settings.DATADIODESTATUS, settings.DATADIODEPID
-
 def setDataDiodeStatus(mode):
-    status,pid=getDataDiodeStatus()
+    status,pid=settings.DATADIODESTATUSTRANSMITTER, settings.DATADIODEPIDTRANSMITTER
     if mode=="running" and status=="halted":
         print('lancer data diode')
         settings.DATADIODEPID=10
     elif mode=="halted" and status=="running":
         print('eteint la data diode')
         settings.DATADIODEPID="stoppped"
-    settings.DATADIODESTATUS=mode
+    settings.DATADIODESTATUSTRANSMITTER=mode
 
 def configure(request):
-    return render(request,'adminTransmitterConfig.html')
+    if request.method=="POST":
+        changeTo=request.POST['diodeStatus']
+        folder = request.POST['folder']
+        ip1=request.POST['ip1']
+        ip2=request.POST['ip2']
+        ip3 = request.POST['ip3']
+        ip4 = request.POST['ip4']
+        time = request.POST['time']
+        settings.DATADIODESTATUSTRANSMITTER= changeTo
+        settings.FOLDERTRANSMITTER=folder
+        settings.RECEIVERADDRESSTRANSMITTER=str(ip1)+"."+str(ip2)+"."+str(ip3)+"."+str(ip4)
+        settings.TIMETOSYNC=time
+        print("service status : "+changeTo)
+        print("settings status : " + settings.DATADIODESTATUSTRANSMITTER)
+        print("folder : " + folder)
+        print("settings folder : " + settings.FOLDERTRANSMITTER)
+        print("receiver IP : " + folder)
+        print("service status : " + str(ip1)+"."+str(ip2)+"."+str(ip3)+"."+str(ip4))
+        print("service status : " + settings.RECEIVERADDRESSTRANSMITTER)
+        print("time sync : " + time)
+        print("time sync : " + settings.TIMETOSYNC)
+
+        context={"dataDiodeStatus":changeTo,"folder":folder,"IP1":ip1,"IP2":ip2,"IP3":ip3,"IP4":ip4,"time":time}
+        return render(request,'adminTransmitterConfig.html',context)
+    else:
+        ip1,ip2,ip3,ip4 = settings.RECEIVERADDRESSTRANSMITTER.split(".")
+        context = {"dataDiodeStatus": settings.DATADIODESTATUSTRANSMITTER, "folder": settings.FOLDERTRANSMITTER, "IP1": ip1, "IP2": ip2, "IP3": ip3, "IP4": ip4,
+                   "time": settings.TIMETOSYNC}
+        return render(request, 'adminTransmitterConfig.html',context)

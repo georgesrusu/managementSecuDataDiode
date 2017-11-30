@@ -124,9 +124,20 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
-
-DATADIODESTATUS="halted"
-DATADIODEPID="stopped"
+#----------------- DATA DIODE SETTINGS ------------
+DATADIODESTATUSTRANSMITTER="halted"
+DATADIODEPIDTRANSMITTER="stopped"
 cwd = os.getcwd()
 cwd += "/bftpTransmit/"
 FOLDERTRANSMITTER=cwd
+RECEIVERADDRESSTRANSMITTER="127.0.0.1"
+TIMETOSYNC="5"
+
+
+DATADIODESTATUSRECEIVER="halted"
+DATADIODEPIDRECEIVER="stopped"
+ADMINACCOUNT=0
+cwd = os.getcwd()
+cwd += "/bftpReceive/"
+FOLDERRECEIVER=cwd
+RECEIVERADDRESSRECEIVER="127.0.0.1"

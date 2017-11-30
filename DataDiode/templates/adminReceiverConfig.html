@@ -17,7 +17,7 @@
 
 
 <body>
-  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
         <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -25,11 +25,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="brand" href="{% url 'adminTransmitterInterface' %}">Admin upload page</a>
+        <a class="brand" href="{% url 'adminReceiverInterface' %}">Admin download page</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-	          <li><a href="{% url 'config' %}">Configuration</a></li>
-            <li><a href="#">Historic</a></li>
+	          <li><a href="{% url 'configReceiver' %}">Configuration</a></li>
           </ul>
         </div><!--/.nav-collapse -->
         <div class="pull-right">
@@ -39,61 +38,38 @@
     </div>
   </nav>
 
-
-
   <div class="container">
-    <div class="page-header">
-      <h2>Set server IP</h2>
-    </div>
+	<hr>
 
-    <form class="form-horizontal" action="/action_page.php">
-    <div class="form-group">
-      <div class="col-sm-10">
-      <label class="control-label col-sm-2" for="email">IP adress : </label>
-    </div>
-    <div class="col-xs-2">
-        <input class="form-control " type="number"  id="ip1"  name="ip1" min="0" max="255" style="width: 45px;"> .
-        <input class="form-control " type="number"  id="ip2"  name="ip2" min="0" max="255" style="width: 45px;"> .
-        <input class="form-control " type="number"  id="ip3"  name="ip3" min="0" max="255" style="width: 45px;"> .
-        <input class="form-control " type="number"  id="ip4"  name="ip4" min="0" max="255" style="width: 45px;">
-      </div>
-    <br/>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd">Subnet mask : </label>
-      <div class="col-sm-10">
-        <input class="form-control " type="number"  id="subnet1"  name="subnet1" min="0" max="255" style="width: 45px;"> .
-        <input class="form-control " type="number"  id="subnet2"  name="subnet2" min="0" max="255" style="width: 45px;"> .
-        <input class="form-control " type="number"  id="subnet3"  name="subnet3" min="0" max="255" style="width: 45px;"> .
-        <input class="form-control " type="number"  id="subnet4"  name="subnet4" min="0" max="255" style="width: 45px;">
-      </div>
-    </div>
-    <br/>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd">Gateway adress : </label>
-      <div class="col-sm-10">
-        <input class="form-control " type="number"  id="gateway1"  name="gateway1" min="0" max="255" style="width: 45px;"> .
-        <input class="form-control " type="number"  id="gateway2"  name="gateway2" min="0" max="255" style="width: 45px;"> .
-        <input class="form-control " type="number"  id="gateway3"  name="gateway3" min="0" max="255" style="width: 45px;"> .
-        <input class="form-control " type="number"  id="gateway4"  name="gateway4" min="0" max="255" style="width: 45px;">
-
-      </div>
-    </div>
-    <br/>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Apply changes</button>
-        <button type="submit" class="btn btn-default">Restart the server</button>
-      </div>
-    </div>
+    <h2>Data Diode configuration receiver interface : </h2>
+  <br/>
+  <form class="form-search" action="{% url 'configReceiver' %}" method="post" >
+	  {% csrf_token %}
+	  <label>Service status : </label>
+      <select name="diodeStatus">
+	      {% if dataDiodeStatus == "running" %}
+			<option value="running" selected="selected">Running</option>
+			<option value="halted">Halted</option>
+	      {% else %}
+            <option value="running">Running</option>
+			<option value="halted" selected="selected">Halted</option>
+	      {% endif %}
+      </select>
+        <br><br>
+		<label>Reception folder path : </label>
+        <input type="text" name="folder" value="{{ folder }}">
+		<br><br>
+		<label>Receiver Ipv4 address : </label>
+        <input class="form-control " type="number" name="ip1" min="0" max="255" style="width: 45px;" value="{{ IP1 }}"> .
+        <input class="form-control " type="number" name="ip2" min="0" max="255" style="width: 45px;" value="{{ IP2 }}"> .
+        <input class="form-control " type="number" name="ip3" min="0" max="255" style="width: 45px;" value="{{ IP3 }}"> .
+        <input class="form-control " type="number" name="ip4" min="0" max="255" style="width: 45px;" value="{{ IP4 }}">
+		<br><br>
+      <button class="btn btn-primary" type="submit">Save & apply changes</button>
   </form>
-
-    <div class="form-group row">
-    <div class="alert alert-info">
-        <p>ATTENTION! In order to apply changes a restart of the system is required.</p>
-    </div>
+	    <hr>
   </div>
-</div>
+
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

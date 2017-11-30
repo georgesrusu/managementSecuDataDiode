@@ -38,7 +38,19 @@
   </nav>
 
   <div class="container">
-	<hr>
+	{% if messages %}
+	<div class="form-group row">
+        <div class="alert alert-info">
+			<ul class="messages">
+			{% for message in messages %}
+				<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+			{% endfor %}
+			</ul>
+	    </div>
+    </div>
+	{% endif %}
+
+<hr>
     <h2>Received files :</h2> <!== 60px to make the container go all the way to the bottom of the topbar --!>
       <table class="table table-striped">
         <thead>

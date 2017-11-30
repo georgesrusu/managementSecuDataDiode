@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^UserConfig/$', views.userInterface, name='userReceiverInterface'),
     url(r'^DownloadFiles/$', views.downloadFile, name='downloadReceiverFile'),
     url(r'^DeleteFile/$', views.deleteFile, name='deleteReceiverFile'),
+    url(r'^Configuration/$', views.configureReceiver, name='configReceiver'),
 ]

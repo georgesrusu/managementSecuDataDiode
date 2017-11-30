@@ -52,7 +52,14 @@
     </div>
 	{% endif %}
 
-
+<hr>
+    <h2>Upload new file :</h2><br>
+    <form class="form-search" enctype="multipart/form-data" action="{% url 'adminTransmitterInterface' %}" method="post">
+	    {% csrf_token %}
+        {{ form }}
+        <br><br>
+        <button class="btn btn-primary" type="submit">Send</button>
+    <hr>
     <h2>Already sent files :</h2> <!== 60px to make the container go all the way to the bottom of the topbar --!>
       <table class="table table-striped">
         <thead>
@@ -83,15 +90,6 @@
         {% endfor %}
           </tbody>
       </table>
-
-      <hr>
-    <h2>Upload new file :</h2><br>
-    <form class="form-search" enctype="multipart/form-data" action="{% url 'adminTransmitterInterface' %}" method="post">
-	    {% csrf_token %}
-        {{ form }}
-        <br><br>
-        <button class="btn btn-primary" type="submit">Send</button>
-
     </form>
 <hr>
   </div> <!-- /container -->
