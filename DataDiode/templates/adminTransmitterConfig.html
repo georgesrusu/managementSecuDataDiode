@@ -29,7 +29,6 @@
         <div class="nav-collapse collapse">
           <ul class="nav">
 	          <li><a href="{% url 'config' %}">Configuration</a></li>
-            <li><a href="#">Historic</a></li>
           </ul>
         </div><!--/.nav-collapse -->
         <div class="pull-right">
@@ -60,15 +59,29 @@
 		<label>Transmission folder path to sync : </label>
         <input type="text" name="folder" value="{{ folder }}">
 		<br><br>
-		<label>Receiver Ipv4 address : </label>
+		<label>Blind FTP folder sync time in seconds : </label>
+        <input class="form-control " type="number"  name="time" min="0" max="255" style="width: 45px;" value="{{ time }}">
+	    <br><br>
+        <h2>Web server interface configuration: </h2>
+        <br/>
+		<label>Web server Ipv4 address : </label>
         <input class="form-control " type="number" name="ip1" min="0" max="255" style="width: 45px;" value="{{ IP1 }}"> .
         <input class="form-control " type="number" name="ip2" min="0" max="255" style="width: 45px;" value="{{ IP2 }}"> .
         <input class="form-control " type="number" name="ip3" min="0" max="255" style="width: 45px;" value="{{ IP3 }}"> .
         <input class="form-control " type="number" name="ip4" min="0" max="255" style="width: 45px;" value="{{ IP4 }}">
-		<br><br>
-		<label>Blind FTP folder sync time in seconds : </label>
-        <input class="form-control " type="number"  name="time" min="0" max="255" style="width: 45px;" value="{{ time }}">
-	  <br><br>
+        <br><br>
+		<label>Web server netmask : </label>
+        <input class="form-control " type="number" name="ip5" min="0" max="255" style="width: 45px;" value="{{ IP5 }}"> .
+        <input class="form-control " type="number" name="ip6" min="0" max="255" style="width: 45px;" value="{{ IP6 }}"> .
+        <input class="form-control " type="number" name="ip7" min="0" max="255" style="width: 45px;" value="{{ IP7 }}"> .
+        <input class="form-control " type="number" name="ip8" min="0" max="255" style="width: 45px;" value="{{ IP8 }}">
+  <br><br>
+		<label>Web server broadcast address : </label>
+        <input class="form-control " type="number" name="ip9" min="0" max="255" style="width: 45px;" value="{{ IP9 }}"> .
+        <input class="form-control " type="number" name="ip10" min="0" max="255" style="width: 45px;" value="{{ IP10 }}"> .
+        <input class="form-control " type="number" name="ip11" min="0" max="255" style="width: 45px;" value="{{ IP11 }}"> .
+        <input class="form-control " type="number" name="ip12" min="0" max="255" style="width: 45px;" value="{{ IP12 }}">
+  <br><br>
       <button class="btn btn-primary" type="submit">Save & apply changes</button>
   </form>
 	    <hr>

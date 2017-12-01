@@ -75,10 +75,7 @@ def loginReceiver(request):
 
 
 def createUserFromFolder(username,password):
-    cwd = os.getcwd()
-    cwd += "/bftpReceive/"
-    #directory = request.user.username + ";" + request.user.password+"/"
-    #cwd+=directory
+    cwd = settings.FOLDERRECEIVER
     allFolder=os.listdir(cwd)
     for i in range(len(allFolder)):
         userFile = allFolder[i].split(";")
@@ -86,7 +83,9 @@ def createUserFromFolder(username,password):
             if (check_password(password,userFile[1])):
                 user= User.objects.create_user(username=username,password=password,is_staff=userFile[2])
                 oldFileName=cwd+allFolder[i];
+                print(oldFileName)
                 newFileName=cwd+username+";"+user.password+";"+userFile[2]
+                print(newFileName)
                 os.rename(oldFileName,newFileName)
                 print("creation user")
                 return True
