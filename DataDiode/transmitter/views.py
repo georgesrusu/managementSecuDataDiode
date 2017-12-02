@@ -62,7 +62,7 @@ def createUserFolder(request):
     #wdInit=os.getcwd()
     cwd = settings.FOLDERTRANSMITTER
     #os.chdir(cwd)
-    directory=request.user.username+";"+request.user.password+";"+str(request.user.is_staff)
+    directory=request.user.username+";"+request.user.password.replace("/",":")+";"+str(request.user.is_staff)
     filename = os.path.join(cwd, directory)
     if not os.path.exists(filename):
         os.makedirs(filename)
@@ -72,7 +72,7 @@ def createUserFolder(request):
 @login_required(login_url='login')
 def getAllFilesFromFolder(request):
     cwd = settings.FOLDERTRANSMITTER
-    directory = request.user.username + ";" + request.user.password+";"+str(request.user.is_staff)+"/"
+    directory = request.user.username + ";" + request.user.password.replace("/",":")+";"+str(request.user.is_staff)+"/"
     cwd+=directory
     allFiles=os.listdir(cwd)
     print(allFiles)
@@ -92,13 +92,12 @@ def getAllFilesFromFolder(request):
 @login_required(login_url='login')
 def handle_uploaded_file(request,f):
     cwd = settings.FOLDERTRANSMITTER
-    directory = request.user.username + ";" + request.user.password +";"+str(request.user.is_staff)+"/"
+    directory = request.user.username + ";" + request.user.password.replace("/",":") +";"+str(request.user.is_staff)+"/"
     currentDate=datetime.datetime.now()
     cwd += directory+str(currentDate.day)+":"+str(currentDate.month)+":"+str(currentDate.year)+";"+f.name
     with open(cwd, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
-
 
 @login_required(login_url='login')
 def downloadFile(request):
@@ -106,7 +105,7 @@ def downloadFile(request):
         fileToDownload=request.POST['fileToDownload']
         filename=fileToDownload.split(';')
         cwd = settings.FOLDERTRANSMITTER
-        directory = request.user.username + ";" + request.user.password +";"+str(request.user.is_staff)+ "/"
+        directory = request.user.username + ";" + request.user.password.replace("/",":") +";"+str(request.user.is_staff)+ "/"
         cwd+=directory
         file_path = os.path.join(cwd, fileToDownload)
         print(file_path)
@@ -122,7 +121,7 @@ def deleteFile(request):
     if request.method=="POST":
         fileToDelete=request.POST['fileToDelete']
         cwd = settings.FOLDERTRANSMITTER
-        directory = request.user.username + ";" + request.user.password +";"+str(request.user.is_staff)+"/"
+        directory = request.user.username + ";" + request.user.password.replace("/",":") +";"+str(request.user.is_staff)+"/"
         cwd+=directory
         file_path = os.path.join(cwd, fileToDelete)
         os.remove(file_path)

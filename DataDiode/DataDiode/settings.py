@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Login',
-    #'transmitter',
+    'transmitter',
     'receiver',
 ]
 
@@ -124,7 +124,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-AUTH_USER_MODEL = 'Login.UserReceiver'
+#AUTH_USER_MODEL = 'Login.UserReceiver'
 
 
 DATADIODESTATUSTRANSMITTER="halted"
@@ -136,7 +136,7 @@ TIMETOSYNC="5"
 
 DATADIODESTATUSRECEIVER="halted"
 DATADIODEPIDRECEIVER="stopped"
-#ADMINACCOUNT=0
+ADMINACCOUNT=0
 cwd = os.getcwd()
 cwd += "/bftpReceive/"
 FOLDERRECEIVER=cwd
@@ -144,9 +144,9 @@ FOLDERRECEIVER=cwd
 
 #Network settings to configure
 
-#WEBADDRESSTRANSMITTER="127.0.0.1"
-#NETMASKADDRESSTRANSMITTER="255.255.255.0"
-#BROADCASTADDRESSTRANSMITTER="127.0.0.255"
+WEBADDRESSTRANSMITTER="127.0.0.1"
+NETMASKADDRESSTRANSMITTER="255.255.255.0"
+BROADCASTADDRESSTRANSMITTER="127.0.0.255"
 
 
 WEBADDRESSRECEIVER="127.0.0.1"

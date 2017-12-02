@@ -55,7 +55,7 @@
 
 <hr>
     <h2>Upload new file :</h2><br>
-    <form class="form-search" enctype="multipart/form-data" action="{% url 'adminTransmitterInterface' %}" method="post">
+    <form class="form-search" enctype="multipart/form-data" action="{% url 'userTransmitterInterface' %}" method="post">
 	    {% csrf_token %}
         {{ form }}
         <br><br>

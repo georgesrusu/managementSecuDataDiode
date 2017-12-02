@@ -49,7 +49,7 @@ def downloadFile(request):
         fileToDownload=request.POST['fileToDownload']
         filename=fileToDownload.split(';')
         cwd = settings.FOLDERRECEIVER
-        directory = request.user.username + ";" + request.user.password +";"+str(request.user.is_staff)+ "/"
+        directory = request.user.username + ";" + request.user.passWordHashed +";"+str(request.user.is_staff)+ "/"
         cwd+=directory
         file_path = os.path.join(cwd, fileToDownload)
         print(file_path)
@@ -66,7 +66,7 @@ def deleteFile(request):
     if request.method=="POST":
         fileToDelete=request.POST['fileToDelete']
         cwd = settings.FOLDERRECEIVER
-        directory = request.user.username + ";" + request.user.password +";"+str(request.user.is_staff)+"/"
+        directory = request.user.username + ";" + request.user.passWordHashed +";"+str(request.user.is_staff)+"/"
         cwd+=directory
         file_path = os.path.join(cwd, fileToDelete)
         os.remove(file_path)
@@ -86,7 +86,6 @@ def setDataDiodeStatus(changeTo):
         process = subprocess.Popen("kill " + str(settings.DATADIODEPIDRECEIVER), shell=True)
         settings.DATADIODEPIDRECEIVER = "stopped"
 
-@login_required(login_url='login')
 def configureReceiver(request):
     if request.method=="POST":
         changeTo=request.POST['diodeStatus']

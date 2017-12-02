@@ -1,3 +1,0 @@
-La documentation détaillée se trouve dans le fichier BlindFTP_documentation.pdf.
-Le site officiel du projet est: 
-https://adullact.net/projects/blindftp/

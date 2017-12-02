@@ -5,9 +5,6 @@ from django.contrib.auth.models import (
 
 class UserManager(UserManager):
     def create_user(self, username, password,passWordHashed,isStaff):
-        """
-        Creates and saves a User with the given email and password.
-        """
         if not username:
             raise ValueError('Users must have a username address')
 
