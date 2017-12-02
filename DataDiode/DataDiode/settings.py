@@ -102,7 +102,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -124,15 +123,16 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
-#----------------- DATA DIODE SETTINGS ------------
+
+#AUTH_USER_MODEL = 'Login.UserReceiver'
+
+
 DATADIODESTATUSTRANSMITTER="halted"
 DATADIODEPIDTRANSMITTER="stopped"
 cwd = os.getcwd()
 cwd += "/bftpTransmit/"
 FOLDERTRANSMITTER=cwd
-RECEIVERADDRESSTRANSMITTER="127.0.0.1"
 TIMETOSYNC="5"
-
 
 DATADIODESTATUSRECEIVER="halted"
 DATADIODEPIDRECEIVER="stopped"
@@ -140,4 +140,15 @@ ADMINACCOUNT=0
 cwd = os.getcwd()
 cwd += "/bftpReceive/"
 FOLDERRECEIVER=cwd
-RECEIVERADDRESSRECEIVER="127.0.0.1"
+
+
+#Network settings to configure
+
+WEBADDRESSTRANSMITTER="127.0.0.1"
+NETMASKADDRESSTRANSMITTER="255.255.255.0"
+BROADCASTADDRESSTRANSMITTER="127.0.0.255"
+
+
+WEBADDRESSRECEIVER="127.0.0.1"
+NETMASKADDRESSRECEIVER="255.255.255.0"
+BROADCASTADDRESSRECEIVER="127.0.0.255"

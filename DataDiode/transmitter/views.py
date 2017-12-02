@@ -5,8 +5,13 @@ from django.conf import settings
 from .forms import UploadFileForm
 import datetime
 import os
+import subprocess
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
+@staff_member_required
+@login_required(login_url='login')
 def adminInterface(request):
     if settings.DATADIODESTATUSTRANSMITTER == "halted":
         messages.info(request,
@@ -28,6 +33,7 @@ def adminInterface(request):
         context = {"allFiles": allFiles, "form": form, "type":"running"}
         return render(request, 'adminTransmitter.html', context)
 
+@login_required(login_url='login')
 def userInterface(request):
     if settings.DATADIODESTATUSTRANSMITTER == "halted":
         messages.info(request,
@@ -51,20 +57,22 @@ def userInterface(request):
         context={"allFiles":allFiles,"form":form}
         return render(request, 'userTransmitter.html',context)
 
+@login_required(login_url='login')
 def createUserFolder(request):
     #wdInit=os.getcwd()
     cwd = settings.FOLDERTRANSMITTER
     #os.chdir(cwd)
-    directory=request.user.username+";"+request.user.password+";"+str(request.user.is_staff)
+    directory=request.user.username+";"+request.user.password.replace("/",":")+";"+str(request.user.is_staff)
     filename = os.path.join(cwd, directory)
     if not os.path.exists(filename):
         os.makedirs(filename)
     #os.chdir(wdInit)
     #print(os.getcwd())
 
+@login_required(login_url='login')
 def getAllFilesFromFolder(request):
     cwd = settings.FOLDERTRANSMITTER
-    directory = request.user.username + ";" + request.user.password+";"+str(request.user.is_staff)+"/"
+    directory = request.user.username + ";" + request.user.password.replace("/",":")+";"+str(request.user.is_staff)+"/"
     cwd+=directory
     allFiles=os.listdir(cwd)
     print(allFiles)
@@ -81,23 +89,23 @@ def getAllFilesFromFolder(request):
     return allFiles
     #print(os.getcwd())
 
+@login_required(login_url='login')
 def handle_uploaded_file(request,f):
     cwd = settings.FOLDERTRANSMITTER
-    directory = request.user.username + ";" + request.user.password +";"+str(request.user.is_staff)+"/"
+    directory = request.user.username + ";" + request.user.password.replace("/",":") +";"+str(request.user.is_staff)+"/"
     currentDate=datetime.datetime.now()
     cwd += directory+str(currentDate.day)+":"+str(currentDate.month)+":"+str(currentDate.year)+";"+f.name
     with open(cwd, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
 
-
-
+@login_required(login_url='login')
 def downloadFile(request):
     if request.method=="POST":
         fileToDownload=request.POST['fileToDownload']
         filename=fileToDownload.split(';')
         cwd = settings.FOLDERTRANSMITTER
-        directory = request.user.username + ";" + request.user.password +";"+str(request.user.is_staff)+ "/"
+        directory = request.user.username + ";" + request.user.password.replace("/",":") +";"+str(request.user.is_staff)+ "/"
         cwd+=directory
         file_path = os.path.join(cwd, fileToDownload)
         print(file_path)
@@ -108,12 +116,12 @@ def downloadFile(request):
                 return response
     raise Http404
 
-
+@login_required(login_url='login')
 def deleteFile(request):
     if request.method=="POST":
         fileToDelete=request.POST['fileToDelete']
         cwd = settings.FOLDERTRANSMITTER
-        directory = request.user.username + ";" + request.user.password +";"+str(request.user.is_staff)+"/"
+        directory = request.user.username + ";" + request.user.password.replace("/",":") +";"+str(request.user.is_staff)+"/"
         cwd+=directory
         file_path = os.path.join(cwd, fileToDelete)
         os.remove(file_path)
@@ -123,16 +131,17 @@ def deleteFile(request):
             return redirect('userTransmitterInterface')
     raise Http404
 
-def setDataDiodeStatus(mode):
-    status,pid=settings.DATADIODESTATUSTRANSMITTER, settings.DATADIODEPIDTRANSMITTER
-    if mode=="running" and status=="halted":
-        print('lancer data diode')
-        settings.DATADIODEPID=10
-    elif mode=="halted" and status=="running":
-        print('eteint la data diode')
-        settings.DATADIODEPID="stoppped"
-    settings.DATADIODESTATUSTRANSMITTER=mode
+def setDataDiodeStatus(changeTo):
+    oldStatus=settings.DATADIODESTATUSTRANSMITTER
+    if (changeTo=="running" and oldStatus=="halted"):
+        cmd="python BlindFTP_0.37/bftp.py -b -S "+str(settings.FOLDERTRANSMITTER)+" -a 10.37.129.6 -P "+ settings.TIMETOSYNC
+        process = subprocess.Popen(cmd,shell=True)
+        settings.DATADIODEPIDTRANSMITTER=process.pid
+    elif (changeTo=="halted" and oldStatus=="running"):
+        process = subprocess.Popen("kill " + str(settings.DATADIODEPIDTRANSMITTER), shell=True)
+        settings.DATADIODEPIDTRANSMITTER = "stopped"
 
+@login_required(login_url='login')
 def configure(request):
     if request.method=="POST":
         changeTo=request.POST['diodeStatus']
@@ -141,25 +150,65 @@ def configure(request):
         ip2=request.POST['ip2']
         ip3 = request.POST['ip3']
         ip4 = request.POST['ip4']
+        ip5 = request.POST['ip5']
+        ip6 = request.POST['ip6']
+        ip7 = request.POST['ip7']
+        ip8 = request.POST['ip8']
+        ip9 = request.POST['ip9']
+        ip10 = request.POST['ip10']
+        ip11 = request.POST['ip11']
+        ip12 = request.POST['ip12']
         time = request.POST['time']
+        setDataDiodeStatus(changeTo)
         settings.DATADIODESTATUSTRANSMITTER= changeTo
         settings.FOLDERTRANSMITTER=folder
-        settings.RECEIVERADDRESSTRANSMITTER=str(ip1)+"."+str(ip2)+"."+str(ip3)+"."+str(ip4)
+        ip=str(ip1)+"."+str(ip2)+"."+str(ip3)+"."+str(ip4)
+        netmask=str(ip5)+"."+str(ip6)+"."+str(ip7)+"."+str(ip8)
+        broadcast=str(ip9) + "." + str(ip10) + "." + str(ip11) + "." + str(ip12)
+        changeWebServerIp(ip,netmask,broadcast)
+        settings.WEBADDRESSTRANSMITTER=ip
+        settings.NETMASKADDRESSTRANSMITTER =netmask
+        settings.BROADCASTADDRESSTRANSMITTER=broadcast
         settings.TIMETOSYNC=time
-        print("service status : "+changeTo)
-        print("settings status : " + settings.DATADIODESTATUSTRANSMITTER)
-        print("folder : " + folder)
-        print("settings folder : " + settings.FOLDERTRANSMITTER)
-        print("receiver IP : " + folder)
-        print("service status : " + str(ip1)+"."+str(ip2)+"."+str(ip3)+"."+str(ip4))
-        print("service status : " + settings.RECEIVERADDRESSTRANSMITTER)
-        print("time sync : " + time)
-        print("time sync : " + settings.TIMETOSYNC)
-
-        context={"dataDiodeStatus":changeTo,"folder":folder,"IP1":ip1,"IP2":ip2,"IP3":ip3,"IP4":ip4,"time":time}
+        context={"dataDiodeStatus":changeTo,"folder":folder,"IP1":ip1,"IP2":ip2,"IP3":ip3,"IP4":ip4,"time":time,"IP5": ip5, "IP6": ip6, "IP7": ip7, "IP8": ip8,"IP9": ip9, "IP10": ip10, "IP11": ip11, "IP12": ip12}
         return render(request,'adminTransmitterConfig.html',context)
     else:
-        ip1,ip2,ip3,ip4 = settings.RECEIVERADDRESSTRANSMITTER.split(".")
+        ip1,ip2,ip3,ip4 = settings.WEBADDRESSTRANSMITTER.split(".")
+        ip5, ip6, ip7, ip8 = settings.NETMASKADDRESSTRANSMITTER.split(".")
+        ip9, ip10, ip11, ip12 = settings.BROADCASTADDRESSTRANSMITTER.split(".")
         context = {"dataDiodeStatus": settings.DATADIODESTATUSTRANSMITTER, "folder": settings.FOLDERTRANSMITTER, "IP1": ip1, "IP2": ip2, "IP3": ip3, "IP4": ip4,
-                   "time": settings.TIMETOSYNC}
+                   "time": settings.TIMETOSYNC,"IP5": ip5, "IP6": ip6, "IP7": ip7, "IP8": ip8,"IP9": ip9, "IP10": ip10, "IP11": ip11, "IP12": ip12}
         return render(request, 'adminTransmitterConfig.html',context)
+
+
+def changeWebServerIp(ip,netmask,broadcast):
+    oldip,oldmask,oldbroad = settings.WEBADDRESSTRANSMITTER,settings.NETMASKADDRESSTRANSMITTER,settings.BROADCASTADDRESSTRANSMITTER
+    if (oldip != ip or oldmask != netmask or oldbroad!=broadcast):
+        #TODO A changer
+        cwd = os.getcwd()
+        oldfile = open(cwd+"/etc/network/interfaces","r")
+        newfile = open(cwd+"/etc/network/interfacesTemp.txt", "w")
+        for line in oldfile:
+            print(line)
+            newfile.write(line)
+            if str(line) == "allow-hotplug enp0s5\n":
+                oldfile.readline()
+                oldfile.readline()
+                oldfile.readline()
+                oldfile.readline()
+                newfile.write("iface enp0s5 inet static\n")
+                newfile.write("\taddress "+str(ip)+"\n")
+                newfile.write("\tnetmask " + str(netmask) + "\n")
+                newfile.write("\tbroadcast "+str(broadcast)+"\n")
+        oldfile.close()
+        newfile.close()
+        newfile = open(cwd + "/etc/network/interfacesTemp.txt", "r")
+        content=newfile.read()
+        newfile.close()
+        oldfile = open(cwd + "/etc/network/interfaces", "w")
+        oldfile.write(content)
+        oldfile.close()
+        #os.rename(cwd+"/etc/network/interfacesTemp",cwd+"/etc/network/interfaces")
+        os.remove(cwd+"/etc/network/interfacesTemp.txt")
+        #cmd = "/etc/init.d/networking restart"
+        #process = subprocess.Popen(cmd, shell=True)
