@@ -20,7 +20,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^',include('Login.urls')),
-    url(r'^transmitter',include('transmitter.urls')),
+    #url(r'^transmitter',include('transmitter.urls')),
     url(r'^receiver',include('receiver.urls')),
 
 

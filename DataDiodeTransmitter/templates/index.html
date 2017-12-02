@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+  <title>Login page</title>
+	<link rel="stylesheet" type="text/css" href="{% static "/css/login.css" %}">
+</head>
+<body>
+
+  <div class="" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: true;">
+		  <div class="modal-dialog">
+				<div class="loginmodal-container">
+					<h1>Login to Your Account</h1><br>
+				  <form action="{% url 'login' %}" method="post">
+					  {% csrf_token %}
+					<input type="text" name="username" placeholder="Username">
+					<input type="password" name="password" placeholder="Password">
+					<input type="submit" name="login" class="login loginmodal-submit" value="Login">
+				  </form>
+
+				  <div class="login-help">
+					<a href="#">Forgot Password</a>
+				  </div>
+				</div>
+			</div>
+  </div>
+
+	{% if messages %}
+	<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content loginmodal-container">
+	    <div class="modal-body">
+			<ul class="messages">
+			{% for message in messages %}
+				<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+			{% endfor %}
+			</ul>
+	    </div>
+    </div>
+</div>
+    </div>
+	{% endif %}
+</body>
+</html>

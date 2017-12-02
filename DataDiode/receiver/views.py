@@ -27,7 +27,7 @@ def userInterface(request):
 @login_required(login_url='login')
 def getAllFilesFromFolder(request):
     cwd = settings.FOLDERRECEIVER
-    directory = request.user.username + ";" + request.user.password+";"+str(request.user.is_staff)+"/"
+    directory = request.user.username + ";" + request.user.passWordHashed+";"+str(request.user.is_staff)+"/"
     cwd+=directory
     allFiles=os.listdir(cwd)
     print(allFiles)
