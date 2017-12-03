@@ -124,6 +124,18 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
     #BASE_DIR.child('myapp').child('static'),
 )
+def getNetSpecFromFile():
+    file=open("interfaces","r")
+    for line in file:
+        if line =="iface enp0s5 inet static\n":
+            line=file.readline()
+            ip=line.split(' ')[1].rstrip("\t\n")
+            line = file.readline()
+            netmask = line.split(' ')[1].rstrip("\t\n")
+            line = file.readline()
+            broadcast = line.split(' ')[1].rstrip("\t\n")
+            file.close()
+            return ip,netmask,broadcast
 
 
 DATADIODESTATUSTRANSMITTER="halted"
@@ -135,7 +147,7 @@ FOLDERTRANSMITTER="/home/transmitter/Desktop/transmit/"
 TIMETOSYNC="5"
 
 #Network settings to configure
-
-WEBADDRESSTRANSMITTER="192.168.2.253"
-NETMASKADDRESSTRANSMITTER="255.255.255.0"
-BROADCASTADDRESSTRANSMITTER="192.168.2.255"
+ip,net,broad=getNetSpecFromFile()
+WEBADDRESSTRANSMITTER=ip
+NETMASKADDRESSTRANSMITTER=net
+BROADCASTADDRESSTRANSMITTER=broad

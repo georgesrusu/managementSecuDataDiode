@@ -125,6 +125,20 @@ STATICFILES_DIRS = (
 
 AUTH_USER_MODEL = 'Login.UserReceiver'
 
+def getNetSpecFromFile():
+    file=open("interfaces","r")
+    for line in file:
+        if line =="iface enp0s5 inet static\n":
+            line=file.readline()
+            ip=line.split(' ')[1].rstrip("\t\n")
+            line = file.readline()
+            netmask = line.split(' ')[1].rstrip("\t\n")
+            line = file.readline()
+            broadcast = line.split(' ')[1].rstrip("\t\n")
+            file.close()
+            return ip,netmask,broadcast
+
+
 DATADIODESTATUSRECEIVER="halted"
 DATADIODEPIDRECEIVER="stopped"
 ADMINACCOUNT=0
@@ -132,6 +146,8 @@ ADMINACCOUNT=0
 #cwd += "/bftpReceive/"
 FOLDERRECEIVER="/home/receiver/Desktop/reception/"
 #FOLDERRECEIVER="/Users/georgerusu/Documents/Facultate/Ma1/ManagementOfSecurity/managementSecuDataDiode/DataDiodeReceiver/bftpReceive/"
-WEBADDRESSRECEIVER="192.168.2.57"
-NETMASKADDRESSRECEIVER="255.255.255.0"
-BROADCASTADDRESSRECEIVER="192.168.2.255"
+
+ip,net,broad=getNetSpecFromFile()
+WEBADDRESSRECEIVER=ip
+NETMASKADDRESSRECEIVER=net
+BROADCASTADDRESSRECEIVER=broad
