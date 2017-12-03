@@ -136,7 +136,7 @@ def deleteFile(request):
 def setDataDiodeStatus(changeTo):
     oldStatus=settings.DATADIODESTATUSTRANSMITTER
     if (changeTo=="running" and oldStatus=="halted"):
-        cmd="python BlindFTP_0.37/bftp.py -b -S "+str(settings.FOLDERTRANSMITTER)+" -a 10.37.129.6 -P "+ settings.TIMETOSYNC
+        cmd="python /home/transmitter/Desktop/DataDiodeTransmitter/BlindFTP_0.37/bftp.py -b -S "+str(settings.FOLDERTRANSMITTER)+" -a 10.37.129.6 -P "+ settings.TIMETOSYNC
         process = subprocess.Popen(cmd,shell=True)
         settings.DATADIODEPIDTRANSMITTER=process.pid
     elif (changeTo=="halted" and oldStatus=="running"):
@@ -186,27 +186,34 @@ def configure(request):
 def changeWebServerIp(ip,netmask,broadcast):
     oldip,oldmask,oldbroad = settings.WEBADDRESSTRANSMITTER,settings.NETMASKADDRESSTRANSMITTER,settings.BROADCASTADDRESSTRANSMITTER
     if (oldip != ip or oldmask != netmask or oldbroad!=broadcast):
-        oldfile = open("~/etc/network/interfaces","r")
-        newfile = open("~/etc/network/interfacesTemp.txt", "w")
+        oldfile = open("/home/transmitter/Desktop/DataDiodeTransmitter/interfaces","r")
+        newfile = open("/home/transmitter/Desktop/DataDiodeTransmitter/interfacesTemp.txt", "w")
         for line in oldfile:
             newfile.write(line)
-            if str(line) == "allow-hotplug enp0s5\n":
-                oldfile.readline()
-                oldfile.readline()
-                oldfile.readline()
-                oldfile.readline()
-                newfile.write("iface enp0s5 inet static\n")
-                newfile.write("\taddress "+str(ip)+"\n")
-                newfile.write("\tnetmask " + str(netmask) + "\n")
-                newfile.write("\tbroadcast "+str(broadcast)+"\n")
+            if str(line) == "auto enp0s5\n":
+                line=oldfile.readline()
+                if str(line)=="iface enp0s5 inet dhcp\n":
+                    newfile.write("iface enp0s5 inet static\n")
+                    newfile.write("\taddress "+str(ip)+"\n")
+                    newfile.write("\tnetmask " + str(netmask) + "\n")
+                    newfile.write("\tbroadcast "+str(broadcast)+"\n")
+                if str(line)=="iface enp0s5 inet static\n":
+                    oldfile.readline()
+                    oldfile.readline()
+                    oldfile.readline()
+                    newfile.write("iface enp0s5 inet static\n")
+                    newfile.write("\taddress "+str(ip)+"\n")
+                    newfile.write("\tnetmask " + str(netmask) + "\n")
+                    newfile.write("\tbroadcast "+str(broadcast)+"\n")
         oldfile.close()
         newfile.close()
-        newfile = open("~/etc/network/interfacesTemp.txt", "r")
+        newfile = open("/home/transmitter/Desktop/DataDiodeTransmitter/interfacesTemp.txt", "r")
         content=newfile.read()
         newfile.close()
-        oldfile = open("~/etc/network/interfaces", "w")
+        oldfile = open("/home/transmitter/Desktop/DataDiodeTransmitter/interfaces", "w")
         oldfile.write(content)
         oldfile.close()
-        os.remove("~/etc/network/interfacesTemp.txt")
-        cmd = "/etc/init.d/networking restart"
-        process = subprocess.Popen(cmd, shell=True)
+        os.remove("/home/transmitter/Desktop/DataDiodeTransmitter/interfacesTemp.txt")
+        #cmd = "sudo /sbin/reboot"
+        #process = subprocess.Popen(cmd, shell=True)
+        os.system("reboot") 

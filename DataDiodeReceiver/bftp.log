@@ -60,3 +60,7 @@
 02/12/2017 19:50:29 INFO     Fichier "ilias;pbkdf2_sha256$36000$AawGq7RTL922$o3VwJ:JZXQ7UoDZZXFutBk01VBT3Y6uRFfyh6ojcDeU=;False/2:12:2017;counter.tex" recu en entier, recopie a destination.
 02/12/2017 19:53:43 WARNING  HeartBeat : Retard de reception ( 42 ) - 1 
 02/12/2017 19:55:36 INFO     Demarrage de BlindFTP
+03/12/2017 20:25:09 INFO     Demarrage de BlindFTP
+03/12/2017 20:26:47 INFO     Demarrage de BlindFTP
+03/12/2017 20:27:01 WARNING  HeartBeat : Retard de reception ( 0 ) - 1 
+03/12/2017 20:27:43 INFO     Demarrage de BlindFTP

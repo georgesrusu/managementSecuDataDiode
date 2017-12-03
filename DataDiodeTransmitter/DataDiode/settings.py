@@ -118,10 +118,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
+#STATIC_ROOT = 'staticTest/'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
+    #BASE_DIR.child('myapp').child('static'),
 )
 
 
@@ -129,8 +130,8 @@ DATADIODESTATUSTRANSMITTER="halted"
 DATADIODEPIDTRANSMITTER="stopped"
 #cwd = os.getcwd()
 #cwd += "/bftpTransmit/"
-#FOLDERTRANSMITTER="/home/transmitter/Desktop/transmit/"
-FOLDERTRANSMITTER="/Users/georgerusu/Documents/Facultate/Ma1/ManagementOfSecurity/managementSecuDataDiode/DataDiodeTransmitter/bftpTransmit/"
+FOLDERTRANSMITTER="/home/transmitter/Desktop/transmit/"
+#FOLDERTRANSMITTER="/Users/georgerusu/Documents/Facultate/Ma1/ManagementOfSecurity/managementSecuDataDiode/DataDiodeTransmitter/bftpTransmit/"
 TIMETOSYNC="5"
 
 #Network settings to configure

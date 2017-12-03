@@ -122,30 +122,34 @@ def configureReceiver(request):
 def changeWebServerIp(ip,netmask,broadcast):
     oldip,oldmask,oldbroad = settings.WEBADDRESSRECEIVER,settings.NETMASKADDRESSRECEIVER,settings.BROADCASTADDRESSRECEIVER
     if (oldip != ip or oldmask != netmask or oldbroad!=broadcast):
-        #TODO A changer
-        cwd = os.getcwd()
-        oldfile = open(cwd+"/etc/network/interfaces","r")
-        newfile = open(cwd+"/etc/network/interfacesTemp.txt", "w")
+        oldfile = open("/home/receiver/Desktop/DataDiodeReceiver/interfaces","r")
+        newfile = open("/home/receiver/Desktop/DataDiodeReceiver/interfacesTemp.txt", "w")
         for line in oldfile:
             newfile.write(line)
-            if str(line) == "allow-hotplug enp0s5\n":
-                oldfile.readline()
-                oldfile.readline()
-                oldfile.readline()
-                oldfile.readline()
-                newfile.write("iface enp0s5 inet static\n")
-                newfile.write("\taddress "+str(ip)+"\n")
-                newfile.write("\tnetmask " + str(netmask) + "\n")
-                newfile.write("\tbroadcast "+str(broadcast)+"\n")
+            if str(line) == "auto enp0s5\n":
+                line=oldfile.readline()
+                if str(line)=="iface enp0s5 inet dhcp\n":
+                    newfile.write("iface enp0s5 inet static\n")
+                    newfile.write("\taddress "+str(ip)+"\n")
+                    newfile.write("\tnetmask " + str(netmask) + "\n")
+                    newfile.write("\tbroadcast "+str(broadcast)+"\n")
+                if str(line)=="iface enp0s5 inet static\n":
+                    oldfile.readline()
+                    oldfile.readline()
+                    oldfile.readline()
+                    newfile.write("iface enp0s5 inet static\n")
+                    newfile.write("\taddress "+str(ip)+"\n")
+                    newfile.write("\tnetmask " + str(netmask) + "\n")
+                    newfile.write("\tbroadcast "+str(broadcast)+"\n")
         oldfile.close()
         newfile.close()
-        newfile = open(cwd + "/etc/network/interfacesTemp.txt", "r")
+        newfile = open("/home/receiver/Desktop/DataDiodeReceiver/interfacesTemp.txt", "r")
         content=newfile.read()
         newfile.close()
-        oldfile = open(cwd + "/etc/network/interfaces", "w")
+        oldfile = open("/home/receiver/Desktop/DataDiodeReceiver/interfaces", "w")
         oldfile.write(content)
         oldfile.close()
-        #os.rename(cwd+"/etc/network/interfacesTemp",cwd+"/etc/network/interfaces")
-        os.remove(cwd+"/etc/network/interfacesTemp.txt")
-        #cmd = "/etc/init.d/networking restart"
-        #process = ess.Popen(cmd, shell=True)
+        os.remove("/home/receiver/Desktop/DataDiodeReceiver/interfacesTemp.txt")
+        #cmd = "sudo /sbin/reboot"
+        #process = subprocess.Popen(cmd, shell=True)
+        os.system("reboot") 
