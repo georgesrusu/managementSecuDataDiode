@@ -163,7 +163,7 @@ On the transmission page the user can choose among his own documents a file to s
 
 When an administrator will log in, similarly to the user mechanism, he will be redirected according to his network location : on the transmission interface or on the receiver interface, respectively Figure \ref{fig:transadminpage} and Figure \ref{fig:receiveradminpage}.
 
-On the transmission page, in addition to a simple user, the administrator has the power to configure the data diode. FIGURE CONFIG ADMIN!!! As shown in Figure (ref), the administrator can start/stop the data diode FTP file transfer protocol, change the transmission/reception folder or the network IP address of the web platforms. 
+On the transmission page, in addition to a simple user, the administrator has the power to configure the data diode, this will be presented later in this document.
 
 On the reception page, the administrator has access to only his transferred files through the data diode. In this way, we are sure that the confidentiality is preserved by the administrator.  
 
@@ -171,33 +171,101 @@ If an administrator wants to maintain (updates) the company's computers he could
 
 
 \subsubsection{A Technical file transfer usage}
-We have said earlier that their will be a web interface running on both side of the data diode. When a user will want to send a file, he would have to first login. The login page will use the database of the company in order to authenticate users and to verify each user permissions. However, on the high security zone, the database would not be reachable because of the unidirectional data diode. Thus, once a user would want to send a file to the other side, there will be a daemon which will create a permission and ownership system in order for the other side to recognize to whom the file belongs to. For example, when the UserX would want to send the \emph{file.txt} to the other side, the transmitter daemon will rename the file using the following rule:
-\begin{center}
-\centering
-\emph{file.txt} $\triangleright$ \emph{userName\_isAdmin;\_Hashedpassword\_timestamp\_size\_extension.zip}
-\end{center} 
+We have said earlier that their will be a web interface running on both side of the data diode. When a user will want to send a file, he would have to first login. The login page will use the database of the company in order to authenticate users and to verify each user permissions. However, on the high security zone, the database would not be reachable because of the unidirectional data diode. Thus, once a user would want to send a file to the other side, there will be a daemon which will create a permission and ownership system in order for the other side to recognize to whom the file belongs to:
+\begin{enumerate}
+\item[-]For \emph{UserX} the folder will be named $\triangleright$ \emph{SHA256(UserX+isAdmin);PBKF2SHA256(password)}.
+\item[-]For every \emph{UserX}'s file, it will be copied in the \emph{UserX}'s folder and renamed $\triangleright$ \emph{timestampUpload;filename}.
+\end{enumerate}
+ 
+On the other side, there will be of course another receiver daemon which will according to all received folders create the database. Indeed, when the \emph{UserX} has already sent a file, the receiver will get in the receiver folder the corresponding \emph{UserX}'s folder. When the user would want to log in, the daemon will check his credentials with the folder name. If it is a match, then the user \emph{UserX} will be inserted in the receiver database. He will then have access to the web platform and to his sent files. Of course there is also a second daemon which for every user's folder will read and list all the files properly to the user:
 
-Every file will be converted into a zip archive in order to reduce the initial size, thing that could sometimes have a major impact on the speed of the transfer (hence the time).\bigskip
+\begin{enumerate}
 
-On the other side, there will be of course another receiver daemon which will for each file received, decompress the file into the original extension\footnote{This is why the initial extension is putted in to the name of the sent file.}. However to ensure that only the owner (thus the userName) may see the file, the second daemon will create for every userName a folder where received files will be stored. The rule for this operation is:
-\begin{center}
-\centering
-\emph{userName\_password\_fileName\_timestamp\_size\_extension.zip} $\triangleright$ folder: \emph{userName\_password} $\triangleright$ files in folder: \emph{file.txt}
-\end{center}
+\item[-] The received file \emph{timestampUpload;filename} will be shown to his owner as $\triangleright$ \emph{filename} and with other property such as the size and the date of the sent.
+\end{enumerate}
 
-Furthermore, when a user wants to login from the secure zone of the data diode, instead of queering a database, the web interface will query a daemon which will use all the folders name to authenticate the user. Every password will not be shared in clear text, a hash of SHA-256 will be used. In this way there is no need of database duplication. The main verification will take place on the transmitter side where the database can be accessed: if a user has the permission to transfer a file, he will be able to transfer the file from the transmitter side. Thus, if the file is transmitted to the receiver side, it means that the user has an access granted on the security zone and thus he has already been verified. However, if a user has not yet used the transmission system of the data diode, he will not be able to connect to the interface from the receiver side.
+In this way  The main verification will take place on the transmitter side where the database can be accessed: if a user has the permission to transfer a file, he will be able to transfer the file from the transmitter side. Thus, if the file is transmitted to the receiver side, it means that the user has an access granted on the security zone and thus he has already been verified. However, if a user has not yet used the transmission system of the data diode, he will not be able to connect to the interface from the receiver side. Once the user has been added to the security zone database, then the log in process will no longer use the folder daemon but instead will query directly the database as usually.
+
+It his very important to mention that employee's name and password will not be shared in clear text, a hash of SHA-256 will be used for the employee's name and the isAdmin property and a PBKF2SHA256 will be used for the password.
 
 \subsubsection{Configuration panel for the admin}
-The admin can configure the IP address of both the transmitter and the receiver. In this case, we are not talking about the communication within the data diode but about the communication to other peers of the network. Using the following panel, administrator can manually configure the static IP for the servers hosting both the web interface and the data diode.\bigskip
+The admin can configure the IP address of both the transmitter and the receiver. In this case, we are not talking about the communication within the data diode but about the communication to other peers of the network. Furthermore, he has the power to configure the data diode : he can start/stop the file transfer protocol and change the transmission/reception folder.
 
 \begin{figure}[!h]
 \centering
-\includegraphics[scale=0.35]{images/admin-config.png}
-\caption{Configuration panel for admin.}
-\label{fig:configadminpage}
+\includegraphics[scale=0.35]{images/admin-configTrans.png}
+\caption{Configuration panel for admin on the transmitter side.}
+\label{fig:configadminpagetrans}
+\end{figure}
+\bigskip
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.35]{images/admin-configReceiv.png}
+\caption{Configuration panel for admin on the receiver side.}
+\label{fig:configadminpagereceiv}
 \end{figure}
 
-About the data diode installation, our product is plug\&play. It means that the administrator should only power on the data diode and access for the first time the transmitter and the receiver from \emph{localhost}. In this way, he can configure using the panel shown in Figure \ref{fig:configadminpage} the IP-address for the web servers according to the company network. Once this is done, the data diode is completely set up. However in case of anything, there is a hard-reset function which restore the data diode in its factory setting state. 
+\subsubsection{Installation}
+\paragraph{Set up}
+The following steps should be followed in order to have a fully operational data diode:
+
+
+\begin{enumerate}
+\item \textbf{Network settings} The administrator has to connect to machines using the following credentials:
+	
+\begin{enumerate}
+\item[-]On the transmission side $\triangleright$ user: transmitter \& password: abbaabba
+\item[-]On the receiver side $\triangleright$ user: receiver \& password: abbaabba
+\end{enumerate}
+ 
+Once logged in, he should edit the files\footnote{We are assuming that an administrator should be able of editing the configuration file of a Linux operating system network interfaces.} located at according to the company's LANs:
+\begin{enumerate}
+\item[-] For the transmission side : \emph{/home/transmitter/Desktop/DataDiodeTransmiter/interfaces}
+\item[-] For the receiver side : \emph{/home/receiver/Desktop/DataDiodeReceiver/interfaces}
+\end{enumerate}
+
+Both web interface should be now accessible form a browser.
+
+\underline{WARNING}: The passwords for both machines should be changed!
+
+\item \textbf{Linking the company database with the transmitter authentication system} The administrator has to edit the file at \emph{/home/transmitter/Desktop/DataDiodeTransmiter/DataDiode/settings.py} and change the database configuration to the company's database configuration. The authentication on the transmitter side should now be operational.
+
+\item \textbf{Enabling \emph{Blindftp} reception on the receiver side} Log in on the receiver side using username: admin \& password: admin and enable \emph{Blindftp} reception service.
+
+\underline{WARNING AT YOUR OWN RISK}: The default account username: admin \& password: admin can be disabled in the file located in \emph{/home/receiver/Desktop/DataDiodeReceiver/DataDiode/settings.py} by changing the \emph{ADMINACCOUNT} attribut to 1 instead of 0. However, after a system restart, the data diode reception should manually be enabled if the receiver database is empty
+
+\underline{WARNING}: The default account will be automatically disabled at first log in.
+
+\item \textbf{Enabling \emph{Blindftp} transmitter on the transmission side} Turn on the transmitter \emph{Blindftp} service and test it by sending a file.
+
+\item \textbf{Checking the receiver side reception} On the reception side, the administrator should now be able to connect using his company credentials and he should have receive the sent file.
+
+\end{enumerate}
+The data diode should be fully operational. \\  
+\underline{BACKUP OF ALL FILES HIGHLY RECOMMENDED}: The administrator should now backup/compress all the files in order to restore the data diode configuration in case of anything goes wrong.
+\paragraph{Restoring to factory settings}
+Restoring the data diode to its factory settings could be needed in case of a system failure. We recommend following those steps:
+
+\begin{enumerate}
+\item \textbf{Delete all files related}
+	For this we recommend to delete all files from the directories  :
+\begin{enumerate}
+\item[-] For the transmission side : \emph{/home/transmitter/Desktop/DataDiodeTransmiter/}
+\item[-] For the receiver side : \emph{/home/receiver/Desktop/DataDiodeReceiver/}
+\end{enumerate}
+
+\item \textbf{Deploy a backup} 
+If a backup folder was created according to the installation section, copy it in:
+\begin{enumerate}
+\item[-] For the transmission side : \emph{/home/transmitter/Desktop/}
+\item[-] For the receiver side : \emph{/home/receiver/Desktop/}
+\end{enumerate}
+
+\end{enumerate}
+Normally the data diode should be restore at the same point it was after the installation.
+\bigskip
+
+\underline{\textbf{SUPPORT}} For further questions or problems please contact our support center at (+)32 800800.
 \newpage
 \section{Risk Analysis}
 
