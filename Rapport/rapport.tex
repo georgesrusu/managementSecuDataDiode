@@ -136,7 +136,7 @@ Once login is made, the user will be prompted to the web interface of the transm
 \label{fig:receiveruserpage}
 \end{figure}
 
-On the other hand, an admin can transfer files but also can transfer updated packages from official sources or he can upload a package from his own PC. The admin interface is shown in Figure \ref{fig:transadminpage}
+On the other hand, an administrator can transfer files or he can upload an update package from his own computer. The admin. interface is shown in Figure \ref{fig:transadminpage}
 and in Figure \ref{fig:receiveradminpage}.
 \begin{figure}[!h]
 \centering
@@ -159,23 +159,22 @@ In both cases, all users have to identify themselves through the login page with
 
 In the case of a user connection, he will be redirected to the user transmission page according to his network location: if he is in the low security zone he will be prompted to use the transmission interface (Figure \ref{fig:transuserpage}) or he will get the receiver interface page (Figure \ref{fig:receiveruserpage}) if he stand on the high security zone (after the data diode). 
 
-On the transmission page the user can select the files he needs and send them through the data diode by using the \textit{send} button. The user have also the possibility to upload a file from a computer and to add it in the selection list in order to transfer it. On the reception page, the user has a list of all the received files which he can depending on the button chosen and his selection, refresh, download or delete.\bigskip 
+On the transmission page the user can choose among his own documents a file to send through the data diode by using the \textit{send} button. On the reception page, the user has a list of all the received files which he can refresh, download or delete.\bigskip 
 
 When an administrator will log in, similarly to the user mechanism, he will be redirected according to his network location : on the transmission interface or on the receiver interface, respectively Figure \ref{fig:transadminpage} and Figure \ref{fig:receiveradminpage}.
 
-On the transmission page, a \textit{searchbar} is displayed to allow the administrator to search for available updates. He can search a specific update (button search) or display all available updates from officials repositories(button search all updates from sources). In this way he can select from a list the updates that he wants to transfer to the secure network. He can also upload files or new update packages from his computer. 
+On the transmission page, in addition to a simple user, the administrator has the power to configure the data diode. FIGURE CONFIG ADMIN!!! As shown in Figure (ref), the administrator can start/stop the data diode FTP file transfer protocol, change the transmission/reception folder or the network IP address of the web platforms. 
 
-Furthermore, the administrator has an history page. With this page he can browse all the updates installed previously in the system  but he can also monitor all the passing data traffic between the two servers. This is made possible using a log information (user, date, size,...).
+On the reception page, the administrator has access to only his transferred files through the data diode. In this way, we are sure that the confidentiality is preserved by the administrator.  
 
-On the reception page, the administrator has access to all updates that have been send through the data diode. He can update all the machines using some Linux script or to use the web interface to download each update package manually on the desired machine and install them manually. Of course this manual method is not the most optimal but it could serve in case of a need for a system downgrade or an application downgrade on one workstation.
+If an administrator wants to maintain (updates) the company's computers he could download on his machine the needed update packages and transfer them easily to the high security zone. All this is made possible thanks our interface and file transfer system. He can then update all the machines using some Linux script or to use the web interface to download each update package manually on the desired machine. Of course the latter method is not the most optimal but it could serve in case of a need for a system downgrade or an application downgrade on a workstation. 
 
-The administrators have the rights to manage all the updates within FTP sharing systems, they can choose to keep or delete updates.
 
 \subsubsection{A Technical file transfer usage}
-We have said earlier that their will be a web interface running on both side of the data diode. When a user will want to send a file, he would have to first login. The login page will use the data base of the company in order to authenticate users and to verify each user permissions. However, on the high security zone, the database would not be reachable because of the unidirectional data diode. Thus, once a user would want to send a file to the other side, there will be a daemon which will create a permission and ownership system in order for the other side to recognize to whom the file belongs to. For example, when the UserX would want to send the \emph{file.txt} to the other side, the transmitter daemon will rename the file using the following rule:
+We have said earlier that their will be a web interface running on both side of the data diode. When a user will want to send a file, he would have to first login. The login page will use the database of the company in order to authenticate users and to verify each user permissions. However, on the high security zone, the database would not be reachable because of the unidirectional data diode. Thus, once a user would want to send a file to the other side, there will be a daemon which will create a permission and ownership system in order for the other side to recognize to whom the file belongs to. For example, when the UserX would want to send the \emph{file.txt} to the other side, the transmitter daemon will rename the file using the following rule:
 \begin{center}
 \centering
-\emph{file.txt} $\triangleright$ \emph{userName\_password\_fileName\_timestamp\_size\_extension.zip}
+\emph{file.txt} $\triangleright$ \emph{userName\_isAdmin;\_Hashedpassword\_timestamp\_size\_extension.zip}
 \end{center} 
 
 Every file will be converted into a zip archive in order to reduce the initial size, thing that could sometimes have a major impact on the speed of the transfer (hence the time).\bigskip
