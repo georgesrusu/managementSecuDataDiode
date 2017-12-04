@@ -26,13 +26,7 @@
 Our client would want to prevent his research and development labs against industrial espionage and confidential information leaking. He wants to divide the company network in order to maintain the labs in an isolated environment. Thus, the critical data could not leave the company using the network. But how to be able to transfer files or to assure that all the operating systems are up-to-date? This could be achieved using manual operations where an employee would manually copy the files or the updates on a mass-storage device\footnote{A USB-key for instance.} and then used them or install them on every node from the isolated network. However, this is not the most optimized way and for sure it is not cost less and timeless for the company, without mentioning that there could be dependency problems for applications or updates. This method is also prone to human errors and this could generate security vulnerabilities.
 
 \subsection{Our solution}
-In order to address this problem we are going to implement a data diode. In electronics as shown in Figure \ref{fig:diode}, a diode is a component which conduct the current in one direction. Thus the term of data diode is a set of components that only let the data to travel in an unidirectional way. An example of use case is illustrated in Figure \ref{fig:datadiode}, letting the data pass from a low risk LAN to a high risk LAN but not the way around.
-\begin{figure}
-\centering
-\includegraphics[scale=0.25]{images/diode.png}
-\caption{A diode schema in electrionics.}
-\label{fig:diode}
-\end{figure}
+In order to address this problem we are going to implement a data diode. In electronic, a diode is a component which conduct the current in one direction. Thus the term of data diode is a set of components that only let the data to travel in an unidirectional way. An example of use case is illustrated in Figure \ref{fig:datadiode}, letting the data pass from a low risk LAN to a high risk LAN but not the way around.
 
 \begin{figure}
 \centering
@@ -71,29 +65,29 @@ The following table presents the components used for the data diode implementati
 	\hline
 	Transmitter server  &  a physical machine or a virtual machine. The NIC for the data diode will be set in transmission mode only. \\
 	\hline
-	Receiver server  &  a physical machine or a virtual machine. Similar to the transmission, the nic will only be set in a receiver mode.\\
+	Receiver server  &  a physical machine or a virtual machine. Similar to the transmission, the NIC will only be set in a receiver mode.\\
 	\hline
-	One fiber/UTP & This optical fiber allows communication between the low server and the high server. It will probably be simulated using a UTP/RJ45 cable.\\
+	One fiber cable & This optical fiber allows communication between the low server and the high server.\\
 	\hline
-	4 Fiber NIC/UTP NIC & Two for each server (transmission and receiver). On each side, there will be one NIC for the data diode and one NIC for the communication in the LAN.  \\
+	Two fiber NIC and two UTP/RJ45 NIC & On each side, there will be one fiber NIC for the data diode and one UTP/RJ45 NIC for the communication in the LAN.  \\
 	\hline
 \end{tabular}
 \caption{Components description}
 \label{tab:component}
 \end{table}
 \subsubsection{Software}
-The Linux distribution which will be used in our project will be GNU Debian. We will have two linux machine, one on the transmitter side and one on the receiver side. 
+The Linux distribution which will be used in our project will be Ubuntu 16.04 LTS. We will have two linux machine, one on the transmitter side and one on the receiver side. 
 
-The data diode will be easily administrated using a web interface running on an Apache server. The web site will be hosted on the transmission server. It will be described in more details further in this document.
+The data diode will be easily administrated using a web interface running on a Django server. The web interfaces will be hosted on both servers according to the server location in the company network (transmission interface on the transmitter server, the same for the reception interface). It will be described in more details further in this document.
 
-Every configuration script used by the web interface will be a combination of Python language and Bash language.
+Every configuration script used by the web interfaces will be a combination of Python language and Bash language.
 \subsubsection{First overview on the project implementation}
 
-Let's start by explaining which protocol shall be used in the data diode. Remember that our main goal is to create an isolated environment but also to facilitate the update process of the machines within the high security zone. As we mentioned earlier, we are going to use the FTP\footnote{File transfer protocol.} protocol. There are some alternatives to FTP such as BlindFTP, SFTP, etc. However FTP and SFTP are using TCP as their transportation layer protocol. Thus, we are going to use between the transmitter and the receiver the BlindFTP which use UDP instead.
+Let's start by explaining which protocol shall be used in the data diode. Remember that our main goal is to create an isolated environment but also to facilitate the files transfer process to the high security zone. As we mentioned earlier, we are going to use the FTP\footnote{File transfer protocol.} protocol. There are some alternatives to FTP such as BlindFTP, SFTP, etc. However FTP and SFTP are using TCP as their transportation layer protocol. Thus, we are going to use between the transmitter and the receiver the BlindFTP which use UDP instead.
 
-BlindFTP is a simple Python script which was especially created for the communication between the two servers over an unidirectional network. It is simply a tool for transferring files from one side to the other. Despite the fact that use UDP, there is no acknowledgement of received packets but this is compensated by a redundancy of the data. An other advantage is the language used, as it is written in Python the result code is relatively simple and very portable to Windows or MacOS.
+BlindFTP is a simple Python script which was especially created for the communication between the two servers over an unidirectional network. It is simply a tool for transferring files from one side to the other. Despite the fact that it uses UDP, there is no acknowledgement of received packets but this is compensated by a redundancy of the data. An other advantage is the language used, as it is written in Python the result code is relatively simple and very portable to Windows, Linux or MacOS.
 
-It is now time to have a look to our entire system, let's have a look in Figure \ref{fig:sysschem}.\bigskip
+It is now time to have a look at our entire system, let's have a look in Figure \ref{fig:sysschem}.\bigskip
 
 \begin{figure}
 \centering
@@ -102,16 +96,15 @@ It is now time to have a look to our entire system, let's have a look in Figure 
 \label{fig:sysschem}
 \end{figure}
 
-Using BlindFTP allows us to ignore if the application is using TCP or UDP, the only thing we need is to make sure that the data arrive to the transmitter. We should note that between the transmitter and the other peers a TCP connection can be used to communicate. And this is the same for the receiver, after the data goes out from the network diode the transportation protocol could be TCP with other computers. In this way, we are not dealing any more with the problem of application transportation layer. 
+We should note that between the transmitter and the other peers a TCP connection can be used to communicate (transmitter web interface). And this is the same for the receiver, after the data goes out from the network diode the transportation protocol could be TCP with other computers (receiver web interface) . In this way, we are not dealing any more with the problem of application transportation layer. 
 
 \subsection{Users} 
-In general every employee of a company has a unique ID, a grade, a job title, etc. The company owner or the manager in charge with the security could choose which grade or which person can have access to the administration web interface, of course this exclude the systems administrators.  Thus to make our explanation simple, let's suppose that there will be two types of users in our system : the \textit{administrators} and the all the other \textit{users}.
+In general every employee of a company has a unique ID, a grade, a job title and so on. The company owner or the manager in charge with the security could choose which grade or which person can have access to the administration web interface, of course this exclude the systems administrators. Every user information is managed and stored by the company in their own databases and this is a requirement for the working of the data diode. Despite that this is out of our scope, we will assume that our client has his own users database and we will consider two types of users to make our explanation simpler : the \textit{administrators} and all the others \textit{users}.
 
-A \textit{user} is simply an employee of the company. Every employee have limited access into the company's files according to their job title or to the specific rule defined by their supervisor.
+A \textit{user} is simply an employee of the company. Every employee has limited access into the company's files according to their job title or to the specific rule defined by their supervisor.
 
-An \textit{administrator} is a user in charge of operating and maintaining the data diode. It is the only authorized person to configure or maintain the well operating of the data diode and this is mandatory. He will have to know how the data diode is working, should know how to interact with it using the web interface but mostly he should be able to reconfigure it or restore it as quickly as possible in case of a security breach or a system failure. However, an administrator could not have access to some strict secret files of the company but only to the used IT mechanism.
+An \textit{administrator} is a user in charge of operating and maintaining the data diode. It is the only authorized person to configure or maintain the well operating of the data diode and this is mandatory. He will have to know how the data diode is working, should know how to interact with it using the web interfaces but mostly he should be able to reconfigure it or restore it as quickly as possible in case of a security breach or a system failure. However, an administrator could not have access to some strict secret files of the company but only to the used IT mechanism.
 
-Every user information is managed and stored by the company in their own databases.
 
 \subsection{User Interface}
 
