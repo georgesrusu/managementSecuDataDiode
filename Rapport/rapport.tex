@@ -345,20 +345,20 @@ Such events could be related to natural disaster which cannot be always predicte
 However, some event could have a much higher probability of appearance depending on the location where the company has her headquarters. For example, it is more likely to have floods or a tsunami if the company is located near the equator of the globe or in a tropical area, similarly wildfires could occur much often in warm regions. Hence, the importance of the company's location chosen. For example, the company could prevent some of those events by choosing where to host their main servers or by implementing measures such as water or fire sealing doors for the labs.
 
 \subsubsection{Predictable events}
-We can define predictable events as security lacks that we are or not acknowledged about our system. The administrators could secure the systems by not divulging the vulnerabilities or the backdoor left. This is what \emph{security by obscurity} means, however this is a very bad idea and should be avoided! We defined a list of persons which could be implicated in the hacking action of our client's company system, those persons could be aware of the vulnerabilities of the system or not. Such persons could be:
+We can define predictable events as security lacks that we are or not acknowledged about in our system. The administrators could secure the systems by not divulging the vulnerabilities or the backdoors left. This is what \emph{security by obscurity} means, however this is a very bad idea and should be avoided! We defined a list of persons which could be implicated in the hacking action of our client's company system, those persons could be aware of the vulnerabilities of the system or not. Such persons could be:
 \begin{enumerate}
 \item[-] Employees or company daily users
 \item[-] Administrators
 \item[-] Visitors or unauthorized users
 \item[-] Script Kiddies
-\item[-] Skilled Hacker
+\item[-] Skilled Hackers
 \end{enumerate}
 
 Each one in this list could be a potential threat source or serve as so. If the company network for example is vulnerable, our data diode could potential be threatened.
 
 Let's assume the following scenarios in which the system could get infected.
 
-After a lot of work and time spent on projects for the company, an administrator or simply an employee could for example make a mistake which could destabilize the entire system. As an example, we could assume that an administrator forget to close a configuration port or an employee could share without his willing his login password.
+After a lot of work and time spent on projects for the company, an administrator or simply an employee could for example make a mistake which could destabilize the entire system. As an example, we could assume that an administrator forget to close a configuration port or an employee could share without his willing his log in credentials.
 As we said earlier, tagging every user of the company using a value could be a good thing when assessing the threat source. Indeed, a valuable employee despite his tiredness would for sure look twice before finishing his work or sharing some sensitive information of the company. But this is not the same for a newbie which just started on his new job.
 
 Furthermore, having visitor into the company can be a good thing for the image and the brand, however it could be very dangerous. Assuming that a visitor could install a \emph{Femtocell} into the company which could get him full access into the network. Despite the fact that it would be for sure the low security network, the malicious user could sniff every network packet transiting trough and thus could steal some information.
@@ -366,19 +366,19 @@ Furthermore, having visitor into the company can be a good thing for the image a
 For the last two categories, they represent a constant threat for every company. Hence the need for a security policy always up to date and a good strategic network and workstation deployment in order to minimize the risk. Those categories could exploit the vulnerabilities left in the system by administrators using the \emph{security by obscurity} concept.
 
 \subsection{Risks assessment}
-In this section, we will give a set of possible threats that we should take into account in order to secure the most possible our data diode. In order to have a clear view, we will explain every threats by ordering them according the type of assets it affects.
+In this section, we will give a set of possible threats that we should take into account in order to secure the most possible our data diode. In order to have a clear view, we will explain every threats by ordering them according to the type of assets that it affects. Therefore, the threats will be divide in three parts, affecting physical assets, affecting logical assets and affecting persons. For each one of this three parts, we will give the possible threats, describe them and give a level of impact, a level of likelihood and the resulting levels of risk.
 
-\subsubsection{Levels of affection}
-We define three different level of affection of our client's company:
+\subsubsection{Levels of impact, likelihood and risk}
+We define three different types of affection for our client's company:
 \begin{enumerate}
 \item[-] Availability: affecting the physical functioning of the system. For instance, if a server is shut-down, his availability is compromised.
 \item[-] Confidentiality: affecting the sensitive information of the company by sharing them. For example, a server could be infected and could automatically sends some files to a hacker. It should be obvious that only servers located in the low security zone, in which there is an internet connection, could present such a risk.
 \item[-] Integrity: affecting some sensitive information of the company by alteration. Similarly to the confidentiality level, a hacker could modify or delete some information in order to hide it or to prevent the company in succeeding their projects. This could be the case when a competitor would want to curb the company in order to be the first one on the market selling a same product on which both were working on.
 \end{enumerate}
 
-In this section we are going to assess the risk by  assessing a level of the impact and  a level the likelihood of every threats. 
+We are also going to assess the risk by associating a level for the impact as well as for the likelihood for every threat. 
 
-We define as follow three level of impact in terms of failure time:
+We define as follow three levels of impact in terms of failure time (availability):
 \begin{enumerate}
 	\item[-] Low: less than 10 minutes.
 	\item[-] Medium: between 10 minutes and 50 minutes.
@@ -392,190 +392,7 @@ We also define the three levels of likelihood:
 	\item[-] High: more than 10 times per year.
 \end{enumerate}
 
-\paragraph{} The threats will be divide in three part, affecting physical assets, affecting logical assets and affecting persons. For each of this three part, we will give the possible threats, describe them and give a level of impact, a level of likelihood and a resulting risk level.
-
-
-\subsubsection{Threats affecting physical assets}
-In this section, we will present the threats affecting only the physical assets of the company:
-
-
-\paragraph{Threat 1 :}  \textbf{Power outage} 
-\paragraph{}In the case of a power outage, obviously the data diode system will not work because of the need for an electrical power source, which means it will not be available until the power will be re-establish. A power outage usually does not exceed one hour which mean there is not a high impact.
-
-Weather is responsible for the majority of major power outages that occur, but there are many others causes such as short circuits, blackouts and so on. Thus power outage has a medium likelihood to happen.    \\ \\
-Source : Nature \\ 
-Affecting level : Avaibility \\ \\
-Impact : Medium \\
-Likelihood : Medium \\
-Risk Level : Medium \\
-
-\paragraph{Threat 2 :}  \textbf{Fire} 
-\paragraph{}Because of a fire in a building in which the data diode is installed or because of to much heat gathered, damage to the data diode system could be done, which leading to his non-operation.
-
-The impact depends on the damages caused by the fire. The data diode can suffer significant or irreparable damages which could lead to the replacement of the hardware.
-
-A fire can occur due to several causes. The probability of fire is in generally low.\\ \\
-Source : Nature \\ 
-Affecting level : Avaibility \\ \\
-Impact : High \\
-Likelihood : Low \\
-Risk Level : Medium
-
-
-\paragraph{Threat 3 :}  \textbf{Data diode hardware failure} 
-\paragraph{}If a failure in the data diode's hardware occurs, such as in the NIC, it can lead to the non-operation of the data diode. In this case, it is the whole operation of the system which can be disturbed. However, the system administrator could easily replace the broken component.
-Anyway, the data diode hardware are well chosen and tested in order to keep a low risk of failure, however hardware failure can happen. There is no perfect product to last forever in this world.\\ \\
-Source : Nature, Administrators, Employees, Unauthorized user \\ 
-Affecting level : Avaibility \\ \\
-Impact : Low \\
-Likelihood : Medium \\
-Risk Level : Medium
-
-\paragraph{Threat 4 :}  \textbf{Data diode hardware degradation} 
-\paragraph{}This vulnerability is possible once an unauthorized person has a physical access to the data diode itself. This could lead to a simple destruction of the data diode or robbery of some element (availability), trying to copy the data from it (confidentiality), or trying to add/modify/delete an element to falsify the data (integrity). There is also a possibility that the hardware degradation is done unintentional (disconnecting a cable, spilling a drink on it).
-Since then this vulnerability could affect the three part of the information security and also lead to non-reversible damage. However, the impact time is according to the broken hardware component. 
-
-A clumsiness is always possible (medium). Furthermore, if the access in the room of the data diode is not controlled, this attack is really simple and is likely to happen very often(high). \\ \\
-Source : Nature, Administrators, Employees, Unauthorized user  \\ 
-Affecting level : Avaibility, Confidentiality, Intergrety \\ \\
-Impact : Medium \\
-Likelihood : Medium \\
-Risk Level : Medium
-
-\paragraph{Threat 5 :}  \textbf{DDOS attack} \paragraph{}A DDOS is a cyberattack in which the hackers wants to make a system unavailable to its users by temporarily or indefinitely disrupting the services of the host. The attack is accomplished by flooding the targeted resources with superfluous requests from many different sources from the internet, in an attempt to overload the systems and thus prevent the legitimate requests from being fulfilled. The administration of our data diode happens through a web interface which means that it is vulnerable to DDOS attack. In case of such attack the data diode web server will become unavailable as long as the attack lasts. Hence, the transmission system will be disrupted.
-
-If the website of the data diode suffers from a DDOS attack, the secured network productivity can grid to a total halt if the transfer of important files cannot be done. This can lead to an important cost for the business, it is why a DDOS attack can have a big impact. Futhermore, if the company is popular, the secured network will be a prime target for the hackers. Therefore, attempts may be numerous because DDOS attacks have grown in scale and have become very popular since their are easy to implement.\\ \\
-Source : Skilled Hacker \\ 
-Affecting level : Avaibility  \\ \\
-Impact : High \\
-Likelihood : High \\
-Risk Level : Medium
-
-
-\subsubsection{Threats affecting logical assets}
-In the same order of idea, lets focus now on the vulnerabilities affecting the logical assets of the company. 
-
-\paragraph{Threat 6 :}  \textbf{Zero Day Attack} 
-\paragraph{}Since there is always the probability to be attacked by a new and unknown form of cyberattack, this represents a vulnerability due to the fact that the future can not be predicted. Therefore, such attack could affect one or more parts of the company, but it still remains theoretically and unknown until the beginning of such type of attack.
-In this cas and since we don't know the attack, its impact could be as low as high. This kind of attack is constantly sought after by different people like skilled hacker, but its difficult to find one, and more of this, find one that can affect our system. \\ \\
-Source : Skilled Hacker \\ 
-Affecting level : Availability, Confidentiality, Integrity  \\ \\
-Impact : High \\
-Likelihood : Medium \\
-Risk Level : Medium
-
-
-\paragraph{Threat 7 :}  \textbf{SQL injection} 
-\paragraph{}An SQL injection vulnerability could affect any website that makes use of an SQL-based database.
-In the case of SQL injection attack, it will allow the "attacker" to bypass a web application's authentication or view data contained in the database and alter it. Hence, data confidentiality and integrity are concerned. This represents a vulnerability because our company detain such a database containing sensitive information.
-
-The possible consequences of the SQL injection attacks such as consultation, modification or deletion of the database, correspond to a big risk because it will affect the login page of the web interface of the data diode. The SQL injection is one of the oldest, most prevalent and most dangerous method to attack systems and steal information from web application. It can be done on any website, so the likelihood is high.\\ \\
-Source : Skilled Hacker, script kiddies, unauthorized user \\ 
-Affecting level : Confidentiality, Integrity \\ \\
-Impact : High \\
-Likelihood : High \\
-Risk Level : Medium
-
-\paragraph{Threat 8 :}  \textbf{Brute force attack} 
-\paragraph{}A hacker could try as many passwords as he wants in order to find the correct password. This could be done using dictionaries attacks on a web login page or another type of identity check-in systems of the company. In the cas of the hacker find or guess a correct password, he would use it as long as he can and it works.
-
-Similarly to the SQL injection, there are tools in order to crack passwords. Since it is very easy to do, this kind of attack has a high probability to occur. \\ \\
-Source : Skilled Hacker \\ 
-Affecting level : Availability, Confidentiality \\ \\
-Impact : High \\
-Likelihood : High \\
-Risk Level : Medium
-
-\paragraph{Threat 9 :}  \textbf{Virus and malwares} 
-\paragraph{}An infected computer's user could without acknowledgement send a virus trough the data diode. Despite the fact that the communication from the isolated network is not possible, a ransom ware\footnote{This kind of virus could encrypt all the data on a drive and request some money in order to decrypt it.} virus could led to the destruction or the non availability of data from the labs.
-
-Depending of the type of the virus, the impact is as well depending on the type of the virus: a Trojan virus would not halt the system however confidentiality will be broken. 
-
-This kind of attack is really diversified and used. However, this attack could only success if a user file is infected which means there are several attack to do before. Thus, the likelihood remains medium. \\ \\
-Source : Skilled Hacker, Script kiddies, Administrators, Employees  \\ 
-Affecting level : Availability, Integrity \\ \\
-Impact : Medium \\
-Likelihood : Medium \\
-Risk Level : Medium
-
-\paragraph{Threat 10 :}  \textbf{Misconfiguration} 
-\paragraph{}A misconfiguration of the data diode, which is only possible from the administrator interface, could cause his non-function or malfunction. This vulnerability has a direct impact on the availability and the integrity but could also represent a potential confidential threat.
-
-In this case, a reconfiguration of the data diode will be required. This will not take much in terms of time and will not have a major impact thanks to the administration interface, which allows to reconfigure easily the data diode. Futhermore misconfiguration by the administrator occurs rarely on a year.\\ \\ 
-Source : Administrator \\ 
-Affecting level : Availability, Integrity \\ \\
-Impact : Medium \\
-Likelihood : Medium \\
-Risk Level : Medium
-
-\paragraph{Threat 11 :}  \textbf{Failure in maintenance from the provider}
-\paragraph{}A vulnerability can also be introduced by the provider during the installation of the data diode or by an application update or new release. This is generally caused by a lack of communication or documentation between the company.
-
-In case of failure in maintenance or design the data diode can be non-functional until the problem or bug is fixed. This could lead to a halt of the system for a undetermined period of time. The likelihood of that to happens is extremely low on a year, because generally the product is well tested before being released to the client. Thus, in our case the likelihood is medium.  \\  \\ 
-Source : Provider \\ 
-Affecting level : Availability, Integrity  \\ \\
-Impact : High \\
-Likelihood : Medium \\
-Risk Level : Medium
-
-\paragraph{Threat 12 :}  \textbf{Remote connection} 
-\paragraph{}If the company posses a remote connection system in order for the employee to work from home, if such a system is not well encrypted nor implemented, a hacker could pretend to be an employee and gain access to the company's LAN. He will then be able to steal, destruct or stop any data, process or server he wants to.
-
-Since then the impact will depends of the purpose of the hacker. He could halt the system or simply violate the integrity and confidentiality of the data. 
-
-Similarly to the virus attack, in order to succeed there must be several other attacks done before. However, it can happen a few time on a year.  \\ \\ 
-Source : Skilled hacker, Administrators, Employees \\ 
-Affecting level : Availability, integrity, confidentiality \\ \\
-Impact : High \\
-Likelihood : Medium \\
-Risk Level : Medium
-
-\paragraph{Threat 13 :}  \textbf{Sniffing the network}
-\paragraph{}If a hacker managed somehow to gain access in the company LAN, he could \emph{sniff} every passing through traffic. This could represent a real threat if the communications/transfers within the LAN are not encrypted. In this case, the hacker could sniff the entire passing traffic of the network for months if no one detect him. But it is still very rare that somehow a hacker could get into the network without being discovered.\\  \\ 
-Source : Skilled hacker \\ 
-Affecting level : Availability, integrity, confidentiality \\ \\
-Impact : High \\
-Likelihood : Low \\
-Risk Level : Medium
-
-
-\subsubsection{Threats affecting persons}
-Similarly as for the previous sections, we explain the vulnerabilities affecting persons
-
-\paragraph{Threat 14 :} \textbf{Social engineering} 
-\paragraph{}Social engineering is a practice of manipulating people so they give up confidential information or sensitive data such as their credentials. The most common forms this kind are the ransomware viruses and phishing techniques. 
-
-Because this method allows to steal the credential of a user and then the attacker can simply log in and snoop around for sensitive data. Hence, it results in a high risk. But administrators are aware of these techniques so only users are potential victims. \\ \\ 
-Source : Skilled Hacker, unauthorized user \\
-Affecting level : Confidentiality  \\ \\
-Impact : High \\
-Likelihood : Medium \\
-Risk Level : Medium
-
-\paragraph{Threat 15 :} \textbf{Data credentials lost}
-\paragraph{}There is a possibility of a user to lose his credentials which mean that he will no longer be able to connect to the data diode. In this case, a user should immediately contact the administrator in order to reset his credential.
-
-An administrator know the importance of his role and will take care of the data credentials. In addition, every user of the company are using his credential every day so it very rare and unlikely that an employee could forget his in 24 hours. \\  \\ 
-Source : Administrator, Employees  \\
-Affecting level : Availability \\ \\
-Impact : Medium \\
-Likelihood : Low \\
-Risk Level : Medium
-
-\paragraph{Threat 16 :} \textbf{Data credentials theft} 
-\paragraph{}Data credentials theft can occur in several ways such as hackers attacks (brute force, social engineering,...)  or because of the negligence of a user (easy password, credential stored in a non-secured place such as the office, and so on...) or because of a malicious administrator which has the right to modify  read the company database (password table)\footnote{This is generally in case of any employee lose his credential, the administrator can reset it or change it manually.}
-
-If it is the administrator's credential that are stolen, the attacker can change the data diode administration and it implies a big impact. On the other hand, if it is the user's credential that are stolen, they can use it and transfer what they want and access the data of the user. In both case, the attacker can do what he likes and could prevent the access for legitimate persons such as the administrator. \\ \\ 
-Source : Skilled Hacker, unauthorized user, Employee, Administrator \\
-Affecting level : Confidentiality \\ \\
-Impact : High \\
-Likelihood : High \\
-Risk Level : Medium
-
-
-\subsubsection{Risk level}
-
-After we have analysed the impact and the likelihood of each vulnerabilities, we can now define for each one of them a risk level, this is shown in Table \ref{tab:risk}.
+With the impact and the likelihood analysis, we can define the risk level. This is shown in Table \ref{tab:risk}.
 
 \begin{table}[!h]
 	\centering
@@ -589,19 +406,188 @@ After we have analysed the impact and the likelihood of each vulnerabilities, we
 	\end{tabular}
 	\caption{Risk level assessment.}
 	\label{tab:risk}
-\end{table} 
+\end{table}
 
-%\begin{table}[!h]
-%	\centering
-\begin{longtable}{|c|p{4cm}|c|c|c|}
+\subsubsection{Threats affecting physical assets}
+In this section, we will present the threats affecting only the physical assets of the company:
+
+
+\paragraph{Threat 1 :}  \textbf{Power outage}\\
+\indent In the case of a power outage, obviously the data diode system will not work because of the need for an electrical power source, which means it will not be available until the power gets back. A power outage usually does not exceed one hour which mean there is not a high impact.
+
+Weather is responsible for the majority of major power outages that occurs, but there are many others causes such as short circuits, blackouts and so on. Thus power outage has a medium likelihood to happen.    \\ \\
+Source : Nature \\ 
+Affecting level : Availability \\ \\
+Impact : Medium \\
+Likelihood : Medium \\
+Risk Level : Medium \\
+
+\paragraph{Threat 2 :}  \textbf{Fire} \\
+\indent Because of a fire in a building in which the data diode is installed or because of to much heat gathered, the data diode system could be harmed, which is then leading to his non-operation.
+
+The impact depends on the damages caused by the fire. The data diode can suffer significant or irreparable damages which could lead to the replacement of the hardware.
+
+A fire can occur due to several causes, however the probability of having a fire is in generally low.\\ \\
+Source : Nature \\ 
+Affecting level : Availability \\ \\
+Impact : High \\
+Likelihood : Low \\
+Risk Level : Medium
+
+
+\paragraph{Threat 3 :}  \textbf{Data diode hardware failure} 
+\paragraph{}If a failure in the data diode's hardware occurs, such as in the NIC, it can lead to the non-operation of the data diode. In this case, it is the whole operation of the system which can be disturbed. However, the system administrator could easily replace the broken component.
+Despite the fact that the data diode hardware is well chosen and tested before in order to maintain the failure risk low, hardware failure can still happen. There is no perfect product to last forever in this world.\\ \\
+Source : Nature, Administrators, Employees, Unauthorized user \\ 
+Affecting level : Availability \\ \\
+Impact : Medium \\
+Likelihood : Low \\
+Risk Level : Low
+
+\paragraph{Threat 4 :}  \textbf{Data diode hardware degradation}\\
+\indent This vulnerability is possible once an unauthorized person has a physical access to the data diode itself. This could lead to a simple destruction of the data diode or robbery of some element (availability), trying to copy the data from it (confidentiality), or trying to add/modify/delete an element to falsify the data (integrity). There is also a possibility that the hardware degradation is done unintentional (disconnecting a cable, spilling a drink on it).
+Since then this vulnerability could affect the three part of the information security and also lead to non-reversible damage. However, the impact time is according to the broken hardware component. 
+
+A clumsiness is always possible (medium). Furthermore, if the access in the room of the data diode is not controlled, this attack is really simple and is likely to happen very often(high). \\ \\
+Source : Nature, Administrators, Employees, Unauthorized user  \\ 
+Affecting level : Availability, Confidentiality, Integrity \\ \\
+Impact : Medium \\
+Likelihood : Medium \\
+Risk Level : Medium
+
+\paragraph{Threat 5 :}  \textbf{DDOS attack} \\
+\indent A DDOS is a cyberattack in which the hackers wants to make a system unavailable to its users by temporarily or indefinitely disrupting the services of the host. The attack is accomplished by flooding the targeted resources with superfluous requests from many different sources from the internet, in an attempt to overload the systems and thus prevent the legitimate requests from being fulfilled. The administration of our data diode happens through a web interface which means that it is vulnerable to DDOS attack. In case of such attack the data diode web server will become unavailable as long as the attack lasts. Hence, the transmission system will be disrupted.
+
+If the website of the data diode suffers from a DDOS attack, the secured network productivity can grid to a total halt if the transfer of important files cannot be done. This can lead to an important cost for the business, it is why a DDOS attack can have a big impact. Furthermore, if the company is popular, the secured network will be a prime target for the hackers. Therefore, attempts may be numerous because DDOS attacks have grown in scale and have become very popular since their are easy to implement.\\ \\
+Source : Skilled Hacker \\ 
+Affecting level : Availability  \\ \\
+Impact : High \\
+Likelihood : High \\
+Risk Level : High
+
+
+\subsubsection{Threats affecting logical assets}
+In the same order of idea, lets focus now on the threats affecting the logical assets of the company. 
+
+\paragraph{Threat 6 :}  \textbf{Zero Day Attack} \\
+\indent Since there is always the probability to be attacked by a new and unknown form of cyberattack, this represents a threat due to the fact that the future can not be predicted. Therefore, such attack could affect one or more parts of the company, but it still remains theoretically and unknown until the beginning of such attack.
+Since we do not know the attack, its impact could be as low as high. This kind of attack is constantly sought after by different people like skilled hacker, but its difficult to find one, and more of this, to find one that can affect our system. \\ \\
+Source : Skilled Hacker \\ 
+Affecting level : Availability, Confidentiality, Integrity  \\ \\
+Impact : High \\
+Likelihood : Medium \\
+Risk Level : Medium
+
+
+\paragraph{Threat 7 :}  \textbf{SQL injection} \\
+\indent An SQL injection threat could affect any website that makes use of an SQL-based database.
+In the case of an attack, it will allow the "attacker" to bypass a web application's authentication or view data contained in the database and alter it. Hence, data confidentiality and integrity are concerned. This represents a threat because our company detain such a database containing sensitive information.
+
+The possible consequences of the SQL injection attacks such as consultation, modification or deletion of the database, correspond to a high risk because it will affect the log in page of the web interface of the data diode. The SQL injection is one of the oldest, most prevalent and most dangerous method to attack systems and steal information from web applications. It can be done on any website, so the likelihood is high.\\ \\
+Source : Skilled Hacker, script kiddies \\ 
+Affecting level : Confidentiality, Integrity \\ \\
+Impact : High \\
+Likelihood : High \\
+Risk Level : High
+
+\paragraph{Threat 8 :}  \textbf{Brute force attack} \\
+\indent A hacker could try as many passwords as he wants in order to find the correct password. This could be done using dictionaries attacks on a web log in page or another type of identity check-in systems of the company. In the case of the hacker find or guess a correct password, he would use it as long as he can and it works.
+
+Similarly to the SQL injection, there are tools in order to crack passwords. Since it is easily done, this kind of attack has a high probability to occur. \\ \\
+Source : Skilled Hacker \\ 
+Affecting level : Availability, Confidentiality \\ \\
+Impact : High \\
+Likelihood : High \\
+Risk Level : High
+
+\paragraph{Threat 9 :}  \textbf{Virus and malwares} \\
+\indent An infected computer's user could without acknowledgement send a virus trough the data diode or could simply spy (\emph{Trojan}) on the user activity. Despite the fact that the communication from the isolated network is not possible, a ransom ware\footnote{This kind of virus could encrypt all the data on a drive and request some money in order to decrypt it.} virus could led to the destruction or the non availability of data from the labs.
+
+Depending of the type of the virus, the impact is as well depending on the type of the virus: a Trojan virus would not halt the system however confidentiality will be broken. 
+
+This kind of attack is really diversified and used. However, this attack could only success if a user file is infected which means there are several attack to do before. Thus, the likelihood remains medium. \\ \\
+Source : Skilled Hacker, Script kiddies, Administrators, Employees  \\ 
+Affecting level : Availability, Integrity \\ \\
+Impact : Medium \\
+Likelihood : Medium \\
+Risk Level : Medium
+
+\paragraph{Threat 10 :}  \textbf{Misconfiguration} \\
+\indent A misconfiguration of the data diode, which is only possible from the administrator interface, could cause his non-function or malfunction. This threat has a direct impact on the availability and the integrity but could also represent a potential confidential threat.
+
+In this case, a reconfiguration of the data diode will be required. This will not take much in terms of time and will not have a major impact thanks to the administration interface, which allows to reconfigure easily the data diode. Furthermore, a misconfiguration by the administrator occurs rarely on a year.\\ \\ 
+Source : Administrator \\ 
+Affecting level : Availability, Integrity \\ \\
+Impact : Low \\
+Likelihood : Low \\
+Risk Level : Low
+
+\paragraph{Threat 11 :}  \textbf{Failure in maintenance from the provider}\\
+\indent A vulnerability can also be introduced by the provider during the installation of the data diode or by an application update or new release. This is generally caused by a lack of communication or documentation between the company.
+
+In case of failure in maintenance or design the data diode can be non-functional until the problem or bug is fixed. This could lead to a halt of the system for a undetermined period of time. The likelihood of that to happens is extremely low on a year, because generally the product is well tested before being released to the client. Thus, in our case the likelihood is medium.  \\  \\ 
+Source : Provider \\ 
+Affecting level : Availability, Integrity  \\ \\
+Impact : Medium \\
+Likelihood : Low \\
+Risk Level : Low
+
+
+\paragraph{Threat 12 :}  \textbf{Sniffing the network} \\
+\indent If a hacker managed somehow to gain access in the company LAN, he could \emph{sniff} every passing through traffic. This could represent a real threat if the communications/transfers within the LAN are not encrypted. In this case, the hacker could sniff the entire passing traffic of the network for months if no one detects him. But it is still very rare that somehow a hacker could get into the network without being discovered by the system administrator.\\  \\ 
+Source : Skilled hacker \\ 
+Affecting level : Availability, integrity, confidentiality \\ \\
+Impact : High \\
+Likelihood : Low \\
+Risk Level : Low
+
+
+\subsubsection{Threats affecting persons}
+Similarly as for the previous sections, we explain the threats affecting persons.
+
+\paragraph{Threat 13 :} \textbf{Social engineering} \\
+\indent Social engineering is a practice of manipulating people so they give up confidential information or sensitive data such as their credentials. The most common forms of this kind are the ransomware viruses and phishing techniques. 
+
+This method allows a hacker to steal the credentials of a user and then to simply log in and snoop around for sensitive data. Hence, it results in a high risk. But administrators are aware of these techniques so only users are potential victims. \\ \\ 
+Source : Skilled Hackers, unauthorized users \\
+Affecting level : Confidentiality  \\ \\
+Impact : High \\
+Likelihood : Medium \\
+Risk Level : Medium
+
+\paragraph{Threat 14 :} \textbf{Data credentials lost} \\
+\indent There is a possibility of a user to lose his credentials which means that he will no longer be able to connect to the data diode. In this case, a user should immediately contact the administrator in order to reset his credentials.
+
+An administrator knows the importance of his role and will take care of the data credentials. In addition, every user of the company are using his credential every day so it very rare and unlikely that an employee could forget his in 24 hours. \\  \\ 
+Source : Administrator, Employees  \\
+Affecting level : Availability \\ \\
+Impact : Medium \\
+Likelihood : Low \\
+Risk Level : Low
+
+\paragraph{Threat 15 :} \textbf{Data credentials theft} \\
+\indent Data credentials theft can occur in several ways such as hackers attacks (brute force, social engineering,...)  or because of the negligence of a user (easy password, credential stored in a non-secured place such as the office, and so on...) or because of a malicious administrator which has the right to modify the company database (password table)\footnote{This is generally in case of any employee lose his credential, the administrator can reset it or change it manually.}
+
+If it is the administrator credentials that are stolen, the attacker can change the data diode administration and it implies a high impact. On the other hand, if it is the user credentials that are stolen, they can use it and transfer what they want and access the data of the users. In both case, the attacker can do what he likes and could prevent the access for legitimate persons such as the administrator. \\ \\ 
+Source : Skilled Hacker, unauthorized user, Employee, Administrator \\
+Affecting level : Confidentiality \\ \\
+Impact : High \\
+Likelihood : High \\
+Risk Level : High
+
+
+ \subsubsection{Summary table}
+\begin{table}[!h]
+	\centering
+\begin{tabular}{|c|p{4cm}|c|c|c|}
 	\hline
-	\textbf{ID}& \textbf{Vulnerability}  & \textbf{Impact} & \textbf{Likelihood} & \textbf{Risk Level}          \\
+	\textbf{ID}& \textbf{Threat}  & \textbf{Impact} & \textbf{Likelihood} & \textbf{Risk Level}          \\
 	\hline
 	1 & Power outage & Medium & Medium & Medium \\
 	\hline
 	2 & Fire  & High & Low & Low \\
 	\hline
-	3 & Data diode hardware failure & Low & Medium & Low \\
+	3 & Data diode hardware failure & Medium & Low & Low \\
 	\hline
 	4 & Data diode hardware degradation & Medium & Medium & Medium  \\
 	\hline
@@ -615,66 +601,63 @@ After we have analysed the impact and the likelihood of each vulnerabilities, we
 	\hline
 	9 & Virus and malwares & Medium & Medium & Medium \\
 	\hline
-	10 & Misconfiguration & Medium & Medium & Medium \\
+	10 & Misconfiguration & Low & Low & Low \\
 	\hline
-	11 & Failure in maintenance from the provider & High & Medium & Medium\\
+	11 & Failure in maintenance from the provider & Medium & Low & Low\\
 	\hline
-	12 & Remote connection & High & Medium & Medium\\
+	12 & Sniffing & High & Low & Low \\
 	\hline
-	13 & Sniffing & High & Low & Low \\
+	13 & Social engineering & High & Medium & Medium \\
 	\hline
-	14 & Social engineering & High & Medium & Medium \\
+	14 & Data credentials lost & Medium & Low & Low \\
 	\hline
-	15 & Data credentials lost & Medium & Low & Low \\
+	15 & Data credentials theft & High & High & High \\
 	\hline
-	16 & Data credentials theft & High & High & High \\
-	\hline
-	\caption{Risk level}
+	\end{tabular}
+	\caption{Summarizing table.}
 	\label{tab:risklvl}
-\end{longtable}
-%fin
+\end{table}
+
 
 \subsection{Countermeasures}
-In this section we will explain which and how countermeasures could be taken in order to address every vulnerability of the system. We will use the Table \ref{tab:risk} in order to adapt our countermeasures accordingly to the risk level of each vulnerability.
+In this section we will explain which and how countermeasures could be taken in order to address every threat of the system. We will use the Table \ref{tab:risk} in order to adapt our countermeasures accordingly to the risk level of each vulnerability.
 
-However, before starting, we should mention that most of the vulnerabilities nowadays are coming from the internet. Thus, our data diode should not be exposed to such a danger. Despite the fact that the data diode could be installed within a LAN which has an internet connection, it should not be possible to access it form the outside but only from the LAN. In this way, it will be much difficult to a hacker to directly threat our data diode. In order to succeed his attempts he should therefor, try infecting a computer within the LAN and only then, by redirecting all his traffic trough his new bot, try to hack our data diode.
+Before starting, we should mention that most of the threats nowadays are coming from the internet. Thus, our data diode should not be exposed to such a danger. Despite the fact that the data diode could be installed within a LAN which has an internet connection, it should not be possible to access it form the outside but only from the LAN. In this way, it will be much difficult to a hacker to directly threaten our data diode. In order to succeed his attempts he should therefor, try infecting a computer within the LAN and only then, by redirecting all his traffic trough his new bot, try to hack our data diode.
 %\begin{table}[!h]
 %	\centering
 \begin{longtable}{|c|p{2.5cm}|p{12cm}|}
 \hline
-\textbf{ID}& \textbf{Vulnerability}  & \textbf{Countermeasure(s)} \\
+\textbf{ID}& \textbf{Threat}  & \textbf{Countermeasure(s)} \\
 \hline
-1 & Power outage  & For this vulnerability we accept the possible risks. \\
+1 & Power outage  & For this threat we accept the possible risks. However the company could prevent this by installing UPS battery backup, thus it is out of our scope. \\
 \hline
-2 & Fire & The data diode must be placed in a room protected against fire, closed with fire doors to mitigate as much as possible the risk of the data diode being affected by fire.  \\
+2 & Fire & The data diode should be placed in a room protected against fire, closed with fire doors to mitigate as much as possible the risk of the data diode being affected by fire or heat. This is out of our scope \\
 \hline
-3 & Data diode hardware failure & Since an administrator must be ready to intervene in case of any hardware failure, we can accept the risk of this vulnerability. In addition, administrators should use administration tools such as \emph{SNMP protocol} in order to face the issue as quickly as possible. \\
+3 & Data diode hardware failure & Since an administrator must be ready to intervene in case of any hardware failure, we can accept the risk of this threat. In addition, administrators should use administration tools such as \emph{SNMP protocol} in order to face the issue as quickly as possible. \\
 \hline
-4 & Data diode hardware degradation & The data diode must be placed in a closed room locked with a key or locked using access card possessed only by the administrators or authorized employees. A camera could also be installed in order to monitor activity into the room. Since there are only few persons who have access in the room, the risk is limited to a clumsiness of the administrator. \\
+4 & Data diode hardware degradation & The data diode should be placed in a closed room locked with a key or locked using access card possessed only by the administrators or authorized employees. A camera could also be installed in order to monitor activity into the room. Since there are only few persons who have access in the room, the risk is limited to a clumsiness of the administrator. Again, this is also out of our scope.\\
 \hline
 5 & DDOS attack & This could be faced by limiting the number of connection to the data diode. It will then be impossible to overload the system and thus to halt it. However, the data diode servers can only be accessed from the LAN. Thus, in order to create a DDOS on the data diode server, all the company's computers should be infected.  \\
 \hline
-6 & Zero Day attack & Due to the fact that we can not be prepared against this kind of attack, we accept the risks of this vulnerability.  \\
+6 & Zero Day attack & Due to the fact that we can not be prepared against this kind of attack, we accept the risks of this threat.  \\
 \hline
-7 &  SQL injection & In order to avoid the SQL injection, we must use in the code source of the web interface the especially developed function which prevents the execution of the SQL language. \\
+7 &  SQL injection & In order to avoid the SQL injection, we must use in the code source of the web interface the especially developed functions and methods which prevents the execution of the SQL language. \\
 \hline
 8 & Brute force attack & In order to stop dictionary password attack, we could implement a number of password trial times before blocking the account. In this way, after 3 wrong password, the account have to be manually reset by an administrator. \\
 \hline
-9 & Virus and malwares & This vulnerability is out of our scope. The client is responsible for securing access to internal network and so he should use appropriate anti-virus and other anti-malware system.  \\
+9 & Virus and malwares & This threat is out of our scope. The client is responsible for securing access to internal network and so he should use appropriate anti-virus and other anti-malware systems.  \\
 \hline
-10 & Misconfiguration & The configuration is only possible through the administrator interface and by an administrator. Hence, an administrator must be well chosen. However, the company should create a modification policy in which a system alteration should be approved by at least two administrator in order to take place.  \\
+10 & Misconfiguration & The configuration is only possible through the administrator interface and by an administrator. Hence, an administrator must be well chosen. However, the company could create for example a modification policy in which a system alteration should be approved by at least two administrator in order to take place. This is out of our scope.  \\
 \hline
-11 & Failure in maintenance from the provider & We test all the features of the data diode (such as the transfer) before providing it to the client. We make sure we always have a well operating version. \\
+11 & Failure in maintenance from the provider & We test all the features of the data diode (such as the transfer) before providing it to the client. We make sure we always have a well operating version before deploying it to our customers. \\
 \hline
-12 & Remote connection & The company should have a two step verification system. If a hacker manage to gain access, the second step verification will block him. This second step verification could be for example a 6 characters code sent to the user's phone. \\
+12 & Sniffing & There should be log of every path of the data trough the network. Thus, if a person is sniffing the traffic, an administrator can rapidly identify the redirection of the whole traffic. But also the traffic and the communication should be encrypted and thus the sniffer would not be able to read especially confidential information. Using HTTPS protocol \\
 \hline
-13 & Sniffing & There should be log of every path of the data trough the network. Thus if a person is sniffing the traffic, an administrator can rapidly identify the redirection of the whole traffic. But also the traffic and the communication should be encrypted and thus the sniffer would not be able to read especially confidential information. \\
+13 & Social engineering & Since it concerns the employees, the company should provide security awareness training in order to avoid social engineering. This is out of our scope.  \\
 \hline
-14 & Social engineering & Since it concerns the employees, the company should provide security awareness training in order to avoid social engineering.  \\
+14 & Data credentials lost & Having more than one administrator is recommended but it is not an imperative countermeasure \\
 \hline
-15 & Data credentials lost & Having more than one administrator is recommended but it is not an imperative countermeasure \\
-\hline
-16 & Data credentials theft & In order to mitigate the risk of credential theft, employee should not save them into their browser or write them into a secure file and should change it several times. \\
+15 & Data credentials theft & In order to mitigate the risk of credential theft, employee should not save them into their browser or write them into a secure file and should change it several times. This is out of our scope.\\
 \hline
 \caption{Countermeasure}
 \label{tab:contermesure}
@@ -683,11 +666,12 @@ However, before starting, we should mention that most of the vulnerabilities now
 
 \subsection{Residual risk}
 
+The following Table \ref{tab:riskresid} summarize the previous section very well. In addition, the following table add the residual risk.
 %\begin{table}[!h]
 %	\centering
 \begin{longtable}{|c|p{4cm}|c|c|c|}
 	\hline
-	\textbf{ID}& \textbf{Vulnerability}  & \textbf{Countermeasure} & \textbf{Risk level} & \textbf{Residual riskl}          \\
+	\textbf{ID}& \textbf{Threat}  & \textbf{Countermeasure} & \textbf{Risk level} & \textbf{Residual riskl}          \\
 	\hline
 	1 & Power outage & Accept & Medium & Medium \\
 	\hline
@@ -721,8 +705,8 @@ However, before starting, we should mention that most of the vulnerabilities now
 	\hline
 	16 & Data credentials theft & Transfer & High & High \\
 	\hline
-	\caption{Risk level}
-	\label{tab:risklvl}
+	\caption{Summary of countermeasures, risk level and residual risk.}
+	\label{tab:riskresid}
 \end{longtable}
 %fin
 
