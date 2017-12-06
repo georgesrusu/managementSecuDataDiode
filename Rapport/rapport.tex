@@ -272,7 +272,7 @@ Normally the data diode should now be restored at the same point it was after th
 \section{Risk Analysis}
 
 \subsection{Introduction to the risk analysis}
-In this section, we are going to asses any risk that could harm or lead to the destruction of our data diode. But first, lets define what is a risk: \emph{A probability or threat of damage, liability, loss, or any other negative occurrence that is caused by external or internal vulnerabilities, and that may be avoided through preemptive action}\footnote{Definition from the \href{http://www.businessdictionary.com/definition/risk.html}{businessdictionary website.}}. Generally, the term risk is associated with the probability of occurrence of a damage or a loss during an event. Thus, we can illustrate the risk by the following rule:
+In this section, we are going to asses any risk that could harm or lead to the destruction of our data diode. But first, let's define what is a risk: \emph{A probability or threat of damage, liability, loss, or any other negative occurrence that is caused by external or internal vulnerabilities, and that may be avoided through preemptive action}\footnote{Definition from the \href{http://www.businessdictionary.com/definition/risk.html}{businessdictionary website.}}. Generally, the term risk is associated with the probability of occurrence of a damage or a loss during an event. Thus, we can illustrate the risk by the following rule:
 \begin{center}
 \centering
 $Risk(e)= impact(e) \times likelihood(e), \forall e \in Events$
@@ -467,7 +467,7 @@ Risk Level : High
 
 
 \subsubsection{Threats affecting logical assets}
-In the same order of idea, lets focus now on the threats affecting the logical assets of the company. 
+In the same order of idea, let's focus now on the threats affecting the logical assets of the company. 
 
 \paragraph{Threat 6 :}  \textbf{Zero Day Attack} \\
 \indent Since there is always the probability to be attacked by a new and unknown form of cyberattack, this represents a threat due to the fact that the future can not be predicted. Therefore, such attack could affect one or more parts of the company, but it still remains theoretically and unknown until the beginning of such attack.
@@ -622,7 +622,7 @@ Risk Level : High
 \subsection{Countermeasures}
 In this section we will explain which and how countermeasures could be taken in order to address every threat of the system. We will use the Table \ref{tab:risk} in order to adapt our countermeasures accordingly to the risk level of each threat.
 
-Before starting, we should mention that most of the threats nowadays are coming from the internet. Thus, our data diode should not be exposed to such a danger. Despite the fact that the data diode could be installed within a LAN which has an internet connection, it should not be possible to access it form the outside but only from the LAN. In this way, it will be much difficult to a hacker to directly threaten our data diode. In order to succeed his attempts he should therefor, try infecting a computer within the LAN and only then, by redirecting all his traffic trough his new bot, try to hack our data diode.
+Before starting, we should mention that most of the threats nowadays are coming from the internet. Thus, our data diode should not be exposed to such a danger. Despite the fact that the data diode could be installed within a LAN which has an internet connection, it should not be possible to access it from the outside but only from the LAN. In this way, it will be much difficult to a hacker to directly threaten our data diode. In order to succeed his attempts he should therefor, try infecting a computer within the LAN and only then, by redirecting all his traffic through his new bot, try to hack our data diode.
 %\begin{table}[!h]
 %	\centering
 \begin{longtable}{|c|p{2.5cm}|p{12cm}|}
@@ -649,9 +649,9 @@ Before starting, we should mention that most of the threats nowadays are coming 
 \hline
 10 & Misconfiguration & The configuration is only possible through the administrator interface and by an administrator. Hence, an administrator must be well chosen. However, the company could create for example a modification policy in which a system alteration should be approved by at least two administrator in order to take place. This is out of our scope.  \\
 \hline
-11 & Failure in maintenance from the provider & We test all the features of the data diode (such as the transfer) before providing it to the client. We make sure we always have a well operating version before deploying it to our customers. \\
+11 & Failure in maintenance from the provider & We test all the features of the data diode (such as the transfer) before providing it to the client. We make sure we always have a well operating version before deploying it to our customers. However, when receiving new versions, the administrators could install the new version in parallel and encourage all the employee to use the newest version. In this case, if the newest has bugs, it can be reported and the old version is still operating. This lead to the always availability of the data diode. \\
 \hline
-12 & Sniffing & There should be log of every path of the data trough the network. Thus, if a person is sniffing the traffic, an administrator can rapidly identify the redirection of the whole traffic. But also the traffic and the communication should be encrypted and thus the sniffer would not be able to read especially confidential information. Using HTTPS protocol \\
+12 & Sniffing & There should be log of every path of the data trough the network. Thus, if a person is sniffing the traffic, an administrator can rapidly identify the redirection of the whole traffic. But also the traffic and the communication should be encrypted and thus the sniffer would not be able to read especially confidential information. Using HTTPS protocol. \\
 \hline
 13 & Social engineering & Since it concerns the employees, the company should provide security awareness training in order to avoid social engineering. This is out of our scope.  \\
 \hline
@@ -666,7 +666,7 @@ Before starting, we should mention that most of the threats nowadays are coming 
 
 \subsection{Residual risk}
 
-In this section we are going to add a new variable, the residual risk. Lets have a look at the following definition :\emph{The residual risk is the risk or danger of an action or an event, a method or a (technical) process that, although being abreast with science, still conceives these dangers, even if all theoretically possible safety measures would be applied}\footnote{Definition from Wikipedia.}.
+In this section we are going to add a new variable, the residual risk. Let's have a look at the following definition :\emph{The residual risk is the risk or danger of an action or an event, a method or a (technical) process that, although being abreast with science, still conceives these dangers, even if all theoretically possible safety measures would be applied}\footnote{Definition from Wikipedia.}.
 \begin{center}
 residual risk $=$ risk assessed $-$ countermeasures
 \end{center}
@@ -720,10 +720,11 @@ In this section, we will explain our implementation from scratch but also our ne
 \subsubsection{Machine installations}
 We firstly installed two virtual machines. As we said earlier the operating used is Ubuntu 16.04 LTS\footnote{Long Time support.}. 
 
-Once the OS installation was done, we created for each machine two virtual interfaces. Lets define the virtual network or internal network as the network between the two data diode machines (transmitter and receiver) and the outside network or external network as the network between a data diode server and computer's labs. For the virtual network we used the interface named as \emph{enp0s6} and for the other external network we used the interface \emph{enp0s5}. Here is the schema of the virtual network used for the data diode. 
+Once the OS installation was done, we created for each machine two virtual interfaces. Let's define the virtual network or internal network as the network between the two data diode machines (transmitter and receiver) and the outside network or external network as the network between a data diode server and computer's labs. For the virtual network we used the interface named as \emph{enp0s6} and for the other external network we used the interface \emph{enp0s5}. Here is the schema of the virtual network used for the data diode. 
 
 \begin{figure}[!h]
-%\includegraphics[scale=•]{•}
+\centering
+\includegraphics[scale=0.5]{images/network.png}
 \caption{Virtual network architecture.}
 \label{fig:netvirt}
 \end{figure}
@@ -734,43 +735,89 @@ As shown in Figure \ref{fig:netvirt}, within the data diode we used a virtual ro
 \item[-] The receiver (\emph{enp0s6}) Ipv4 virtual network address is : 10.37.129.6
 \end{enumerate}
 
-Once tested and approved, we continued by adding another router to simulate both external side of the data diode. This is illustrated in Figure \ref{fig:netvirt} and is what we call the outside network. We have done this to be able to communicate with the transmitter but also with the receiver and without needing to change cable connection each time. Again we configured the outside network interface manually :
+Once tested and approved, we continued by adding another router to simulate both external side of the data diode. This is illustrated in Figure \ref{fig:netvirt} and is what we call the outside network. We have done this to be able to communicate with the transmitter but also with the receiver and without needing to change the connection each time. Again we configured the outside network interface manually :
 \begin{enumerate}
 \item[-] The transmitter (\emph{enp0s5}) Ipv4 external network address is : 192.168.1.15
 \item[-] The receiver (\emph{enp0s5}) Ipv4 external network address is : 192.168.1.16
 \end{enumerate}
-\subsubsection{simulation un seul sens}
-\subsection{deploymebt de bftp}
 
-\subsection{interface Web data diode}
-subsubsection{Django} pourquoi lié avec quelques contre mesure
+However, in our client's company, both the transmitter and the receiver should not be in the same LAN. We did this here because we needed to test it, but afterwards, there are only network settings which differ.\subsubsection{Unidirectional communication}
+As mentioned earlier we should have a fiber cable between the two machines of the data diode. However because of the costs involved we simulated using a virtual network. The problem is that simulating the connection means there is bi-directional communication. In order to get closer to our real scenario we used linux firewall (iptables) to block the one way back communication within the data diode. Here is how we managed to succeed it.
 
-\subsubsection{interface de configuration}
-lien softlink de interface
-\subsubsection{ajout de vftp dans l'interface}
-\subsection{control recommendation}
-\section{Test and demo scenario}
+\paragraph{}We defined the following iptables rules on the receiver server:
+\begin{enumerate}
+\item INPUT -s 10.37.129.5/32 -d 10.37.129.6/32 -p tcp -j DROP
+\item INPUT -s 10.37.129.5/32 -d 10.37.129.6/32 -p udp -j ACCEPT
+\item INPUT -s 10.37.129.5/32 -d 10.37.129.6/32 -p icmp -j DROP
+\item OUTPUT -s 10.37.129.6/32 -d 10.37.129.5/32 -j DROP
+\end{enumerate}
 
-1 -> linux 
-2-> firewall iptables receiver
-3 -> deployement de bftp. joue avec pour comprende comment ca fonctionne
+The first three rules is to make sure that the receiver drop every packet which do not use UDP protocol as the transportation layer. The fourth is to make sure that the receiver cannot respond in any way to the transmitter
 
-4-> interface web 1 quoi et comment? Apres des rechers on utilise Django 1 parce c'est python meme que bftp, deuxieme c'est un framork et simple a utilise et qui implemente deja certaine contremseurer comme SQL, SRF XSS.... On fait les template html et css
-5 -> interface config web  -> on cree coment modifier le ip serveru, avec un lien soft link interface ensuite on a creer systeme de alume bftp eteinte bfpt e ce azvec des parameter
-6-> on a creer le cote user normal et  on a ajoute bftp dans l'implementation
+Once we have tested those rules, we saved them into a file using the command \emph{iptables-save $>$ file}. However, once the receiver server restart, the iptables are not by default persistent, this means that these rules are disappearing after a system restart. Thus, we added a command in the \emph{interfaces} file for the \emph{enp0s6} interface : \emph{pre-up iptables-restore $<$ savedFile}. This will do the trick, when the machine reboots, the iptables rules will be restored using the saved file. In this way we managed to simulate the uni-directional communication between the transmitter and the receiver within the data diode.
 
-7-> on peut dire que control recommendation -> ca serait bien que l'entrepreise mette un anti DDOS , mais aussi que on peut pour ddso lancer en docker et docker monitoring
+\subsection{Deploying an FTP protocol}
+Now that we have an unidirectional communication over UDP between the two machines of the data diode, it is now time to deploy the FTP protocol presented earlier: \emph{BlindFTP}. As this is a python2 script and that python2 is already installed by default on our Linux machines, this step is quite fast.
 
-siffing -< https 
-ùisconfiguration -> si jamaios une maucvais config l'admin devrai pourvoir retourner en arrere -W utilisation d'un git un zip une fois que c'est bon config et apres suffi de redeployer -> system restore
+We downloaded the \emph{BlindFTP} script on both sides of the data diode and followed these steps:
+\begin{enumerate}
+\item Launched the reception on the receiver side with the command : 
+\begin{center}
+python bftp.py -r /path/to/receptionFolder -a IPv4ReceiverAddress
+\end{center}
+In this command we replaced the \emph{/path/to/receptionFolder} with the default value of \emph{/home/receiver/Desktop/reception} and the \emph{IPv4ReceiverAddress} with the receiver address mentioned above which is 10.37.129.6 .
 
-failure in maintenance apres une mise a jour, on peut par exemple essayer la data diode, un test temporaire, lancer en parralele et duire au employee d'essayre de l'utiliser et une fois uqe c valide passer en master
- Virus malware -> l'entreprise peut premiere installer un firewall un systeme mais aussi elle pourrait dans la data diode installer un systeme de permission de fichier envoye, pas d'executable seumement des fichier normal
+\item Once the reception has been launched, we got to the transmitter side and launched the transmission.
+\begin{center}
+python bftp.py -b -S /path/to/transmissionFolder -a IPv4ReceiverAddress -P secondBeforeRecheckTheFolder
+\end{center}
+In this command option \emph{-b} is for loop, this means that files will be send in a loop, option -P is the interval time in seconds before rechecking the transmission folder in order to see if new files are been added or deleted, we defined this by default at 5 seconds. Option \emph{-S} is the path to the transmissionFolder, we defined by default that files will be transmitted from the folder located under \emph{/home/transmission/Desktop/transmit}. And finally the \emph{-a} option is similar to the reception command.
+\end{enumerate}
+
+Once all above was done, sending a file/folder to the other side of the data diode is revealing to be an easy task. By simply copying the desired file/folder into the transmission folder from the transmitter and within 5 seconds, it will appear on the receiver side in the reception folder defined.
+
+\subsection{Web interface of the data diode}
+As we had to implement a data diode configuration web interface, we started by making some researches about how to develop a web interface in a fast and secure way. In addition, we had to find a way to integrate our python2 bftp script. We discovered the Django web framework which avers to be written in python. Moreover, Django framework already implements countermeasures against the basics vulnerabilities of the web such as XSS \footnote{Cross-Site Scripting.}, CSRF\footnote{Cross-Site Request Forgery.} and SQL injections.
+
+In conclusion we decide to implement our web data diode interface using the Django framework.
+
+\subsubsection{Configuration interface}
+As shown earlier in this paper in Figure \ref{fig:configadminpagetrans} and in Figure \ref{fig:configadminpagereceiv}, we created a web interface which allow to change the IPv4 network address of the \emph{enp0s5} interface, remember that this is the interface facing the external network of the data diode. We managed to do this by firstly creating a symbol link of the \emph{/etc/network/interfaces} to the \emph{/home/transmitter/Desktop/DataDiode/interfaces}. We did this because the \emph{/etc/} folder could not be modified by another user unless he is root (Linux operating system). We do not want to give root permission to the Django web server which will modify the \emph{interfaces} file according to the configuration made by the administrator on the web interface. And thus in this way, the Django server can modify the file without being root.
+
+The Django server will use the \emph{transmitter} machine user created especially for the transmitter side.
+
+When the administrator configure the IP network address of the servers, there will always be a reboot, in order to apply changes. Despite that generally in Linux, we could only restart the networking service to apply changes, we think that our virtual machines had a driver misconfiguration because changes could not be applied in this fast way, a reboot was always applying the newest configurations.
+
+\subsubsection{Django and bftp.py}
+The only thing left was to be able to start and stop the bftp script. What we did is very simple, we used the python library \emph{os} with which we could execute bash commands. Thus, we implemented some functions to start and stop the bftp script. However this sound easy, stopping the script avers to be a difficult task. Nor Ctrl+C, nor Ctrl+D was not working. The only way to stop the script is by killing it using the \emph{kill PID} Linux command. Thus, each time we start the script we store the pid of the process and when the stopping function gets called, we execute the kill bash command.
+
+\section{Demonstration plan}
+On Friday 8th of December we are going to demonstrate our data diode prototype.
+\subsection{Objectives}
+The goal of the demonstration is to prove the proper functioning of the system. 
+\begin{enumerate}
+\item[-] We will show how users can sends file through the data diode and how they could interact with it.
+\item[-] We will show how to configure the data diode, starting stopping the data diode.
+\item[-] We will show how to configure network Ipv4 address of the data diode servers (transmitter and receiver). This configuration will be done for the external network of the data diode (\emph{enp0s5} interface).
+\end{enumerate}
+
+\subsection{Hardware materials}
+We will use the following material in order to get closer to our real life scenario.
+\begin{enumerate}
+\item[-] One computer on which 2 virtual machines will be installed: the transmitter and the receiver.
+\item[-] Two computers, one for communicating with the transmitter and one for the receiver.
+\item[-] A router to communicate easily with both side of the data diode.
+\end{enumerate}
  
-entreprise politque de seucrite mot de passe par exemple
- admin change les mot de passe tout les x temps , surotut les mot de passe machien de data diode
- Chaque utilisateur doit changer son mot de passe tout les 3 mois ! ou tout les 6 mois opar exemple
- 
+\subsection{Presentation flow}
+We will start with an already set up data diode prototype. Here is the step by step presentation flow that we will follow:
+\begin{enumerate}
+\item Starting the reception on the receiver side using the default account.
+\item Authenticating using an administrator, starting the transmission.
+\item Authenticating to the web interface using a normal user account and as an admin user.
+\item Uploading a file and sending it through the data diode.
+\item Downloading and deleting a file from both side of the data diode.
+\end{enumerate}
  
 \clearpage
 \begin{thebibliography}{9}
@@ -790,9 +837,20 @@ CS Risk Management and Compliance Ltd,
 \bibitem{data-diode-transport}
 BlindFTP,
 \textit{Blind ftp protocol}[Online]. Available: \url{https://www.decalage.info/fr/python/blindftp} [Accessed: 30- Oct- 2017]
+
 \bibitem{Livre}
 David Basin AND Patrick Schaller AND Michael Schlapfer,
 \textit{Applied Information Security, A hands-on Approach},
 Springer.
+
+\bibitem{data-diode-documentation}
+Philippe Lagadec and Laurent Villemin,
+\textit{BlindFTP documentation}
+Documentation,
+16 August 2010.
+
+
+
+
 \end{thebibliography}
 \end{document}

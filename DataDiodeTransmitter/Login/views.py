@@ -7,7 +7,7 @@ from django.contrib.auth.hashers import check_password,make_password
 import os
 
 def loginTransmitter(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated():
         if request.user.is_staff:
             return redirect('adminTransmitterInterface')
         else:
