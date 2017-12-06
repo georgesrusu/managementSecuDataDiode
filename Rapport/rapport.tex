@@ -666,7 +666,12 @@ Before starting, we should mention that most of the threats nowadays are coming 
 
 \subsection{Residual risk}
 
-The following Table \ref{tab:riskresid} summarize the previous section very well. In addition, the following table add the residual risk.
+In this section we are going to add a new variable, the residual risk. Lets have a look at the following definition :\emph{The residual risk is the risk or danger of an action or an event, a method or a (technical) process that, although being abreast with science, still conceives these dangers, even if all theoretically possible safety measures would be applied}\footnote{Definition from Wikipedia.}.
+\begin{center}
+residual risk $=$ risk assessed $-$ countermeasures
+\end{center}
+
+The next Table \ref{tab:riskresid} summarize the previous section very well and for each threat, we add the residual risk remained after the implementation of the countermeasures . For this and in the same order of idea, we defined three levels: high, medium and low.
 %\begin{table}[!h]
 %	\centering
 \begin{longtable}{|c|p{4cm}|c|c|c|}
@@ -675,9 +680,9 @@ The following Table \ref{tab:riskresid} summarize the previous section very well
 	\hline
 	1 & Power outage & Accept & Medium & Medium \\
 	\hline
-	2 & Fire  & Mitigate & Low & Low \\
+	2 & Fire  & Accept & Low & Low \\
 	\hline
-	3 & Data diode hardware failure & Accept & Low & Low \\
+	3 & Data diode hardware failure & Mitigate & Low & Low \\
 	\hline
 	4 & Data diode hardware degradation & Mitigate & Medium & Low  \\
 	\hline
@@ -691,19 +696,17 @@ The following Table \ref{tab:riskresid} summarize the previous section very well
 	\hline
 	9 & Virus and malwares & Transfer & Medium & Medium \\
 	\hline
-	10 & Misconfiguration & Trnasfer & Medium & Medium \\
+	10 & Misconfiguration & Transfer & Medium & Medium \\
 	\hline
-	11 & Failure in maintenance from the provider & Mitigate & Medium & Low \\
+	11 & Failure in maintenance from the provider & Accept & Medium & Low \\
 	\hline
-	12 & Remote connection & Trnasfer & Medium & Medium\\
+	12 & Sniffing & Accept & Low & Low \\
 	\hline
-	13 & Sniffing & Transfer & Low & Low \\
+	13 & Social engineering & Transfer & Medium & Medium \\
 	\hline
-	14 & Social engineering & Transfer & Medium & Medium \\
+	14 & Data credentials lost & Transfer & Low & Low \\
 	\hline
-	15 & Data credentials lost & Transfer & Low & Low \\
-	\hline
-	16 & Data credentials theft & Transfer & High & High \\
+	15 & Data credentials theft & Transfer & High & High \\
 	\hline
 	\caption{Summary of countermeasures, risk level and residual risk.}
 	\label{tab:riskresid}
@@ -711,10 +714,64 @@ The following Table \ref{tab:riskresid} summarize the previous section very well
 %fin
 
 \section{Implementation}
+\subsection{Simulation of the data diode}
+In this section, we will explain our implementation from scratch but also our network infrastructure. Because of costs reasons, we had to use virtual machines and virtual networks. 
 
+\subsubsection{Machine installations}
+We firstly installed two virtual machines. As we said earlier the operating used is Ubuntu 16.04 LTS\footnote{Long Time support.}. 
+
+Once the OS installation was done, we created for each machine two virtual interfaces. Lets define the virtual network or internal network as the network between the two data diode machines (transmitter and receiver) and the outside network or external network as the network between a data diode server and computer's labs. Here is the schema of the virtual network used for the data diode. 
+
+\begin{figure}[!h]
+%\includegraphics[scale=•]{•}
+\caption{Virtual network architecture.}
+\label{fig:netvirt}
+\end{figure}
+
+As shown in Figure \ref{fig:netvirt}, within the data diode we used a virtual router to make the connection between the transmitter and receiver. We have set up the connection by specifying for each entity a static Ipv4 address. 
+\begin{enumerate}
+\item[-] The transmitter Ipv4 virtual network address is : 10.37.129.5
+\item[-] The receiver Ipv4 virtual network address is : 10.37.129.6
+\end{enumerate}
+
+Once tested and approved, we continued by adding another router to simulate both external side of the data diode. This is illustrated in Figure \ref{fig:netvirt} and is what we call the outside network. We have done this to be able to communicate with the transmitter but also with the receiver and without needing to change cable connection each time. Again we configured the outside network interface manually :
+\begin{enumerate}
+\item[-] The transmitter Ipv4 external network address is : 10.37.129.5
+\item[-] The receiver Ipv4 external network address is : 10.37.129.6
+\end{enumerate}
+\subsubsection{simulation un seul sens}
+\subsection{deploymebt de bftp}
+
+\subsection{interface Web data diode}
+subsubsection{Django} pourquoi lié avec quelques contre mesure
+
+\subsubsection{interface de configuration}
+lien softlink de interface
+\subsubsection{ajout de vftp dans l'interface}
+\subsection{control recommendation}
 \section{Test and demo scenario}
 
+1 -> linux 
+2-> firewall iptables receiver
+3 -> deployement de bftp. joue avec pour comprende comment ca fonctionne
 
+4-> interface web 1 quoi et comment? Apres des rechers on utilise Django 1 parce c'est python meme que bftp, deuxieme c'est un framork et simple a utilise et qui implemente deja certaine contremseurer comme SQL, SRF XSS.... On fait les template html et css
+5 -> interface config web  -> on cree coment modifier le ip serveru, avec un lien soft link interface ensuite on a creer systeme de alume bftp eteinte bfpt e ce azvec des parameter
+6-> on a creer le cote user normal et  on a ajoute bftp dans l'implementation
+
+7-> on peut dire que control recommendation -> ca serait bien que l'entrepreise mette un anti DDOS , mais aussi que on peut pour ddso lancer en docker et docker monitoring
+
+siffing -< https 
+ùisconfiguration -> si jamaios une maucvais config l'admin devrai pourvoir retourner en arrere -W utilisation d'un git un zip une fois que c'est bon config et apres suffi de redeployer -> system restore
+
+failure in maintenance apres une mise a jour, on peut par exemple essayer la data diode, un test temporaire, lancer en parralele et duire au employee d'essayre de l'utiliser et une fois uqe c valide passer en master
+ Virus malware -> l'entreprise peut premiere installer un firewall un systeme mais aussi elle pourrait dans la data diode installer un systeme de permission de fichier envoye, pas d'executable seumement des fichier normal
+ 
+entreprise politque de seucrite mot de passe par exemple
+ admin change les mot de passe tout les x temps , surotut les mot de passe machien de data diode
+ Chaque utilisateur doit changer son mot de passe tout les 3 mois ! ou tout les 6 mois opar exemple
+ 
+ 
 \clearpage
 \begin{thebibliography}{9}
 \bibitem{data-diode-work}
