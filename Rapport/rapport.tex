@@ -26,7 +26,7 @@
 Our client would want to prevent his research and development labs against industrial espionage and confidential information leaking. He wants to divide the company network in order to maintain the labs in an isolated environment. Thus, the critical data could not leave the company using the network. But how to be able to transfer files or to assure that all the operating systems are up-to-date? This could be achieved using manual operations where an employee would manually copy the files or the updates on a mass-storage device\footnote{A USB-key for instance.} and then used them or install them on every node from the isolated network. However, this is not the most optimized way and for sure it is not cost less and timeless for the company, without mentioning that there could be dependency problems for applications or updates. This method is also prone to human errors and this could generate security vulnerabilities.
 
 \subsection{Our solution}
-In order to address this problem we are going to implement a data diode. In electronic, a diode is a component which conduct the current in one direction. Thus the term of data diode is a set of components that only let the data to travel in an unidirectional way. An example of use case is illustrated in Figure \ref{fig:datadiode}, letting the data pass from a low risk LAN to a high risk LAN but not the way around.
+In order to address this problem we are going to implement a data diode. In electronics, a diode is a component which conducts the current in one direction. Thus the term of data diode is a set of components that only let the data to travel in an unidirectional way. An example of use case is illustrated in Figure \ref{fig:datadiode}, letting the data pass from a low risk LAN to a high risk LAN but not the way around.
 
 \begin{figure}
 \centering
@@ -35,7 +35,7 @@ In order to address this problem we are going to implement a data diode. In elec
 \label{fig:datadiode}
 \end{figure}
 
-A data diode is made using one transmitter(Tx) and one receiver(Rx) both linked using only one fiber cable. Thus, when a digital data is sent through, every bit will be converted\footnote{Using a Digital-to-analog converter (DAC).} into an electrical pulse which will be convert in light pulse using a LED\footnote{Light Emitting Diode.}. Then, the output light will pass trough the fiber cable and as soon as the photons are reaching the receiver, they will be converted firstly into an electrical pulse by a photo diode and then in bits\footnote{Using an analog to digital converter (ADC).}. Since there is only one fiber, data can only travel in one way.
+A data diode is made using one transmitter(Tx) and one receiver(Rx) both linked using only one fiber cable. Thus, when a digital data is sent through, every bit will be converted\footnote{Using a Digital-to-analog converter (DAC).} into an electrical pulse which will be convert in light pulse using a LED\footnote{Light Emitting Diode.}. Then, the output light will pass through the fiber cable and as soon as the photons are reaching the receiver, they will be converted firstly into an electrical pulse by a photo diode and then in bits\footnote{Using an analog to digital converter (ADC).}. Since there is only one fiber, data can only travel in one way.
 
 One major problem of this system is the network transport protocols(layer 4 in the OSI model) that applications are using. The most used transportation protocol nowadays is TCP. However, TCP is a bi-directional protocol which need the 3 way handshake in order to start a connection, thus there must be at least two fiber cables. In contradiction, UDP does not require a handshake process because it does not provide reliability, ordering, data integrity and does not set up a dedicated end-to-end connection automatically. Thus, UDP protocol does not necessary require a bi-directional data transfer. Therefore, the use of such a protocol is recommended when dealing with applications that are not sensitive to data loss or that implements an error checking system. Hence, the use of the UDP protocol within the data diode.
 
@@ -720,7 +720,7 @@ In this section, we will explain our implementation from scratch but also our ne
 \subsubsection{Machine installations}
 We firstly installed two virtual machines. As we said earlier the operating used is Ubuntu 16.04 LTS\footnote{Long Time support.}. 
 
-Once the OS installation was done, we created for each machine two virtual interfaces. Lets define the virtual network or internal network as the network between the two data diode machines (transmitter and receiver) and the outside network or external network as the network between a data diode server and computer's labs. Here is the schema of the virtual network used for the data diode. 
+Once the OS installation was done, we created for each machine two virtual interfaces. Lets define the virtual network or internal network as the network between the two data diode machines (transmitter and receiver) and the outside network or external network as the network between a data diode server and computer's labs. For the virtual network we used the interface named as \emph{enp0s6} and for the other external network Here is the schema of the virtual network used for the data diode. 
 
 \begin{figure}[!h]
 %\includegraphics[scale=•]{•}
@@ -736,8 +736,8 @@ As shown in Figure \ref{fig:netvirt}, within the data diode we used a virtual ro
 
 Once tested and approved, we continued by adding another router to simulate both external side of the data diode. This is illustrated in Figure \ref{fig:netvirt} and is what we call the outside network. We have done this to be able to communicate with the transmitter but also with the receiver and without needing to change cable connection each time. Again we configured the outside network interface manually :
 \begin{enumerate}
-\item[-] The transmitter Ipv4 external network address is : 10.37.129.5
-\item[-] The receiver Ipv4 external network address is : 10.37.129.6
+\item[-] The transmitter Ipv4 external network address is : 192.168.1.15
+\item[-] The receiver Ipv4 external network address is : 192.168.1.16
 \end{enumerate}
 \subsubsection{simulation un seul sens}
 \subsection{deploymebt de bftp}
