@@ -142,8 +142,8 @@ DATADIODESTATUSTRANSMITTER="halted"
 DATADIODEPIDTRANSMITTER="stopped"
 #cwd = os.getcwd()
 #cwd += "/bftpTransmit/"
-FOLDERTRANSMITTER="/home/transmitter/Desktop/transmit/"
-#FOLDERTRANSMITTER="/Users/georgerusu/Documents/Facultate/Ma1/ManagementOfSecurity/managementSecuDataDiode/DataDiodeTransmitter/bftpTransmit/"
+#FOLDERTRANSMITTER="/home/transmitter/Desktop/transmit/"
+FOLDERTRANSMITTER="/Users/georgerusu/Documents/Facultate/Ma1/ManagementOfSecurity/managementSecuDataDiode/DataDiodeTransmitter/bftpTransmit/"
 TIMETOSYNC="5"
 
 #Network settings to configure
