@@ -167,7 +167,7 @@ On the transmission page, in addition to a simple user, the administrator has th
 
 On the reception page, the administrator has access to only his transferred files through the data diode. In this way, we are sure that the confidentiality is preserved by the administrator.  
 
-If an administrator wants to maintain (updates) the company's computers he could download on his machine the needed update packages and transfer them easily to the high security zone. All this is made possible thanks our interface and file transfer system. He can then update all the machines using some Linux script or to use the web interface to download each update package manually on the desired machine. Of course the latter method is not the most optimal, but it could serve in case of a need for a system downgrade or an application downgrade on a workstation. 
+If an administrator wants to maintain (updates) the company's computers he could download on his machine the needed update packages and transfer them easily to the high security zone. All this is made possible thanks to our interface and file transfer system. He can then update all the machines using some Linux script or to use the web interface to download each update package manually on the desired machine. Of course the latter method is not the most optimal, but it could serve in case of a need for a system downgrade or an application downgrade on a workstation. 
 
 
 \subsubsection{A Technical file transfer usage}
@@ -218,13 +218,13 @@ The following steps should be followed in order to have a fully operational data
 \item[-]On the receiver side $\triangleright$ user: receiver \& password: abbaabba
 \end{enumerate}
  
-Once logged in, he should edit the files\footnote{We are assuming that an administrator should be able of editing the configuration file of a Linux operating system network interfaces.} according to the company's LANs settings. These files are located at:
+Once logged in, he should edit the files\footnote{We are assuming that an administrator should be capable of editing the configuration file of a Linux operating system network interfaces.} according to the company's LANs settings. These files are located at:
 \begin{enumerate}
 \item[-] For the transmission side : \emph{/home/transmitter/Desktop/DataDiodeTransmiter/interfaces}
 \item[-] For the receiver side : \emph{/home/receiver/Desktop/DataDiodeReceiver/interfaces}
 \end{enumerate}
 
-Both web interface should be now accessible form a browser on port 8080.
+Both web interface should be now accessible from a browser on port 8080.
 
 \underline{WARNING}: The passwords for both machines should be changed!
 
@@ -259,8 +259,8 @@ Restoring the data diode to its factory settings could be needed in case of a sy
 \item \textbf{Deploy a backup} 
 If a backup folder was created according to the installation section, copy it in:
 \begin{enumerate}
-\item[-] For the transmission side : \emph{/home/transmitter/Desktop/}
-\item[-] For the receiver side : \emph{/home/receiver/Desktop/}
+\item[-] For the transmission side : \emph{/home/transmitter/Desktop/DataDiodeTransmiter/}
+\item[-] For the receiver side : \emph{/home/receiver/Desktop/DataDiodeReceiver/}
 \end{enumerate}
 
 \end{enumerate}
@@ -342,7 +342,7 @@ Such events could be related to natural disaster which cannot be always predicte
 \item[-] Wildfires.
 \end{enumerate}
 
-However, some event could have a much higher probability of appearance depending on the location where the company has her headquarters. For example, it is more likely to have floods or a tsunami if the company is located near the equator of the globe or in a tropical area, similarly wildfires could occur much often in warm regions. Hence, the importance of the company's location chosen. For example, the company could prevent some of those events by choosing where to host their main servers or by implementing measures such as water or fire sealing doors for the labs.
+However, some event could have a much higher probability of appearance depending on the location where the company has her headquarters. For example, it is more likely to have floods or a tsunami if the company is located near the equator of the globe or in a tropical area, similarly wildfires could occur much often in warm regions. Hence, the importance of the company's location chosen. For example, the company could prevent some of those events by choosing where to host their mains servers or by implementing measures such as water or fire sealing doors for the labs.
 
 \subsubsection{Predictable events}
 We can define predictable events as security lacks that we are or not acknowledged about in our system. The administrators could secure the systems by not divulging the vulnerabilities or the backdoors left. This is what \emph{security by obscurity} means, however this is a very bad idea and should be avoided! We defined a list of persons which could be implicated in the hacking action of our client's company system, those persons could be aware of the vulnerabilities of the system or not. Such persons could be:
@@ -366,7 +366,7 @@ Furthermore, having visitor into the company can be a good thing for the image a
 For the last two categories, they represent a constant threat for every company. Hence the need for a security policy always up to date and a good strategic network and workstation deployment in order to minimize the risk. Those categories could exploit the vulnerabilities left in the system by administrators using the \emph{security by obscurity} concept.
 
 \subsection{Risks assessment}
-In this section, we will give a set of possible threats that we should take into account in order to secure the most possible our data diode. In order to have a clear view, we will explain every threats by ordering them according to the type of assets that it affects. Therefore, the threats will be divide in three parts, affecting physical assets, affecting logical assets and affecting persons. For each one of this three parts, we will give the possible threats, describe them and give a level of impact, a level of likelihood and the resulting levels of risk.
+In this section, we will give a set of possible threats that we should take into account in order to secure the most possible our data diode. In order to have a clear view, we will explain every threats by ordering them according to the type of assets that it affects. Therefore, the threats will be divided in three parts, affecting physical assets, affecting logical assets and affecting persons. For each one of this three parts, we will give the possible threats, describe them and give a level of impact, a level of likelihood and the resulting levels of risk.
 
 \subsubsection{Levels of impact, likelihood and risk}
 We define three different types of affection for our client's company:
@@ -491,7 +491,7 @@ Likelihood : High \\
 Risk Level : High
 
 \paragraph{Threat 8 :}  \textbf{Brute force attack} \\
-\indent A hacker could try as many passwords as he wants in order to find the correct password. This could be done using dictionaries attacks on a web log in page or another type of identity check-in systems of the company. In the case of the hacker find or guess a correct password, he would use it as long as he can and it works.
+\indent A hacker could try as many passwords as he wants in order to find the correct password. This could be done using dictionaries attacks on a web log in page or another type of identity check-in systems of the company. In the case of the hacker find or guess a correct password, he would use it as long as he can and as longs as it works.
 
 Similarly to the SQL injection, there are tools in order to crack passwords. Since it is easily done, this kind of attack has a high probability to occur. \\ \\
 Source : Skilled Hacker \\ 
@@ -503,7 +503,7 @@ Risk Level : High
 \paragraph{Threat 9 :}  \textbf{Virus and malwares} \\
 \indent An infected computer's user could without acknowledgement send a virus trough the data diode or could simply spy (\emph{Trojan}) on the user activity. Despite the fact that the communication from the isolated network is not possible, a ransom ware\footnote{This kind of virus could encrypt all the data on a drive and request some money in order to decrypt it.} virus could led to the destruction or the non availability of data from the labs.
 
-Depending of the type of the virus, the impact is as well depending on the type of the virus: a Trojan virus would not halt the system however confidentiality will be broken. 
+Depending of the type of the virus, the impact is as well depending on the type of the virus: a Trojan virus would not halt the system however confidentiality will be broken. Despite the fact that with a spy virus confidentiality can only be compromised from the low security LAN and thus confidentiality will be broken in a low level, the risk remains.
 
 This kind of attack is really diversified and used. However, this attack could only success if a user file is infected which means there are several attack to do before. Thus, the likelihood remains medium. \\ \\
 Source : Skilled Hacker, Script kiddies, Administrators, Employees  \\ 
@@ -546,7 +546,7 @@ Risk Level : Low
 Similarly as for the previous sections, we explain the threats affecting persons.
 
 \paragraph{Threat 13 :} \textbf{Social engineering} \\
-\indent Social engineering is a practice of manipulating people so they give up confidential information or sensitive data such as their credentials. The most common forms of this kind are the ransomware viruses and phishing techniques. 
+\indent Social engineering is a practice of manipulating people so that they give up confidential information or sensitive data such as their credentials. The most common forms of this kind are the ransomware viruses and phishing techniques. 
 
 This method allows a hacker to steal the credentials of a user and then to simply log in and snoop around for sensitive data. Hence, it results in a high risk. But administrators are aware of these techniques so only users are potential victims. \\ \\ 
 Source : Skilled Hackers, unauthorized users \\
@@ -558,7 +558,7 @@ Risk Level : Medium
 \paragraph{Threat 14 :} \textbf{Data credentials lost} \\
 \indent There is a possibility of a user to lose his credentials which means that he will no longer be able to connect to the data diode. In this case, a user should immediately contact the administrator in order to reset his credentials.
 
-An administrator knows the importance of his role and will take care of the data credentials. In addition, every user of the company are using his credential every day so it very rare and unlikely that an employee could forget his in 24 hours. \\  \\ 
+An administrator knows the importance of his role and will take care of the data credentials. In addition, every user of the company are using his credential every day so it is very rare and unlikely that an employee could forget his in less than 24 hours. \\  \\ 
 Source : Administrator, Employees  \\
 Affecting level : Availability \\ \\
 Impact : Medium \\
@@ -772,7 +772,7 @@ In this command we replaced the \emph{/path/to/receptionFolder} with the default
 \begin{center}
 python bftp.py -b -S /path/to/transmissionFolder -a IPv4ReceiverAddress -P secondBeforeRecheckTheFolder
 \end{center}
-In this command option \emph{-b} is for loop, this means that files will be send in a loop, option -P is the interval time in seconds before rechecking the transmission folder in order to see if new files are been added or deleted, we defined this by default at 5 seconds. Option \emph{-S} is the path to the transmissionFolder, we defined by default that files will be transmitted from the folder located under \emph{/home/transmission/Desktop/transmit}. And finally the \emph{-a} option is similar to the reception command.
+In this command option \emph{-b} is for loop, this means that files will be send in a loop, option -P is the interval time in seconds before rechecking the transmission folder in order to see if new files have been added or deleted, we defined this by default at 5 seconds. Option \emph{-S} is the path to the transmissionFolder, we defined by default that files will be transmitted from the folder located under \emph{/home/transmission/Desktop/transmit}. And finally the \emph{-a} option is similar to the reception command.
 \end{enumerate}
 
 Once all above was done, sending a file/folder to the other side of the data diode is revealing to be an easy task. By simply copying the desired file/folder into the transmission folder from the transmitter and within 5 seconds, it will appear on the receiver side in the reception folder defined.
