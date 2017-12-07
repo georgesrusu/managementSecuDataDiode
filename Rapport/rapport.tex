@@ -672,9 +672,9 @@ residual risk $=$ risk assessed $-$ countermeasures
 \end{center}
 
 The next Table \ref{tab:riskresid} summarize the previous section very well and for each threat, we add the residual risk remained after the implementation of the countermeasures . For this and in the same order of idea, we defined three levels: high, medium and low.
-%\begin{table}[!h]
-%	\centering
-\begin{longtable}{|c|p{4cm}|c|c|c|}
+\begin{table}[!h]
+	\centering
+\begin{tabular}{|c|p{4cm}|c|c|c|}
 	\hline
 	\textbf{ID}& \textbf{Threat}  & \textbf{Countermeasure} & \textbf{Risk level} & \textbf{Residual riskl}          \\
 	\hline
@@ -708,10 +708,11 @@ The next Table \ref{tab:riskresid} summarize the previous section very well and 
 	\hline
 	15 & Data credentials theft & Transfer & High & High \\
 	\hline
+	\end{tabular}
 	\caption{Summary of countermeasures, risk level and residual risk.}
 	\label{tab:riskresid}
-\end{longtable}
-%fin
+
+\end{table}
 
 \section{Implementation}
 \subsection{Simulation of the data diode}
@@ -724,8 +725,8 @@ Once the OS installation was done, we created for each machine two virtual inter
 
 \begin{figure}[!h]
 \centering
-\includegraphics[scale=0.5]{images/network.png}
-\caption{Virtual network architecture.}
+\includegraphics[scale=0.5]{images/schema2.png}
+\caption{Network architecture.}
 \label{fig:netvirt}
 \end{figure}
 
