@@ -719,9 +719,9 @@ The next Table \ref{tab:riskresid} summarize the previous section very well and 
 In this section, we will explain our implementation from scratch but also our network infrastructure. Because of costs reasons, we had to use virtual machines and virtual networks. 
 
 \subsubsection{Machine installations}
-We firstly installed two virtual machines. As we said earlier the operating used is Ubuntu 16.04 LTS\footnote{Long Time support.}. 
+We firstly installed two virtual machines. As we said earlier the operating system used is Ubuntu 16.04 LTS\footnote{Long Time support.}. 
 
-Once the OS installation was done, we created for each machine two virtual interfaces. Let's define the virtual network or internal network as the network between the two data diode machines (transmitter and receiver) and the outside network or external network as the network between a data diode server and computer's labs. For the virtual network we used the interface named as \emph{enp0s6} and for the other external network we used the interface \emph{enp0s5}. Here is the schema of the virtual network used for the data diode. 
+Once the OS installation was done, we created for each machine two virtual interfaces. Let's define the virtual network or internal network as the network between the two data diode machines (transmitter and receiver) and the outside network or external network as the network between a data diode server and other computers. For the virtual network we used the interface named as \emph{enp0s6} and for the other external network we used the interface \emph{enp0s5}. All this is shown in Figure \ref{fig:netvirt}.
 
 \begin{figure}[!h]
 \centering
@@ -730,19 +730,27 @@ Once the OS installation was done, we created for each machine two virtual inter
 \label{fig:netvirt}
 \end{figure}
 
-As shown in Figure \ref{fig:netvirt}, within the data diode we used a virtual router to make the connection between the transmitter and receiver. We have set up the connection by specifying for each entity a static Ipv4 address. 
+As shown in Figure \ref{fig:netvirt}, within the data diode we used a virtual switch to make the connection between the transmitter and receiver. We have set up the connection by specifying for each entity a static Ipv4 address. 
 \begin{enumerate}
 \item[-] The transmitter (\emph{enp0s6}) Ipv4 virtual network address is : 10.37.129.5
 \item[-] The receiver (\emph{enp0s6}) Ipv4 virtual network address is : 10.37.129.6
 \end{enumerate}
 
-Once tested and approved, we continued by adding another router to simulate both external side of the data diode. This is illustrated in Figure \ref{fig:netvirt} and is what we call the outside network. We have done this to be able to communicate with the transmitter but also with the receiver and without needing to change the connection each time. Again we configured the outside network interface manually :
+Once the communication within the data diode was working, we decided to create a different network architecture in order to facilitate our implementation and testing process. The new network architecture made only for development and testing purpose is shown in Figure \ref{fig:netvirt}
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.5]{images/schema2.png}
+\caption{Network architecture.}
+\label{fig:netvirt}
+\end{figure}
+We have done this to be able to communicate with the transmitter but also with the receiver from a the same computer and without needing to change networks configurations each time. We configured the outside network interface manually :
 \begin{enumerate}
 \item[-] The transmitter (\emph{enp0s5}) Ipv4 external network address is : 192.168.1.15
 \item[-] The receiver (\emph{enp0s5}) Ipv4 external network address is : 192.168.1.16
 \end{enumerate}
 
-However, in our client's company, both the transmitter and the receiver should not be in the same LAN. We did this here because we needed to test it, but afterwards, there are only network settings which differ.\subsubsection{Unidirectional communication}
+However, in our client's company, both the transmitter and the receiver should not be in the same LAN because if so, the data diode will be useless. We only did this here because we needed to easily test and play with our data diode prototype.
+\subsubsection{Unidirectional communication}
 As mentioned earlier we should have a fiber cable between the two machines of the data diode. However because of the costs involved we simulated using a virtual network. The problem is that simulating the connection means there is bi-directional communication. In order to get closer to our real scenario we used linux firewall (iptables) to block the one way back communication within the data diode. Here is how we managed to succeed it.
 
 \paragraph{}We defined the following iptables rules on the receiver server:
