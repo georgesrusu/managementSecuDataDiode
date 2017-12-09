@@ -736,12 +736,12 @@ As shown in Figure \ref{fig:netvirt}, within the data diode we used a virtual sw
 \item[-] The receiver (\emph{enp0s6}) Ipv4 virtual network address is : 10.37.129.6
 \end{enumerate}
 
-Once the communication within the data diode was working, we decided to create a different network architecture in order to facilitate our implementation and testing process. The new network architecture made only for development and testing purpose is shown in Figure \ref{fig:netvirt}
+Once the communication within the data diode was working, we decided to create a different network architecture in order to facilitate our implementation and testing process. The new network architecture made only for development and testing purpose is shown in Figure \ref{fig:nettest}
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.5]{images/schema1.png}
-\caption{Network architecture.}
-\label{fig:netvirt}
+\caption{Development and test network architecture.}
+\label{fig:nettest}
 \end{figure}
 We have done this to be able to communicate with the transmitter but also with the receiver from a the same computer and without needing to change networks configurations each time. We configured the outside network interface manually :
 \begin{enumerate}
